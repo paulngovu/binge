@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-export default function Chats() {
+export default function Profile() {
   return (
     <div className="container">
       <Head>
