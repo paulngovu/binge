@@ -1,8 +1,6 @@
 import Head from 'next/head'
 
-// SWIPE PAGE
-
-export default function Home() {
+export default function Chats() {
   return (
     <div className="container">
       <Head>
@@ -16,7 +14,7 @@ export default function Home() {
         </h1>
 
         <p className="description">
-          We lov food!
+          Profile
         </p>
       </main>
 
