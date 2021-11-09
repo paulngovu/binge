@@ -3,52 +3,90 @@ class Recipe {
         this.name = "";
         this.image = null;
         this.description = "";
-        this.id = -1;
+        this.id = "";
         this.instructions = "";
         this.ingredients = [];
-        this.cuisineType = "";
-        this.mealType = "";
+        this.cuisineType = [];
+        this.mealType = [];
+        this.dishType = [];
     }
 
-    // to test the API, enter your app key and id
-    static queryAPI(){
-        var query = "b";
-        var app_key = "";
-        var app_id = "";
+    // function for testing
+    dumpRecipe(){
+        console.log("name: " + this.name);
+        console.log("image: " + this.image);
+        console.log("ingredients: ");
+        for (var i = 0; i < this.ingredients.length; i++){
+            console.log(i + "\t" + this.ingredients[i]);
+        }
 
-        var url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + query + "&app_id=7" + app_id + "&app_key=" + app_key;
+        console.log("cuisine type: ");
+        for (var i = 0; i < this.cuisineType.length; i++){
+            console.log(i + "\t" + this.cuisineType[i]);
+        }
 
-        var jsonresponse = null;
-        fetch(url)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    jsonresponse = result;
-                    this.parseJson(jsonresponse);
-                },
-                (error) => {
-                    console.log("error calling api");
-                }
-            )
-        return jsonresponse;
+        console.log("meal type: ");
+        for (var i = 0; i < this.mealType.length; i++){
+            console.log(i + "\t" + this.mealType[i]);
+        }
+
+        console.log("dish type: ");
+        for (var i = 0; i < this.dishType.length; i++){
+            console.log(i + "\t" + this.dishType[i]);
+        }
+
+        console.log("id: " + this.id);
     }
 
     // test parsing
     static parseJson(json){
+        var recipeObj = [];
         var recipes = json.hits;
         console.log(recipes);
 
         for (var i = 0; i < 20; i++){
             console.log(json.hits[i].recipe.label);
+            recipeObj.push(this.createRecipe(json.hits[i]));
+        }
+        return recipeObj;
+    }
+
+    // function to get the recipe id from the uri field returned by the recipe api
+    // the id comes at the end of the uri following the tag "#recipe_"
+    static getIDfromUri(uri){
+        var arr = uri.split("#recipe_");
+        if(arr.length > 1){
+            return arr[1];      
+        }else{
+            return "";
         }
     }
 
-    static testParsing(){
-        const customData = require('../recipeApiExample.json');
-        this.parseJson(customData);
+    static createRecipe(json){
+        var r = new Recipe();
+        r.name = json.recipe.label;
+        r.image = json.recipe.image;        // eventually change this to image object instead of url
+        r.ingredients = json.recipe.ingredientLines;
+        r.cuisineType = json.recipe.cuisineType;
+        r.mealType = json.recipe.mealType;
+        r.dishType = json.recipe.dishType;
+        r.id = Recipe.getIDfromUri(json.recipe.uri);
+
+        // for now we don't know how to get these -- may need to remove these fields
+        r.description = "";
+        r.instructions = "";
+
+        return r;
     }
 
-
+    static testParsing(){
+        const customData = require('./recipeApiExample.json');
+        var arr = this.parseJson(customData);
+        console.log("printing objects");
+        for (var i = 0; i < arr.length; i++){
+            arr[i].dumpRecipe();
+        }
+    }
 }
 
 export default Recipe;
