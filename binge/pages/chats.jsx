@@ -1,10 +1,8 @@
-import Layout from '../components/Layout';
+import ChatFeed from '../components/ChatFeed';
 
 const Chats = () => {
   return (
-    <Layout buttons={["home"]}>
-      <h1>Chats</h1>
-    </Layout>
+    <ChatFeed />
   );
 };
 

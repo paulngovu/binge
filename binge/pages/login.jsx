@@ -40,7 +40,7 @@ const Login = () => {
               Don't have an account? Sign up <a href='/register'>here</a>.
             </Text>
             <Box pad='small'>
-              <Button type='submit' primary label='login' />
+              <Button type='submit' primary label='Log In' />
             </Box>
             <Text size='small' color='status-critical'>
               {error}
