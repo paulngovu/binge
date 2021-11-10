@@ -7,27 +7,23 @@ import { Card, CardHeader, CardBody, Text } from 'grommet';
 const Home = () => {
   return (
     <Layout>
-      <div className="container">
+      <div className='container'>
         <Card
-          height="medium"
-          width="large"
-          background="light-1"
-          style={{ alignItems: "center" }}
+          height='medium'
+          width='large'
+          background='light-1'
+          style={{ alignItems: 'center' }}
         >
           <CardHeader
-            pad="medium"
-            width="100%"
-            background="light-3"
-            style={{ justifyContent: "center" }}
+            pad='medium'
+            width='100%'
+            background='light-3'
+            style={{ justifyContent: 'center' }}
           >
-            <Text size="large">
-              Food Name
-            </Text>
+            <Text size='large'>Food Name</Text>
           </CardHeader>
-          <CardBody pad="medium">
-            <Text size="medium">
-              Image, Description
-            </Text>
+          <CardBody pad='medium'>
+            <Text size='medium'>Image, Description</Text>
           </CardBody>
         </Card>
 
@@ -43,7 +39,7 @@ const Home = () => {
         `}</style>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
 export default Home;
