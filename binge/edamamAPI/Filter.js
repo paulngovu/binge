@@ -1,10 +1,26 @@
-class Filter{
-    #query = "";
-    #mealType = "";
-    #cuisineType = "";
-    #dishType = "";
+/* Use: example
 
-    #randomChar() {
+const filter = new Filter("", ["Lunch", "Dinner"], ["Chinese"], []);
+
+  filter.queryAPI().then((json) => {
+    console.log(json);
+    const arr = Recipe.parseJson(json);
+    for(var i = 0; i < arr.length; i++){
+      arr[i].dumpRecipe();
+    }
+    console.log("done");
+  });
+
+*/
+
+
+class Filter{
+    query = "";
+    mealType = [];
+    cuisineType = [];
+    dishType = [];
+
+    randomChar() {
         var characters = 'abcdefghijklmnopqrstuvwxyz';
         var charactersLength = characters.length;
         return characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -19,42 +35,38 @@ class Filter{
         if (query != ""){
             this.query = query;
         }else{
-            this.query = randomChar();
+            this.query = this.randomChar();
         }
     }
 
-
     // to test the API, enter your app key and id
-    queryAPI(){
+    async queryAPI(){
         var app_key = "";
         var app_id = "";
 
         var url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + this.query + "&app_id=" + app_id + "&app_key=" + app_key + "&random=true";
-        if(this.mealType != ""){
-            url += "&mealType=" + this.mealType;
+        
+        for (var i = 0; i < this.mealType.length; i++){
+            url += "&mealType=" + this.mealType[i];
         }
-        if(this.cuisineType != ""){
-            url += "&cuisineType=" + this.cuisineType;
+        for (var i = 0; i < this.cuisineType.length; i++){
+            url += "&cuisineType=" + this.cuisineType[i];
         }
-        if(this.dishType != ""){
-            url += "&dishType=" + this.dishType;
+        for (var i = 0; i < this.dishType.length; i++){
+            url += "&dishType=" + this.dishType[i];
         }
 
         console.log(url);
 
-        var jsonresponse = null;
-        fetch(url)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    jsonresponse = result;
-                    this.parseJson(jsonresponse);
-                },
-                (error) => {
-                    console.log("error calling api");
-                }
-            )
-        return jsonresponse;
+        try {
+            const res = await fetch(url);
+            const result = await res.json();
+            return result;
+        }
+        catch (error) {
+            console.log("error calling api");
+            return null;
+        }
     }
 }
 
