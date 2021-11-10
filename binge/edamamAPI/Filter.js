@@ -25,7 +25,10 @@ class Filter{
 
 
     // to test the API, enter your app key and id
-    queryAPI(app_key, app_id){
+    queryAPI(){
+        var app_key = "";
+        var app_id = "";
+
         var url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + this.query + "&app_id=" + app_id + "&app_key=" + app_key + "&random=true";
         if(this.mealType != ""){
             url += "&mealType=" + this.mealType;
@@ -39,7 +42,6 @@ class Filter{
 
         console.log(url);
 
-        /*
         var jsonresponse = null;
         fetch(url)
             .then(res => res.json())
@@ -53,7 +55,6 @@ class Filter{
                 }
             )
         return jsonresponse;
-        */
     }
 }
 

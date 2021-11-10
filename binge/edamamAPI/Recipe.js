@@ -2,13 +2,13 @@ class Recipe {
     constructor(){
         this.name = "";
         this.image = null;
-        this.description = "";
         this.id = "";
-        this.instructions = "";
         this.ingredients = [];
         this.cuisineType = [];
         this.mealType = [];
         this.dishType = [];
+        this.calories = -1;         // calories per serving
+        this.cautions = [];
     }
 
     // function for testing
@@ -36,6 +36,12 @@ class Recipe {
         }
 
         console.log("id: " + this.id);
+        console.log("calories: " + this.calories);
+
+        console.log("cautions: ");
+        for (var i = 0; i < this.cautions.length; i++){
+            console.log(i + "\t" + this.cautions[i]);
+        }
     }
 
     // test parsing
@@ -56,7 +62,7 @@ class Recipe {
     static getIDfromUri(uri){
         var arr = uri.split("#recipe_");
         if(arr.length > 1){
-            return arr[1];      
+            return arr[1];
         }else{
             return "";
         }
@@ -71,10 +77,8 @@ class Recipe {
         r.mealType = json.recipe.mealType;
         r.dishType = json.recipe.dishType;
         r.id = Recipe.getIDfromUri(json.recipe.uri);
-
-        // for now we don't know how to get these -- may need to remove these fields
-        r.description = "";
-        r.instructions = "";
+        r.calories = json.recipe.calories / json.recipe.yield;
+        r.cautions = json.recipe.cautions;
 
         return r;
     }
