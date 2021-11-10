@@ -2,7 +2,7 @@ import Layout from '../components/Layout';
 
 const Chats = () => {
   return (
-    <Layout>
+    <Layout buttons={["home"]}>
       <h1>Chats</h1>
     </Layout>
   );

@@ -6,8 +6,8 @@ import { Card, CardHeader, CardBody, Text } from 'grommet';
 
 const Home = () => {
   return (
-    <Layout>
-      <div className='container'>
+    <Layout buttons={["filter", "chats", "profile"]}>
+      <div className="container">
         <Card
           height='medium'
           width='large'

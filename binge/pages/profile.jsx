@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 const name = 'Joe Bruin';
 
 const Profile = () => (
-  <Layout>
+  <Layout buttons={["home"]}>
     <div className='container'>
       <h1>picture here</h1>
       <h1>{name}</h1>

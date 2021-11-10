@@ -1,8 +1,9 @@
 import Head from 'next/head';
 
-import { Heading, Header, Grommet } from 'grommet';
+import { Button, Heading, Header, Grommet } from 'grommet';
+import { Chat, Filter, Home, User } from 'grommet-icons';
 
-const Layout = (props) => {
+const Layout = ({ buttons=[], ...props}) => {
   const theme = {
     global: {
       font: {
@@ -23,6 +24,12 @@ const Layout = (props) => {
     },
   };
 
+
+  const showFilter = buttons.indexOf("filter") > -1;
+  const showChats = buttons.indexOf("chats") > -1;
+  const showProfile = buttons.indexOf("profile") > -1;
+  const showHome = buttons.indexOf("home") > -1;
+
   return (
     <Grommet theme={theme}>
       <Head>
@@ -30,10 +37,15 @@ const Layout = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header background="brand" pad="medium" height="xsmall">
-        <Heading color="white" margin="auto">Binge</Heading>
+      <Header display="flex" background="brand" pad="medium" height="xsmall">
+        <Heading color="white">Binge</Heading>
+        <div alignSelf="end">
+          {showFilter ? <Button icon={<Filter color='white'/>} hoverIndicator/> : null}
+          {showChats ? <Button icon={<Chat color='white'/>} hoverIndicator href="./chats"/> : null}
+          {showProfile ? <Button icon={<User color='white'/>} hoverIndicator href="./profile"/> : null}
+          {showHome ? <Button icon={<Home color='white'/>} hoverIndicator href="./index"/> : null}
+        </div>
       </Header>
-
       {props.children}
   </Grommet>);
 }
