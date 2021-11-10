@@ -49,6 +49,8 @@ const Home = () => {
         >
           <Box gridArea="left">
             <Button
+              id="left-arrow"
+              data-testid="left-arrow"
               icon={
                 <FormPrevious
                   color='dark-1'
@@ -62,6 +64,7 @@ const Home = () => {
           </Box>
           <Box gridArea="main">
             <Card
+              data-testid="food-item-card"
               fill="vertical"
               width="large"
               background="light-1"
@@ -78,13 +81,14 @@ const Home = () => {
                 </Text>
               </CardHeader>
               <CardBody pad="medium">
-                <Image src={foodResponse[foodIndex]?.image} fit="contain" />
+                <Image data-testid="food-item-img" src={foodResponse[foodIndex]?.image} fit="contain" />
                 <Text size="medium" margin="small">
-                  Calories: {foodResponse[foodIndex]?.calories}<br />
+                  Calories: {Math.floor(foodResponse[foodIndex]?.calories)}<br />
                   Cautions: {
-                    foodResponse[foodIndex]?.cautions.map(
-                      (caution, i) => i == 0 ? `${caution}` : `, ${caution}`
-                    )
+                    foodResponse[foodIndex]?.cautions.length ? 
+                      foodResponse[foodIndex]?.cautions.map(
+                        (caution, i) => i == 0 ? `${caution}` : `, ${caution}`
+                      ) : "None"
                   }
                 </Text>
               </CardBody>
@@ -92,6 +96,7 @@ const Home = () => {
           </Box>
           <Box gridArea="right">
             <Button
+              data-testid="right-arrow"
               icon={
                 <FormNext
                   color='dark-1'

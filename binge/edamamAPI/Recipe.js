@@ -47,8 +47,10 @@ class Recipe {
     // test parsing
     static parseJson(json){
         var recipeObj = [];
-        var recipes = json.hits;
-        console.log(recipes);
+        var recipes = json?.hits;
+        if (!recipes) {
+            return recipeObj;
+        }
 
         for (var i = 0; i < 20; i++){
             console.log(json.hits[i].recipe.label);

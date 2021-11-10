@@ -95,6 +95,8 @@ exports[`renders homepage unchanged 1`] = `
       >
         <button
           className="StyledButton-sc-323bzc-0 haWZSW"
+          data-testid="left-arrow"
+          id="left-arrow"
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -127,6 +129,7 @@ exports[`renders homepage unchanged 1`] = `
       >
         <div
           className="StyledBox-sc-13pk1d4-0 ikCZNm"
+          data-testid="food-item-card"
           style={
             Object {
               "alignItems": "center",
@@ -150,15 +153,18 @@ exports[`renders homepage unchanged 1`] = `
           >
             <img
               className="StyledImage-sc-ey4zx9-0 fOsWNE"
+              data-testid="food-item-img"
             />
             <span
               className="StyledText-sc-1sadyjn-0 bpoUBq"
             >
               Calories: 
+              NaN
               <br
                 className="jsx-3811088590"
               />
               Cautions: 
+              None
             </span>
           </div>
         </div>
@@ -168,6 +174,7 @@ exports[`renders homepage unchanged 1`] = `
       >
         <button
           className="StyledButton-sc-323bzc-0 haWZSW"
+          data-testid="right-arrow"
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
