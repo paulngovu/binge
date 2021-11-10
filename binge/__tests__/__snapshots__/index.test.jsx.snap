@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div
+  className="StyledGrommet-sc-19lkkz7-0 hMmsfQ"
+>
+  <header
+    className="StyledBox-sc-13pk1d4-0 gLncCO"
+    display="flex"
+  >
+    <h1
+      className="StyledHeading-sc-1rdh4aw-0 elclaf"
+    >
+      Binge
+    </h1>
+    <div
+      className="StyledBox__StyledBoxGap-sc-13pk1d4-1 itCgil"
+    />
+    <div
+      alignSelf="end"
+    >
+      <button
+        className="StyledButton-sc-323bzc-0 haWZSW"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+        type="button"
+      >
+        <svg
+          aria-label="Filter"
+          className="StyledIcon-sc-ofa7kd-0 bwvewX"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="m3 6 7 7v8h4v-8l7-7V3H3z"
+            fill="none"
+            stroke="#000"
+            strokeWidth="2"
+          />
+        </svg>
+      </button>
+      <a
+        className="StyledButton-sc-323bzc-0 haWZSW"
+        href="./chats"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <svg
+          aria-label="Chat"
+          className="StyledIcon-sc-ofa7kd-0 bwvewX"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 1H5a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h12l6 5V5a4 4 0 0 0-4-4zm0 6H6m13 4h-9"
+            fill="none"
+            stroke="#000"
+            strokeWidth="2"
+          />
+        </svg>
+      </a>
+      <a
+        className="StyledButton-sc-323bzc-0 haWZSW"
+        href="./profile"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <svg
+          aria-label="User"
+          className="StyledIcon-sc-ofa7kd-0 bwvewX"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M8 24v-5m8 5v-5M3 24v-5c0-4.97 4.03-8 9-8s9 3.03 9 8v5m-9-13a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"
+            fill="none"
+            stroke="#000"
+            strokeWidth="2"
+          />
+        </svg>
+      </a>
+    </div>
+  </header>
+  <div
+    className="jsx-3811088590 container"
+  >
+    <div
+      className="StyledGrid-sc-1wofa1l-0 jsLxIq"
+    >
+      <div
+        className="StyledBox-sc-13pk1d4-0 fJYNto"
+      >
+        <button
+          className="StyledButton-sc-323bzc-0 haWZSW"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          style={
+            Object {
+              "paddingBottom": 250,
+              "paddingTop": 250,
+            }
+          }
+          type="button"
+        >
+          <svg
+            aria-label="FormPrevious"
+            className="StyledIcon-sc-ofa7kd-0 iFhpCj"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="m15 6-6 6 6 6"
+              fill="none"
+              stroke="#000"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="StyledBox-sc-13pk1d4-0 hsdebw"
+      >
+        <div
+          className="StyledBox-sc-13pk1d4-0 ikCZNm"
+          style={
+            Object {
+              "alignItems": "center",
+            }
+          }
+        >
+          <header
+            className="StyledBox-sc-13pk1d4-0 eafqYl"
+            style={
+              Object {
+                "justifyContent": "center",
+              }
+            }
+          >
+            <span
+              className="StyledText-sc-1sadyjn-0 flpFwE"
+            />
+          </header>
+          <div
+            className="StyledBox-sc-13pk1d4-0 fFfKrb"
+          >
+            <img
+              className="StyledImage-sc-ey4zx9-0 fOsWNE"
+            />
+            <span
+              className="StyledText-sc-1sadyjn-0 bpoUBq"
+            >
+              Calories: 
+              <br
+                className="jsx-3811088590"
+              />
+              Cautions: 
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="StyledBox-sc-13pk1d4-0 kZaIHn"
+      >
+        <button
+          className="StyledButton-sc-323bzc-0 haWZSW"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          style={
+            Object {
+              "paddingBottom": 250,
+              "paddingTop": 250,
+            }
+          }
+          type="button"
+        >
+          <svg
+            aria-label="FormNext"
+            className="StyledIcon-sc-ofa7kd-0 iFhpCj"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="m9 6 6 6-6 6"
+              fill="none"
+              stroke="#000"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -43,7 +43,7 @@ const Layout = ({ buttons=[], ...props}) => {
           {showFilter ? <Button icon={<Filter color='white'/>} hoverIndicator/> : null}
           {showChats ? <Button icon={<Chat color='white'/>} hoverIndicator href="./chats"/> : null}
           {showProfile ? <Button icon={<User color='white'/>} hoverIndicator href="./profile"/> : null}
-          {showHome ? <Button icon={<Home color='white'/>} hoverIndicator href="./index"/> : null}
+          {showHome ? <Button icon={<Home color='white'/>} hoverIndicator href="./"/> : null}
         </div>
       </Header>
       {props.children}
