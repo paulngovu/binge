@@ -41,8 +41,8 @@ class Filter{
 
     // to test the API, enter your app key and id
     async queryAPI(){
-        var app_key = "";
-        var app_id = "";
+        var app_key = "867eb2cc967aec978fb2d65c68077b95";
+        var app_id = "7bb6a23d";
 
         var url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + this.query + "&app_id=" + app_id + "&app_key=" + app_key + "&random=true";
         
