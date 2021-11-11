@@ -1,7 +1,7 @@
 import { Box, Button, Form, FormField, Text, TextInput } from 'grommet';
 import Router from 'next/router';
 import Layout from '../components/Layout';
-import { PATH_AUTHENTICATE } from '../paths';
+import { PATH_AUTHENTICATE, PATH_LOGIN } from '../paths';
 
 const Register = () => {
   return (
@@ -34,7 +34,7 @@ const Register = () => {
             </FormField>
             <Box>
               <Text size='small'>
-                Already have an account? Log in <a href='/login'>here</a>.
+                Already have an account? Log in <a href={PATH_LOGIN}>here</a>.
               </Text>
               <Box pad='small'>
                 <Button type='submit' primary label='register' />

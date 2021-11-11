@@ -1,5 +1,6 @@
 import { Box, Button, Text } from 'grommet';
 import Layout from '../../components/Layout';
+import { PATH_LOGIN } from '../../paths';
 
 const Error = () => (
   <Layout>
@@ -7,7 +8,7 @@ const Error = () => (
       <div className='container'>
         <Text size='large'>You must log in.</Text>
         <Box pad='small'>
-          <Button primary label='Log In' href='/login' />
+          <Button primary label='Log In' href={PATH_LOGIN} />
         </Box>
         <style jsx>{`
           .container {

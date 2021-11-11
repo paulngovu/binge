@@ -1,7 +1,7 @@
-import Head from 'next/head';
-
-import { Button, Heading, Header, Grommet } from 'grommet';
+import { Button, Grommet, Header, Heading } from 'grommet';
 import { Chat, Filter, Home, User } from 'grommet-icons';
+import Head from 'next/head';
+import { PATH_CHATS, PATH_HOME, PATH_PROFILE } from '../paths';
 
 const Layout = ({ buttons = [], ...props }) => {
   const theme = {
@@ -46,18 +46,22 @@ const Layout = ({ buttons = [], ...props }) => {
             <Button
               icon={<Chat color='white' />}
               hoverIndicator
-              href='./chats'
+              href={PATH_CHATS}
             />
           ) : null}
           {showProfile ? (
             <Button
               icon={<User color='white' />}
               hoverIndicator
-              href='./profile'
+              href={PATH_PROFILE}
             />
           ) : null}
           {showHome ? (
-            <Button icon={<Home color='white' />} hoverIndicator href='./' />
+            <Button
+              icon={<Home color='white' />}
+              hoverIndicator
+              href={PATH_HOME}
+            />
           ) : null}
         </div>
       </Header>

@@ -2,7 +2,7 @@ import { Box, Button, Form, FormField, Text, TextInput } from 'grommet';
 import Router from 'next/router';
 import { useState } from 'react';
 import Layout from '../../components/Layout';
-import { PATH_AUTHENTICATE } from '../../paths';
+import { PATH_AUTHENTICATE, PATH_REGISTER } from '../../paths';
 import { isValidCredentials } from '../../utils/isValidCredentials';
 
 const Login = () => {
@@ -41,7 +41,7 @@ const Login = () => {
               />
             </FormField>
             <Text size='small'>
-              Don't have an account? Sign up <a href='/register'>here</a>.
+              Don't have an account? Sign up <a href={PATH_REGISTER}>here</a>.
             </Text>
             <Box pad='small'>
               <Button type='submit' primary label='Log In' />

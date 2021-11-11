@@ -51,6 +51,7 @@ const Profile = () => {
                 fetch(PATH_LOGOUT, { credentials: 'same-origin' }).then(
                   (res) => {
                     if (res.ok) {
+                      // Reloading page moves to login because of token check
                       Router.reload();
                     }
                   }
