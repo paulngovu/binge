@@ -40,13 +40,18 @@ const Layout = ({ buttons = [], ...props }) => {
         <Heading color='white'>Binge</Heading>
         <div alignself='end'>
           {showFilter ? (
-            <Button icon={<Filter color='white' />} hoverIndicator />
+            <Button icon={<Filter color='white' />} hoverIndicator tip={{
+              content: "Filters"
+            }} />
           ) : null}
           {showChats ? (
             <Button
               icon={<Chat color='white' />}
               hoverIndicator
               href={PATH_CHATS}
+              tip={{
+                content: "Chats"
+              }}
             />
           ) : null}
           {showProfile ? (
@@ -54,6 +59,9 @@ const Layout = ({ buttons = [], ...props }) => {
               icon={<User color='white' />}
               hoverIndicator
               href={PATH_PROFILE}
+              tip={{
+                content: "Profile"
+              }}
             />
           ) : null}
           {showHome ? (
@@ -61,6 +69,9 @@ const Layout = ({ buttons = [], ...props }) => {
               icon={<Home color='white' />}
               hoverIndicator
               href={PATH_HOME}
+              tip={{
+                content: "Home  "
+              }}
             />
           ) : null}
         </div>

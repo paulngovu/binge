@@ -45,7 +45,7 @@ const Home = () => {
             { name: 'main', start: [1, 0], end: [1, 0] },
             { name: 'right', start: [2, 0], end: [2, 0] },
           ]}
-          margin="medium"
+          margin="large"
         >
           <Box gridArea="left">
             <Button
@@ -60,6 +60,9 @@ const Home = () => {
               hoverIndicator
               style={{ paddingTop: 250, paddingBottom: 250 }}
               onClick={incrementIndex}
+              tip={{
+                content: "Click to pass on this recipe."
+              }}
             />
           </Box>
           <Box gridArea="main">
@@ -106,6 +109,9 @@ const Home = () => {
               hoverIndicator
               style={{ paddingTop: 250, paddingBottom: 250 }}
               onClick={incrementIndex}
+              tip={{
+                content: "Click to like this recipe!"
+              }}
             />
           </Box>
         </Grid>
