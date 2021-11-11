@@ -1,8 +1,9 @@
 import { Box, Button, Form, FormField, Text, TextInput } from 'grommet';
 import Router from 'next/router';
 import { useState } from 'react';
-import Layout from '../components/Layout';
-import { isValidCredentials } from '../utils/isValidCredentials';
+import Layout from '../../components/Layout';
+import { PATH_AUTHENTICATE } from '../../paths';
+import { isValidCredentials } from '../../utils/isValidCredentials';
 
 const Login = () => {
   const [error, setError] = useState('');
@@ -22,7 +23,10 @@ const Login = () => {
               } else {
                 setError('Logging in...');
                 // Create user token
-                Router.push(`/jwt?username=${username}`);
+                Router.push({
+                  pathname: PATH_AUTHENTICATE,
+                  query: { username: username },
+                });
               }
             }}
           >

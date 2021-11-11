@@ -1,6 +1,7 @@
 import { Box, Button, Form, FormField, Text, TextInput } from 'grommet';
 import Router from 'next/router';
 import Layout from '../components/Layout';
+import { PATH_AUTHENTICATE } from '../paths';
 
 const Register = () => {
   return (
@@ -15,7 +16,10 @@ const Register = () => {
               const password = value.password;
               // TODO: Check existing users
               // Create user token
-              Router.push(`/jwt?username=${username}`);
+              Router.push({
+                pathname: PATH_AUTHENTICATE,
+                query: { username: username },
+              });
             }}
           >
             <FormField name='username' label='username'>
