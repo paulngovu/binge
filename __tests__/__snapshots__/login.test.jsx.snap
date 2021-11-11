@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login page Renders entire page 1`] = `
+<div
+  className="StyledGrommet-sc-19lkkz7-0 hMmsfQ"
+>
+  <header
+    className="StyledBox-sc-13pk1d4-0 gLncCO"
+    display="flex"
+  >
+    <h1
+      className="StyledHeading-sc-1rdh4aw-0 elclaf"
+    >
+      Binge
+    </h1>
+    <div
+      className="StyledBox__StyledBoxGap-sc-13pk1d4-1 itCgil"
+    />
+    <div
+      alignself="end"
+    />
+  </header>
+  <div
+    className="StyledBox-sc-13pk1d4-0 foyece"
+  >
+    <div
+      className="jsx-1619348227 container"
+    >
+      <span
+        className="StyledText-sc-1sadyjn-0 flpFwE"
+        data-testid="login-title"
+      >
+        Login
+      </span>
+      <form
+        onReset={[Function]}
+        onSubmit={[Function]}
+      >
+        <div
+          className="StyledBox-sc-13pk1d4-0 bdFdHV FormField__FormFieldBox-sc-m9hood-0 bNDIlh"
+          data-testid="login-username"
+          onBlur={[Function]}
+          onFocus={[Function]}
+        >
+          <label
+            className="StyledText-sc-1sadyjn-0 gvmMDy"
+          >
+            username
+          </label>
+          <div
+            className="StyledBox-sc-13pk1d4-0 flwsbj FormField__FormFieldContentBox-sc-m9hood-1"
+          >
+            <div
+              className="StyledTextInput__StyledTextInputContainer-sc-1x30a0s-1 jqwtzG"
+            >
+              <input
+                autoComplete="off"
+                className="StyledTextInput-sc-1x30a0s-0 bmcLpb"
+                name="username"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                placeholder="username"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="StyledBox-sc-13pk1d4-0 bdFdHV FormField__FormFieldBox-sc-m9hood-0 bNDIlh"
+          data-testid="login-password"
+          onBlur={[Function]}
+          onFocus={[Function]}
+        >
+          <label
+            className="StyledText-sc-1sadyjn-0 gvmMDy"
+          >
+            password
+          </label>
+          <div
+            className="StyledBox-sc-13pk1d4-0 flwsbj FormField__FormFieldContentBox-sc-m9hood-1"
+          >
+            <div
+              className="StyledTextInput__StyledTextInputContainer-sc-1x30a0s-1 jqwtzG"
+            >
+              <input
+                autoComplete="off"
+                className="StyledTextInput-sc-1x30a0s-0 bmcLpb"
+                name="password"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                placeholder="password"
+                type="password"
+              />
+            </div>
+          </div>
+        </div>
+        <span
+          className="StyledText-sc-1sadyjn-0 bGUCcJ"
+        >
+          Don't have an account? Sign up 
+          <a
+            className="jsx-1619348227"
+            href="/register"
+          >
+            here
+          </a>
+          .
+        </span>
+        <div
+          className="StyledBox-sc-13pk1d4-0 btgOOZ"
+        >
+          <button
+            className="StyledButton-sc-323bzc-0 emnQnE"
+            data-testid="login-button"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+            type="submit"
+          >
+            Log In
+          </button>
+        </div>
+        <span
+          className="StyledText-sc-1sadyjn-0 fBFkhO"
+          data-testid="login-error-msg"
+        >
+          
+        </span>
+      </form>
+    </div>
+  </div>
+</div>
+`;

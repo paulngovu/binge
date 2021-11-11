@@ -3,6 +3,13 @@ import Router from 'next/router';
 import { useState } from 'react';
 import Layout from '../../components/Layout';
 import { PATH_AUTHENTICATE, PATH_REGISTER } from '../../paths';
+import {
+  TESTID_LOGIN_BUTTON,
+  TESTID_LOGIN_ERROR_MSG,
+  TESTID_LOGIN_PASSWORD,
+  TESTID_LOGIN_TITLE,
+  TESTID_LOGIN_USERNAME,
+} from '../../testIds';
 import { isValidCredentials } from '../../utils/isValidCredentials';
 
 const Login = () => {
@@ -12,7 +19,9 @@ const Login = () => {
     <Layout>
       <Box pad='large'>
         <div className='container'>
-          <Text size='large'>Login</Text>
+          <Text size='large' data-testid={TESTID_LOGIN_TITLE}>
+            Login
+          </Text>
           <Form
             onSubmit={({ value }) => {
               // guaranteed non empty
@@ -30,10 +39,20 @@ const Login = () => {
               }
             }}
           >
-            <FormField name='username' label='username' required>
+            <FormField
+              name='username'
+              label='username'
+              required
+              data-testid={TESTID_LOGIN_USERNAME}
+            >
               <TextInput name='username' placeholder='username' />
             </FormField>
-            <FormField name='password' label='password' required>
+            <FormField
+              name='password'
+              label='password'
+              required
+              data-testid={TESTID_LOGIN_PASSWORD}
+            >
               <TextInput
                 name='password'
                 placeholder='password'
@@ -44,9 +63,18 @@ const Login = () => {
               Don't have an account? Sign up <a href={PATH_REGISTER}>here</a>.
             </Text>
             <Box pad='small'>
-              <Button type='submit' primary label='Log In' />
+              <Button
+                type='submit'
+                primary
+                label='Log In'
+                data-testid={TESTID_LOGIN_BUTTON}
+              />
             </Box>
-            <Text size='small' color='status-critical'>
+            <Text
+              size='small'
+              color='status-critical'
+              data-testid={TESTID_LOGIN_ERROR_MSG}
+            >
               {error}
             </Text>
           </Form>
