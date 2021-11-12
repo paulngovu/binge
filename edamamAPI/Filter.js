@@ -75,7 +75,7 @@ class Filter{
         return url;
     }
 
-    // This function acts as a framework to fall the recipe search API. Since this call 
+    // This function acts as a framework to use the recipe search API. Since this call 
     // contains an asynchronous API call, the function itself must also be asynchronous.
     // It takes no parameters since it uses the class fields of this class to adjust the
     // API query.
