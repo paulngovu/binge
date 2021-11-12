@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login error page Renders entire page 1`] = `
+<div
+  className="StyledGrommet-sc-19lkkz7-0 hMmsfQ"
+>
+  <header
+    className="StyledBox-sc-13pk1d4-0 gLncCO"
+    display="flex"
+  >
+    <h1
+      className="StyledHeading-sc-1rdh4aw-0 elclaf"
+    >
+      Binge
+    </h1>
+    <div
+      className="StyledBox__StyledBoxGap-sc-13pk1d4-1 itCgil"
+    />
+    <div
+      alignself="end"
+    />
+  </header>
+  <div
+    className="StyledBox-sc-13pk1d4-0 foyece"
+  >
+    <div
+      className="jsx-3811088590 container"
+    >
+      <span
+        className="StyledText-sc-1sadyjn-0 flpFwE"
+      >
+        You must log in.
+      </span>
+      <div
+        className="StyledBox-sc-13pk1d4-0 btgOOZ"
+      >
+        <a
+          className="StyledButton-sc-323bzc-0 emnQnE"
+          data-testid="login-error-msg-btn"
+          href="/login"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          Log In
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;

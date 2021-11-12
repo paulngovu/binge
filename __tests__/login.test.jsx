@@ -3,7 +3,6 @@
  */
 
 import { render } from '@testing-library/react';
-import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import Login from '../pages/login';
 import {

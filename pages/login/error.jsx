@@ -1,14 +1,20 @@
 import { Box, Button, Text } from 'grommet';
 import Layout from '../../components/Layout';
 import { PATH_LOGIN } from '../../paths';
+import { TESTID_LOGIN_ERROR_BUTTON } from '../../testIds';
 
-const Error = () => (
+const LoginError = () => (
   <Layout>
     <Box pad='large'>
       <div className='container'>
         <Text size='large'>You must log in.</Text>
         <Box pad='small'>
-          <Button primary label='Log In' href={PATH_LOGIN} />
+          <Button
+            primary
+            label='Log In'
+            href={PATH_LOGIN}
+            data-testid={TESTID_LOGIN_ERROR_BUTTON}
+          />
         </Box>
         <style jsx>{`
           .container {
@@ -25,4 +31,4 @@ const Error = () => (
   </Layout>
 );
 
-export default Error;
+export default LoginError;

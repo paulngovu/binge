@@ -114,7 +114,7 @@ exports[`Login page Renders entire page 1`] = `
         >
           <button
             className="StyledButton-sc-323bzc-0 emnQnE"
-            data-testid="login-button"
+            data-testid="login-btn"
             onBlur={[Function]}
             onFocus={[Function]}
             onMouseOut={[Function]}
