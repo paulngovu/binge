@@ -1,17 +1,71 @@
 class Recipe {
-    constructor(){
-        this.name = "";
-        this.image = null;
-        this.id = "";
-        this.ingredients = [];
-        this.cuisineType = [];
-        this.mealType = [];
-        this.dishType = [];
-        this.calories = -1;         // calories per serving
-        this.cautions = [];
+    constructor(name, image, ingredients, cuisineType, mealType, dishType, id, calories, cautions){
+        this.name = name;
+        this.image = image;        
+        this.ingredients = ingredients;
+        this.cuisineType = cuisineType;
+        this.mealType = mealType;
+        this.dishType = dishType;
+        this.id = id;
+        this.calories = calories;
+        this.cautions = cautions;
+    }        
+
+    // This function takes in a json Object containing the data returned from a
+    // recipe search API call. This function parses that data and creates Recipe
+    // objects using it. The maximum number of hits per API call is 20
+    // @param json - Object containing the data from the recipe search API
+    // @return   array of Recipe objects
+    static parseJson(json){
+        var recipeObj = [];
+        var recipes = json.hits;
+        if (!recipes) {
+            return recipeObj;
+        }
+
+        for (var i = 0; i < json.hits.length; i++){
+            recipeObj.push(Recipe.#createRecipe(json.hits[i]));
+        }
+        return recipeObj;
     }
 
-    // function for testing
+    // function to get the recipe id from the uri field returned by the recipe api
+    // the id comes at the end of the uri following the tag "#recipe_"
+    static #getIDfromUri(uri){
+        var arr = uri.split("#recipe_");
+        if(arr.length > 1){
+            return arr[1];
+        }else{
+            return "";
+        }
+    }
+
+    // remove and place in constructor
+    static #createRecipe(json){
+        var r = new Recipe(json.recipe.label, 
+            json.recipe.image, 
+            json.recipe.ingredientLines, 
+            json.recipe.cuisineType,
+            json.recipe.mealType, 
+            json.recipe.dishType, 
+            Recipe.#getIDfromUri(json.recipe.uri), 
+            (json.recipe.calories / json.recipe.yield),
+            json.recipe.cautions);
+
+        return r;
+    }
+
+    // Test function
+    static testParsing(){
+        const customData = require('./recipeApiExample.json');
+        var arr = this.parseJson(customData);
+        console.log("printing objects");
+        for (var i = 0; i < arr.length; i++){
+            arr[i].dumpRecipe();
+        }
+    }
+
+    // dump function to print out the contents of the Recipe to console
     dumpRecipe(){
         console.log("name: " + this.name);
         console.log("image: " + this.image);
@@ -41,56 +95,6 @@ class Recipe {
         console.log("cautions: ");
         for (var i = 0; i < this.cautions.length; i++){
             console.log(i + "\t" + this.cautions[i]);
-        }
-    }
-
-    // test parsing
-    static parseJson(json){
-        var recipeObj = [];
-        var recipes = json?.hits;
-        if (!recipes) {
-            return recipeObj;
-        }
-
-        for (var i = 0; i < 20; i++){
-            console.log(json.hits[i].recipe.label);
-            recipeObj.push(this.createRecipe(json.hits[i]));
-        }
-        return recipeObj;
-    }
-
-    // function to get the recipe id from the uri field returned by the recipe api
-    // the id comes at the end of the uri following the tag "#recipe_"
-    static getIDfromUri(uri){
-        var arr = uri.split("#recipe_");
-        if(arr.length > 1){
-            return arr[1];
-        }else{
-            return "";
-        }
-    }
-
-    static createRecipe(json){
-        var r = new Recipe();
-        r.name = json.recipe.label;
-        r.image = json.recipe.image;        // eventually change this to image object instead of url
-        r.ingredients = json.recipe.ingredientLines;
-        r.cuisineType = json.recipe.cuisineType;
-        r.mealType = json.recipe.mealType;
-        r.dishType = json.recipe.dishType;
-        r.id = Recipe.getIDfromUri(json.recipe.uri);
-        r.calories = json.recipe.calories / json.recipe.yield;
-        r.cautions = json.recipe.cautions;
-
-        return r;
-    }
-
-    static testParsing(){
-        const customData = require('./recipeApiExample.json');
-        var arr = this.parseJson(customData);
-        console.log("printing objects");
-        for (var i = 0; i < arr.length; i++){
-            arr[i].dumpRecipe();
         }
     }
 }
