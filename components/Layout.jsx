@@ -1,9 +1,13 @@
-import { Button, Grommet, Header, Heading } from 'grommet';
+import { Button, Grommet, Header, Heading, Drop } from 'grommet';
 import { Chat, Filter, Home, User } from 'grommet-icons';
+import { useState, useRef } from 'react';
 import Head from 'next/head';
 import { PATH_CHATS, PATH_HOME, PATH_PROFILE } from '../paths';
+import Filters from './Filters';
 
 const Layout = ({ buttons = [], ...props }) => {
+  const [showFiltersDrop, setShowFiltersDrop] = useState(false);
+
   const theme = {
     global: {
       font: {
@@ -29,6 +33,12 @@ const Layout = ({ buttons = [], ...props }) => {
   const showProfile = buttons.indexOf('profile') > -1;
   const showHome = buttons.indexOf('home') > -1;
 
+  const ref = useRef();
+
+  const toggleFiltersDrop = () => {
+    setShowFiltersDrop(!showFiltersDrop);
+  }
+
   return (
     <Grommet theme={theme}>
       <Head>
@@ -40,9 +50,21 @@ const Layout = ({ buttons = [], ...props }) => {
         <Heading color='white'>Binge</Heading>
         <div alignself='end'>
           {showFilter ? (
-            <Button icon={<Filter color='white' />} hoverIndicator tip={{
-              content: "Filters"
-            }} />
+            <>
+              <Button
+                ref={ref}
+                icon={<Filter color='white' />}
+                hoverIndicator
+                onClick={toggleFiltersDrop}
+              />
+              {showFiltersDrop && ref && <Drop
+                align={{ bottom: 'top', right: 'right' }}
+                target={ref.current}
+                responsive
+              >
+                <Filters />
+              </Drop>}
+            </>
           ) : null}
           {showChats ? (
             <Button
