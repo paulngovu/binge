@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders profile 1`] = `
+<div
+  className="StyledGrommet-sc-19lkkz7-0 hMmsfQ"
+>
+  <header
+    className="StyledBox-sc-13pk1d4-0 gLncCO"
+    display="flex"
+  >
+    <h1
+      className="StyledHeading-sc-1rdh4aw-0 elclaf"
+    >
+      Binge
+    </h1>
+    <div
+      className="StyledBox__StyledBoxGap-sc-13pk1d4-1 itCgil"
+    />
+    <div
+      alignself="end"
+    >
+      <a
+        className="StyledButton-sc-323bzc-0 haWZSW"
+        href="/"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <svg
+          aria-label="Home"
+          className="StyledIcon-sc-ofa7kd-0 bwvewX"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="m1 11 11-9 11 9m-8 12v-8H9v8m-5 0V9m16 14V9"
+            fill="none"
+            stroke="#000"
+            strokeWidth="2"
+          />
+        </svg>
+      </a>
+    </div>
+  </header>
+  <div
+    className="StyledBox-sc-13pk1d4-0 foyece"
+  >
+    <div
+      className="jsx-2134774113 container"
+    >
+      <img
+        className="jsx-2134774113 profile-img"
+        src="/joe-bruin.jpg"
+      />
+      <h1
+        className="jsx-2134774113"
+      >
+        Joe Bruin
+      </h1>
+      <button
+        className="StyledButton-sc-323bzc-0 hmUEoa"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+        type="button"
+      >
+        Edit
+      </button>
+      <div
+        className="StyledBox-sc-13pk1d4-0 btgOOZ"
+      >
+        <button
+          className="StyledButton-sc-323bzc-0 hmUEoa"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          type="button"
+        >
+          Log Out
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

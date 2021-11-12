@@ -17,12 +17,14 @@ exports[`renders homepage unchanged 1`] = `
       className="StyledBox__StyledBoxGap-sc-13pk1d4-1 itCgil"
     />
     <div
-      alignSelf="end"
+      alignself="end"
     >
       <button
         className="StyledButton-sc-323bzc-0 haWZSW"
         onBlur={[Function]}
         onFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
         onMouseOut={[Function]}
         onMouseOver={[Function]}
         type="button"
@@ -42,9 +44,11 @@ exports[`renders homepage unchanged 1`] = `
       </button>
       <a
         className="StyledButton-sc-323bzc-0 haWZSW"
-        href="./chats"
+        href="/chats"
         onBlur={[Function]}
         onFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -63,9 +67,11 @@ exports[`renders homepage unchanged 1`] = `
       </a>
       <a
         className="StyledButton-sc-323bzc-0 haWZSW"
-        href="./profile"
+        href="/profile"
         onBlur={[Function]}
         onFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -88,7 +94,7 @@ exports[`renders homepage unchanged 1`] = `
     className="jsx-3811088590 container"
   >
     <div
-      className="StyledGrid-sc-1wofa1l-0 jsLxIq"
+      className="StyledGrid-sc-1wofa1l-0 lopCrt"
     >
       <div
         className="StyledBox-sc-13pk1d4-0 fJYNto"
@@ -100,6 +106,8 @@ exports[`renders homepage unchanged 1`] = `
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
           onMouseOut={[Function]}
           onMouseOver={[Function]}
           style={
@@ -178,6 +186,8 @@ exports[`renders homepage unchanged 1`] = `
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
           onMouseOut={[Function]}
           onMouseOver={[Function]}
           style={

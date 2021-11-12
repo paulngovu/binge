@@ -29,12 +29,13 @@ const Profile = () => {
           <h1>{name}</h1>
           {showModal ? (
             <Box margin='medium'>
-              <label for='name'>New name (15 characters max):</label>
+              <label htmlFor='name'>New name (15 characters max):</label>
               <input
                 type='text'
                 id='name'
                 name='name'
-                maxlength='15'
+                maxLength='15'
+                data-testid='input-name'
                 onChange={(e) => setName(e.target.value)}
               ></input>
               <button onClick={onSubmit}>Submit</button>
