@@ -22,9 +22,8 @@ exports[`renders homepage unchanged 1`] = `
       <button
         className="StyledButton-sc-323bzc-0 haWZSW"
         onBlur={[Function]}
+        onClick={[Function]}
         onFocus={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
         onMouseOut={[Function]}
         onMouseOver={[Function]}
         type="button"

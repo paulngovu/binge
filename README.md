@@ -30,4 +30,6 @@ Description of Test Cases:
 We use Jest and Enzyme for testing our application.
 
 - `index.test.jsx`: tests the Home page render. This includes a snapshot test, tests for checking for components, and a test for the arrow button click.
-- TODO
+- `login.test.jsx`: tests the Login page render. This includes a snapshot test, and tests for checking for components.
+- `login.error.test.jsx`: tests the Login error page render. This includes a snapshot test, and tests for checking for components.
+  TODO
