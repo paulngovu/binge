@@ -18,9 +18,9 @@ Folder Structure:
 - `__tests__`: contains test cases, which can be run using `npm run test`.
 - `components`: contains the frontend components that make up our UI.
 - `edamamAPI`: contains the API for interfacing with the Edamam API, which we use for retrieving food data. The code here contains everything from making the HTTP request to Edamam to parsing the JSON data into an object that the frontend can easily use.
-- `lib`: TODO
+- `lib`: contains a file for prisma configuration
 - `pages`: contains a file for each page of our application, which each contain a functional React component.
-- `prisma`: TODO
+- `prisma`: contains the database schema file
 - `public`: some public assets such as images.
 - `utils`: houses utility functions for functionalities across the application.
 - `README.md`: the thing you are reading right now.
