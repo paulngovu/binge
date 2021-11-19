@@ -5,6 +5,7 @@ import Recipe from '../edamamAPI/Recipe';
 import { FormNext, FormPrevious } from 'grommet-icons';
 
 import { useEffect, useState } from 'react';
+import useKeypress from 'react-use-keypress';
 import {
   Box,
   Button,
@@ -22,8 +23,15 @@ const Home = () => {
   const [foodIndex, setFoodIndex] = useState(0);
   const [foodResponse, setFoodResponse] = useState([null]);
 
-  const incrementIndex = () => {
-    setFoodIndex(foodIndex == 19 ? 0 : foodIndex + 1);
+  const incrementIndex = async () => {
+    setFoodIndex(foodIndex === 19 ? 0 : foodIndex + 1);
+    if (foodIndex === 19) {
+      setFoodResponse([null]);
+      const filter = new Filter("", "", "", "");
+
+      const foodJson = await filter.queryAPI();
+      setFoodResponse(Recipe.parseJson(foodJson));
+    }
   }
 
   useEffect(async () => {
@@ -32,6 +40,16 @@ const Home = () => {
     const foodJson = await filter.queryAPI();
     setFoodResponse(Recipe.parseJson(foodJson));
   }, []);
+
+  useKeypress(['ArrowLeft', 'ArrowRight'], (event) => {
+    if (event.key === 'ArrowLeft') {
+      // TODO: add "passing" logic
+      incrementIndex();
+    } else {
+      // TODO: add "liking" logic
+      incrementIndex();
+    }
+  });
 
   return (
     <Layout buttons={["filter", "chats", "profile"]}>
