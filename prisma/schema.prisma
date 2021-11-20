@@ -11,8 +11,7 @@ datasource db {
 }
 
 model User {
-  userId        Int       @default(autoincrement()) @id
-  username      String
+  username      String    @id
   password      String
   filterQuery   String
   mealType      String[]
@@ -22,12 +21,12 @@ model User {
 
 model Likes {
   id            Int       @default(autoincrement()) @id
-  foodId        String
-  userId        Int
+  foodId        Int
+  username      String
 }
 
 model Messages {
-  id             Int       @default(autoincrement()) @id
+  id            Int       @default(autoincrement()) @id
   sentByUser    Boolean
   userId        String
   foodId        String
