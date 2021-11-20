@@ -23,8 +23,8 @@ class Recipe {
             return recipeObj;
         }
 
-        for (var i = 0; i < json.hits.length; i++){
-            recipeObj.push(Recipe.#createRecipe(json.hits[i]));
+        for (var i = 0; i < recipes.length; i++){
+            recipeObj.push(Recipe.#createRecipe(recipes[i]));
         }
         return recipeObj;
     }

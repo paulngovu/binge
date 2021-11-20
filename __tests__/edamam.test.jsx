@@ -48,6 +48,8 @@ it('Check the return of testParsing function on a test file', () => {
     expect(arr[0].id).toBe("5f9c90e934335cecb079e7155f465cda");
   })
 
+// removed for now
+/*
 it('Check queryUrl function with empty Filter', () => {
     const filter = new Filter("", [], [], []);
 
@@ -65,3 +67,4 @@ it('Check queryUrl function with empty Filter', () => {
         expect(arr.length).toBe(20);
       });
   })
+*/

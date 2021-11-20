@@ -86,7 +86,7 @@ class Filter{
 
         var url = this.generateUrl(app_key, app_id);
 
-        //console.log(url);
+        console.log(url);
 
         try {
             const res = await fetch(url);
