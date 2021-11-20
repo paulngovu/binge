@@ -22,6 +22,8 @@ import {
 const Home = () => {
   const [foodIndex, setFoodIndex] = useState(0);
   const [foodResponse, setFoodResponse] = useState([null]);
+  const [mealType, setMealType] = useState(null);
+  const [cuisineType, setCuisineType] = useState(null);
 
   const incrementIndex = async () => {
     setFoodIndex(foodIndex === 19 ? 0 : foodIndex + 1);
