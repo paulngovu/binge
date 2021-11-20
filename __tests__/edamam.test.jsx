@@ -39,6 +39,19 @@ it('Check the generated url of a Filter with nonempty fields', () => {
     expect(filter.generateUrl("key", "id")).toBe(targetURL);
   })
 
+  it('Check the generated url of a Filter with multi-word fields', () => {
+    const filter = new Filter("chicken soup", ["Lunch"], ["American"], ["Main Course"]);
+
+    var targetURL = "https://api.edamam.com/api/recipes/v2?type=public&q=chicken%20soup&app_id=id&app_key=key&random=true";
+    targetURL += "&mealType=Lunch";
+    targetURL += "&cuisineType=American";
+    targetURL += "&dishType=Main%20Course";
+
+    expect(filter.generateUrl("key", "id")).toBe(targetURL);
+  })
+
+
+
 it('Check the return of testParsing function on a test file', () => {
     const json = require("../edamamAPI/recipeApiExample.json");
     const arr = Recipe.parseJson(json);

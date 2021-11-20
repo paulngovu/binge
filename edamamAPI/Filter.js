@@ -57,19 +57,33 @@ class Filter{
         return this.#dishType;
     }
 
+
+    // this helper function removes any spaces within str and replaces it with "%20"
+    #formatString(str){
+        if(str.length == 0) return str;
+
+        const arr = str.split(' ');
+
+        var tempstr = arr[0];
+        for(var i = 1; i < arr.length; i++){
+            tempstr += "%20" + arr[i];
+        }
+
+        return tempstr;
+    }
+
     // helper function that formats the recipe search API url
-    // TODO: current bug -- if the Filter fields contain spaces, need to convert the spaces into "%20" instead
     generateUrl(app_key, app_id){
-        var url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + this.#query + "&app_id=" + app_id + "&app_key=" + app_key + "&random=true";
+        var url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + this.#formatString(this.#query) + "&app_id=" + app_id + "&app_key=" + app_key + "&random=true";
         
         for (var i = 0; i < this.#mealType.length; i++){
-            url += "&mealType=" + this.#mealType[i];
+            url += "&mealType=" + this.#formatString(this.#mealType[i]);
         }
         for (var i = 0; i < this.#cuisineType.length; i++){
-            url += "&cuisineType=" + this.#cuisineType[i];
+            url += "&cuisineType=" + this.#formatString(this.#cuisineType[i]);
         }
         for (var i = 0; i < this.#dishType.length; i++){
-            url += "&dishType=" + this.#dishType[i];
+            url += "&dishType=" + this.#formatString(this.#dishType[i]);
         }
 
         return url;
