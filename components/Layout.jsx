@@ -61,8 +61,11 @@ const Layout = ({ buttons = [], ...props }) => {
                 align={{ bottom: 'top', right: 'right' }}
                 target={ref.current}
                 responsive
+                onClickOutside={() => {setShowFiltersDrop(false)}}
               >
-                <Filters />
+                <Filters onSubmit={() => {
+                  setShowFiltersDrop(false);
+                }} />
               </Drop>}
             </>
           ) : null}
