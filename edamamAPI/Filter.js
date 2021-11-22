@@ -31,14 +31,7 @@ class Filter{
         this.#mealType = mealType;
         this.#cuisineType = cuisineType;
         this.#dishType = dishType;
-
-        // since the query field is necessary for every API call, we generate
-        // a random letter as a query if it is not specified
-        if (query != ""){
-            this.#query = query;
-        }else{
-            this.#query = this.#randomChar();
-        }
+        this.#query = query;
     }
 
     getQuery(){
@@ -65,7 +58,7 @@ class Filter{
         const arr = str.split(' ');
 
         var tempstr = arr[0];
-        for(var i = 1; i < arr.length; i++){
+        for(let i = 1; i < arr.length; i++){
             tempstr += "%20" + arr[i];
         }
 
@@ -74,13 +67,21 @@ class Filter{
 
     // helper function that formats the recipe search API url
     generateUrl(app_key, app_id){
-        var url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + this.#formatString(this.#query) + "&app_id=" + app_id + "&app_key=" + app_key + "&random=true";
+        // since the query field is necessary for every API call, we generate
+        // a random letter as a query if it is not specified
+        var url = "https://api.edamam.com/api/recipes/v2?type=public&q="
+            + this.#formatString(this.#query ? this.#query : this.#randomChar())
+            + "&app_id=" + app_id + "&app_key=" + app_key + "&random=true";
         
-        if (this.#mealType) url += "&mealType=" + this.#formatString(this.#mealType);
-        
-        if (this.#cuisineType) url += "&cuisineType=" + this.#formatString(this.#cuisineType);
-
-        if (this.#dishType) url += "&dishType=" + this.#formatString(this.#dishType);
+        for (let i = 0; i < this.#mealType.length; i++){
+            url += "&mealType=" + this.#formatString(this.#mealType[i]);
+        }
+        for (let i = 0; i < this.#cuisineType.length; i++){
+            url += "&cuisineType=" + this.#formatString(this.#cuisineType[i]);
+        }
+        for (let i = 0; i < this.#dishType.length; i++){
+            url += "&dishType=" + this.#formatString(this.#dishType[i]);
+        }       
 
         return url;
     }

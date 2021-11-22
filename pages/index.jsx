@@ -26,6 +26,7 @@ const recipeStack = new RecipeStack(user);
 
 const Home = () => {
   const [currentFoodItem, setCurrentFoodItem] = useState(null);
+  const [noResults, setNoResults] = useState(false);
   
   const setNewCurrentFoodItem = async () => {
     if (recipeStack.stackEmpty()) {
@@ -39,13 +40,17 @@ const Home = () => {
   }, []);
 
   const like = () => {
-    recipeStack.rejectTopRecipe();
-    setNewCurrentFoodItem();
+    if (!noResults) {
+      recipeStack.rejectTopRecipe();
+      setNewCurrentFoodItem();
+    }
   }
 
   const reject = () => {
-    recipeStack.acceptTopRecipe();
-    setNewCurrentFoodItem();
+    if (!noResults) {
+      recipeStack.acceptTopRecipe();
+      setNewCurrentFoodItem();
+    }
   }
 
   useKeypress(['ArrowLeft', 'ArrowRight'], (event) => {
@@ -62,7 +67,12 @@ const Home = () => {
       user={user}
       onUpdateFilters={async () => {
         await recipeStack.refreshStack();
-        setCurrentFoodItem(recipeStack.getTopRecipe());
+        if (recipeStack.stackEmpty()) {
+          setNoResults(true);
+        } else {
+          setNoResults(false);
+          setCurrentFoodItem(recipeStack.getTopRecipe());
+        }
       }}
     >
       <div className="container">
@@ -110,11 +120,15 @@ const Home = () => {
                 style={{ justifyContent: "center" }}
               >
                 <Text size="large">
-                  {currentFoodItem?.name}
+                  {!noResults && currentFoodItem?.name}
                 </Text>
               </CardHeader>
               <CardBody pad="medium">
-                <Image data-testid="food-item-img" src={currentFoodItem?.image} fit="contain" />
+                {!noResults && <Image data-testid="food-item-img" src={currentFoodItem?.image} fit="contain" />}
+                {noResults ?
+                <Text size="medium" margin="small">
+                  No Results! Try changing your filters.
+                </Text> :
                 <Text size="medium" margin="small">
                   Calories: {Math.floor(currentFoodItem?.calories)}<br />
                   Cautions: {
@@ -123,7 +137,7 @@ const Home = () => {
                         (caution, i) => i == 0 ? `${caution}` : `, ${caution}`
                       ) : "None"
                   }
-                </Text>
+                </Text>}
               </CardBody>
             </Card>
           </Box>
