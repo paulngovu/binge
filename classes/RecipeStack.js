@@ -12,16 +12,18 @@ class RecipeStack {
     }
 
     getTopRecipe(){
-        var count = this.#recipeArr.length;
-        if (count == 0) return null;
+        const count = this.#recipeArr.length;
+        if (count === 0) return null;
         return this.#recipeArr[count-1];            // return last index
     }
 
     // takes a user parameter and adds the recipe to the users match list
     // todo after making User class
     acceptTopRecipe(){
-        var rec = this.#recipeArr.pop();
-        this.#user.addMatch(rec);
+        if (this.#recipeArr.length > 0) {
+            const rec = this.#recipeArr.pop();
+            this.#user.addMatch(rec);
+        }
     }
 
     rejectTopRecipe(){
@@ -29,9 +31,9 @@ class RecipeStack {
     }
 
     stackEmpty(){
-        return (this.#recipeArr.length == 0);
+        console.dir(this.#recipeArr);
+        return (this.#recipeArr.length === 0);
     }
-
 
     // takes array of Recipe objects and adds them to the array
     #addRecipes(arr){
