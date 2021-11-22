@@ -1,5 +1,6 @@
 class Recipe {
-    constructor(name, image, ingredients, cuisineType, mealType, dishType, id, calories, cautions){
+    // maybe change to private variables in the future
+    constructor(name, image, ingredients, cuisineType, mealType, dishType, id, calories, cautions, url){
         this.name = name;
         this.image = image;        
         this.ingredients = ingredients;
@@ -9,6 +10,7 @@ class Recipe {
         this.id = id;
         this.calories = calories;
         this.cautions = cautions;
+        this.url = url;
     }        
 
     // This function takes in a json Object containing the data returned from a
@@ -50,7 +52,8 @@ class Recipe {
             json.recipe.dishType, 
             Recipe.#getIDfromUri(json.recipe.uri), 
             (json.recipe.calories / json.recipe.yield),
-            json.recipe.cautions);
+            json.recipe.cautions,
+            json.recipe.url);
 
         return r;
     }
@@ -96,6 +99,8 @@ class Recipe {
         for (var i = 0; i < this.cautions.length; i++){
             console.log(i + "\t" + this.cautions[i]);
         }
+
+        console.log("url: " + this.url);
     }
 }
 
