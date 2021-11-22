@@ -15,6 +15,7 @@ import {
   CardBody,
   Grid,
   Image,
+  Spinner,
   Text
 } from 'grommet';
 
@@ -27,10 +28,13 @@ const recipeStack = new RecipeStack(user);
 const Home = () => {
   const [currentFoodItem, setCurrentFoodItem] = useState(null);
   const [noResults, setNoResults] = useState(false);
+  const [loading, setLoading] = useState(false);
   
   const setNewCurrentFoodItem = async () => {
     if (recipeStack.stackEmpty()) {
+      setLoading(true);
       await recipeStack.refreshStack();
+      setLoading(false);
     }
     setCurrentFoodItem(recipeStack.getTopRecipe());
   }
@@ -66,7 +70,9 @@ const Home = () => {
       buttons={["filter", "chats", "profile"]}
       user={user}
       onUpdateFilters={async () => {
+        setLoading(true);
         await recipeStack.refreshStack();
+        setLoading(false);
         if (recipeStack.stackEmpty()) {
           setNoResults(true);
         } else {
@@ -106,40 +112,42 @@ const Home = () => {
             />
           </Box>
           <Box gridArea="main">
-            <Card
-              data-testid="food-item-card"
-              fill="vertical"
-              width="large"
-              background="light-1"
-              style={{ alignItems: "center" }}
-            >
-              <CardHeader
-                pad="medium"
-                width="100%"
-                background="light-3"
-                style={{ justifyContent: "center" }}
+            {loading ? <Spinner /> :
+              <Card
+                data-testid="food-item-card"
+                fill="vertical"
+                width="large"
+                background="light-1"
+                style={{ alignItems: "center" }}
               >
-                <Text size="large">
-                  {!noResults && currentFoodItem?.name}
-                </Text>
-              </CardHeader>
-              <CardBody pad="medium">
-                {!noResults && <Image data-testid="food-item-img" src={currentFoodItem?.image} fit="contain" />}
-                {noResults ?
-                <Text size="medium" margin="small">
-                  No Results! Try changing your filters.
-                </Text> :
-                <Text size="medium" margin="small">
-                  Calories: {Math.floor(currentFoodItem?.calories)}<br />
-                  Cautions: {
-                    currentFoodItem?.cautions?.length ? 
-                      currentFoodItem?.cautions.map(
-                        (caution, i) => i == 0 ? `${caution}` : `, ${caution}`
-                      ) : "None"
-                  }
-                </Text>}
-              </CardBody>
-            </Card>
+                <CardHeader
+                  pad="medium"
+                  width="100%"
+                  background="light-3"
+                  style={{ justifyContent: "center" }}
+                >
+                  <Text size="large">
+                    {!noResults && currentFoodItem?.name}
+                  </Text>
+                </CardHeader>
+                <CardBody pad="medium">
+                  {!noResults && <Image data-testid="food-item-img" src={currentFoodItem?.image} fit="contain" />}
+                  {noResults ?
+                  <Text size="medium" margin="small">
+                    No Results! Try changing your filters.
+                  </Text> :
+                  <Text size="medium" margin="small">
+                    Calories: {Math.floor(currentFoodItem?.calories)}<br />
+                    Cautions: {
+                      currentFoodItem?.cautions?.length ? 
+                        currentFoodItem?.cautions.map(
+                          (caution, i) => i == 0 ? `${caution}` : `, ${caution}`
+                        ) : "None"
+                    }
+                  </Text>}
+                </CardBody>
+              </Card>
+            }
           </Box>
           <Box gridArea="right">
             <Button
