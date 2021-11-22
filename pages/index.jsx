@@ -1,6 +1,5 @@
 import Layout from '../components/Layout';
 import Filter from '../edamamAPI/Filter';
-import Recipe from '../edamamAPI/Recipe';
 import User from '../classes/User';
 import RecipeStack from '../classes/RecipeStack';
 
@@ -58,7 +57,14 @@ const Home = () => {
   });
 
   return (
-    <Layout buttons={["filter", "chats", "profile"]}>
+    <Layout
+      buttons={["filter", "chats", "profile"]}
+      user={user}
+      onUpdateFilters={async () => {
+        await recipeStack.refreshStack();
+        setCurrentFoodItem(recipeStack.getTopRecipe());
+      }}
+    >
       <div className="container">
         <Grid
           rows={['auto']}

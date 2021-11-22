@@ -31,7 +31,6 @@ class RecipeStack {
     }
 
     stackEmpty(){
-        console.dir(this.#recipeArr);
         return (this.#recipeArr.length === 0);
     }
 

@@ -76,15 +76,11 @@ class Filter{
     generateUrl(app_key, app_id){
         var url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + this.#formatString(this.#query) + "&app_id=" + app_id + "&app_key=" + app_key + "&random=true";
         
-        for (var i = 0; i < this.#mealType.length; i++){
-            url += "&mealType=" + this.#formatString(this.#mealType[i]);
-        }
-        for (var i = 0; i < this.#cuisineType.length; i++){
-            url += "&cuisineType=" + this.#formatString(this.#cuisineType[i]);
-        }
-        for (var i = 0; i < this.#dishType.length; i++){
-            url += "&dishType=" + this.#formatString(this.#dishType[i]);
-        }
+        if (this.#mealType) url += "&mealType=" + this.#formatString(this.#mealType);
+        
+        if (this.#cuisineType) url += "&cuisineType=" + this.#formatString(this.#cuisineType);
+
+        if (this.#dishType) url += "&dishType=" + this.#formatString(this.#dishType);
 
         return url;
     }
