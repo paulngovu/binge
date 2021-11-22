@@ -31,8 +31,8 @@ const cuisineTypes = [
 ]
 
 const Filters = ({onSubmit, ...props}) => {
-  const [mealType, setMealType] = useState(null);
-  const [cuisineType, setCuisineType] = useState(null);
+  const [mealType, setMealType] = useState(props.userFilters.getMealType());
+  const [cuisineType, setCuisineType] = useState(props.userFilters.getMealType());
 
   return (
     <Box width="small" gap="xsmall" pad="medium">
@@ -59,7 +59,9 @@ const Filters = ({onSubmit, ...props}) => {
       <Button
         primary
         label="Update"
-        onClick={onSubmit}
+        onClick={() => {
+          onSubmit(mealType ?? "", cuisineType ?? "");
+        }}
       />
     </Box>
   );

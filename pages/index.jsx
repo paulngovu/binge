@@ -1,6 +1,7 @@
 import Layout from '../components/Layout';
 import Filter from '../edamamAPI/Filter';
-import Recipe from '../edamamAPI/Recipe';
+import User from '../classes/User';
+import RecipeStack from '../classes/RecipeStack';
 
 import { FormNext, FormPrevious } from 'grommet-icons';
 
@@ -19,42 +20,51 @@ import {
 
 // SWIPE PAGE
 
+// Dummy user for now
+const user = new User("Gordon", new Filter("", "", "", ""), []);
+const recipeStack = new RecipeStack(user);
+
 const Home = () => {
-  const [foodIndex, setFoodIndex] = useState(0);
-  const [foodResponse, setFoodResponse] = useState([null]);
-  const [mealType, setMealType] = useState(null);
-  const [cuisineType, setCuisineType] = useState(null);
-
-  const incrementIndex = async () => {
-    setFoodIndex(foodIndex === 19 ? 0 : foodIndex + 1);
-    if (foodIndex === 19) {
-      setFoodResponse([null]);
-      const filter = new Filter("", "", "", "");
-
-      const foodJson = await filter.queryAPI();
-      setFoodResponse(Recipe.parseJson(foodJson));
+  const [currentFoodItem, setCurrentFoodItem] = useState(null);
+  
+  const setNewCurrentFoodItem = async () => {
+    if (recipeStack.stackEmpty()) {
+      await recipeStack.refreshStack();
     }
+    setCurrentFoodItem(recipeStack.getTopRecipe());
   }
 
   useEffect(async () => {
-    const filter = new Filter("", "", "", "");
-
-    const foodJson = await filter.queryAPI();
-    setFoodResponse(Recipe.parseJson(foodJson));
+    setNewCurrentFoodItem();
   }, []);
+
+  const like = () => {
+    recipeStack.rejectTopRecipe();
+    setNewCurrentFoodItem();
+  }
+
+  const reject = () => {
+    recipeStack.acceptTopRecipe();
+    setNewCurrentFoodItem();
+  }
 
   useKeypress(['ArrowLeft', 'ArrowRight'], (event) => {
     if (event.key === 'ArrowLeft') {
-      // TODO: add "passing" logic
-      incrementIndex();
+      like();
     } else {
-      // TODO: add "liking" logic
-      incrementIndex();
+      reject();
     }
   });
 
   return (
-    <Layout buttons={["filter", "chats", "profile"]}>
+    <Layout
+      buttons={["filter", "chats", "profile"]}
+      user={user}
+      onUpdateFilters={async () => {
+        await recipeStack.refreshStack();
+        setCurrentFoodItem(recipeStack.getTopRecipe());
+      }}
+    >
       <div className="container">
         <Grid
           rows={['auto']}
@@ -79,7 +89,7 @@ const Home = () => {
               }
               hoverIndicator
               style={{ paddingTop: 250, paddingBottom: 250 }}
-              onClick={incrementIndex}
+              onClick={reject}
               tip={{
                 content: "Click to pass on this recipe."
               }}
@@ -100,16 +110,16 @@ const Home = () => {
                 style={{ justifyContent: "center" }}
               >
                 <Text size="large">
-                  {foodResponse[foodIndex]?.name}
+                  {currentFoodItem?.name}
                 </Text>
               </CardHeader>
               <CardBody pad="medium">
-                <Image data-testid="food-item-img" src={foodResponse[foodIndex]?.image} fit="contain" />
+                <Image data-testid="food-item-img" src={currentFoodItem?.image} fit="contain" />
                 <Text size="medium" margin="small">
-                  Calories: {Math.floor(foodResponse[foodIndex]?.calories)}<br />
+                  Calories: {Math.floor(currentFoodItem?.calories)}<br />
                   Cautions: {
-                    foodResponse[foodIndex]?.cautions.length ? 
-                      foodResponse[foodIndex]?.cautions.map(
+                    currentFoodItem?.cautions?.length ? 
+                      currentFoodItem?.cautions.map(
                         (caution, i) => i == 0 ? `${caution}` : `, ${caution}`
                       ) : "None"
                   }
@@ -128,7 +138,7 @@ const Home = () => {
               }
               hoverIndicator
               style={{ paddingTop: 250, paddingBottom: 250 }}
-              onClick={incrementIndex}
+              onClick={like}
               tip={{
                 content: "Click to like this recipe!"
               }}

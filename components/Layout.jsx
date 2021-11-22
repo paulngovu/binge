@@ -63,9 +63,11 @@ const Layout = ({ buttons = [], ...props }) => {
                 responsive
                 onClickOutside={() => {setShowFiltersDrop(false)}}
               >
-                <Filters onSubmit={() => {
+                <Filters onSubmit={(mealType, cuisineType) => {
+                  props.user.updateFilter("", mealType, cuisineType, "");
+                  props.onUpdateFilters();
                   setShowFiltersDrop(false);
-                }} />
+                }} userFilters={props.user.getFilter()}/>
               </Drop>}
             </>
           ) : null}
