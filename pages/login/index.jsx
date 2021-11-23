@@ -34,7 +34,7 @@ const Login = () => {
                 // Create user token
                 Router.push({
                   pathname: PATH_AUTHENTICATE,
-                  query: { username: username },
+                  query: { username: username, password: password },
                 });
               }
             }}

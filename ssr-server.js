@@ -2,7 +2,14 @@ const express = require('express');
 const next = require('next');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-const { PATH_AUTHENTICATE, PATH_LOGOUT } = require('./paths');
+const {
+  PATH_AUTHENTICATE,
+  PATH_LOGOUT,
+  PATH_LOGIN,
+  PATH_HOME,
+  PATH_LOGIN_ERROR,
+  PATH_REGISTER,
+} = require('./paths');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -22,7 +29,7 @@ app
     server.get(PATH_AUTHENTICATE, (req, res) => {
       const username = req.query.username;
       if (username === undefined) {
-        res.redirect('/login');
+        res.redirect(PATH_LOGIN);
       }
 
       // Expiration date: 2 hours from now
@@ -31,7 +38,7 @@ app
         header: { alg: 'HS256', typ: 'JWT' },
       });
       res.cookie('jwt', token);
-      res.redirect('/');
+      res.redirect(PATH_HOME);
     });
 
     // TODO: Logout
@@ -41,13 +48,13 @@ app
     });
 
     // If login, bypass token check
-    server.get('/login', (req, res) => handle(req, res));
+    server.get(PATH_LOGIN, (req, res) => handle(req, res));
 
     // If register, bypass token check
-    server.get('/register', (req, res) => handle(req, res));
+    server.get(PATH_REGISTER, (req, res) => handle(req, res));
 
     // Display login error message
-    server.get('/login/error', (req, res) => handle(req, res));
+    server.get(PATH_LOGIN_ERROR, (req, res) => handle(req, res));
 
     // Next files just bypass
     server.all('/_next*', (req, res) => handle(req, res));
@@ -56,7 +63,7 @@ app
       // Check for token
       const token = req.cookies.jwt;
       if (token === undefined) {
-        res.redirect('/login/error');
+        res.redirect(PATH_LOGIN_ERROR);
       } else {
         return handle(req, res);
       }
