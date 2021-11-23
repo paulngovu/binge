@@ -10,13 +10,14 @@ const {
   PATH_LOGIN_ERROR,
   PATH_REGISTER,
 } = require('./paths');
+const jwt_key = require('./utils/jwtKey');
+const parseCookie = require('./utils/parseCookie');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
 // Probably not the best place to put this
-const jwt_key = 'C-UFRaksvPKhx1txJYFcut3QGxsafPmwCY6SCly3G6c';
 
 app
   .prepare()
