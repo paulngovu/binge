@@ -3,7 +3,7 @@ import Filter from '../edamamAPI/Filter';
 import User from '../classes/User';
 import RecipeStack from '../classes/RecipeStack';
 
-import { FormNext, FormPrevious } from 'grommet-icons';
+import { Favorite, Close } from 'grommet-icons';
 
 import { useEffect, useState } from 'react';
 import useKeypress from 'react-use-keypress';
@@ -45,14 +45,14 @@ const Home = () => {
 
   const like = () => {
     if (!noResults) {
-      recipeStack.rejectTopRecipe();
+      recipeStack.acceptTopRecipe();
       setNewCurrentFoodItem();
     }
   }
 
   const reject = () => {
     if (!noResults) {
-      recipeStack.acceptTopRecipe();
+      recipeStack.rejectTopRecipe();
       setNewCurrentFoodItem();
     }
   }
@@ -98,7 +98,7 @@ const Home = () => {
               id="left-arrow"
               data-testid="left-arrow"
               icon={
-                <FormPrevious
+                <Close
                   color='dark-1'
                   size='large'
                 />
@@ -153,7 +153,7 @@ const Home = () => {
             <Button
               data-testid="right-arrow"
               icon={
-                <FormNext
+                <Favorite
                   color='dark-1'
                   size='large'
                 />
