@@ -83,15 +83,16 @@ const Home = () => {
     >
       <div className="container">
         <Grid
-          rows={['auto']}
+          rows={['auto', 'auto']}
           columns={['xsmall', 'auto', 'xsmall']}
           gap="small"
           areas={[
             { name: 'left', start: [0, 0], end: [0, 0] },
             { name: 'main', start: [1, 0], end: [1, 0] },
             { name: 'right', start: [2, 0], end: [2, 0] },
+            { name: 'foot', start: [0, 1], end: [2, 1] },
           ]}
-          margin="large"
+          margin="medium"
         >
           <Box gridArea="left">
             <Button
@@ -99,8 +100,8 @@ const Home = () => {
               data-testid="left-arrow"
               icon={
                 <Close
-                  color='dark-1'
-                  size='large'
+                  color='dark-2'
+                  size='x-large'
                 />
               }
               hoverIndicator
@@ -154,8 +155,8 @@ const Home = () => {
               data-testid="right-arrow"
               icon={
                 <Favorite
-                  color='dark-1'
-                  size='large'
+                  color='dark-2'
+                  size='x-large'
                 />
               }
               hoverIndicator
@@ -165,6 +166,11 @@ const Home = () => {
                 content: "Click to like this recipe!"
               }}
             />
+          </Box>
+          <Box gridArea="foot" align="center">
+            <Text size="small" margin="small" color="status-ok" weight="bold">
+              Note: You can also use the left and right arrow keys to "swipe" through items! (LEFT to REJECT, RIGHT to LIKE)
+            </Text>
           </Box>
         </Grid>
 
