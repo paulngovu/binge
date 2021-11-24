@@ -1,9 +1,13 @@
 import { Box, Button, Form, FormField, Text, TextInput } from 'grommet';
 import Router from 'next/router';
+import { useState } from 'react';
 import Layout from '../components/Layout';
 import { PATH_AUTHENTICATE, PATH_LOGIN } from '../paths';
+import { isValidCredentials } from '../utils/isValidCredentials';
 
 const Register = () => {
+  const [error, setError] = useState('');
+
   return (
     <Layout>
       <Box pad='large'>
@@ -14,12 +18,18 @@ const Register = () => {
               // guaranteed non empty
               const username = value.username;
               const password = value.password;
+
               // TODO: Check existing users
-              // Create user token
-              Router.push({
-                pathname: PATH_AUTHENTICATE,
-                query: { username: username },
-              });
+              if (isValidCredentials(username, password)) {
+                setError('Username is already taken.');
+              } else {
+                setError('Creating user and logging in...');
+                // Create user token
+                Router.push({
+                  pathname: PATH_AUTHENTICATE,
+                  query: { username: username },
+                });
+              }
             }}
           >
             <FormField name='username' label='username'>
@@ -32,14 +42,15 @@ const Register = () => {
                 type='password'
               />
             </FormField>
-            <Box>
-              <Text size='small'>
-                Already have an account? Log in <a href={PATH_LOGIN}>here</a>.
-              </Text>
-              <Box pad='small'>
-                <Button type='submit' primary label='register' />
-              </Box>
+            <Text size='small'>
+              Already have an account? Log in <a href={PATH_LOGIN}>here</a>.
+            </Text>
+            <Box pad='small'>
+              <Button type='submit' primary label='register' />
             </Box>
+            <Text size='small' color='status-critical'>
+              {error}
+            </Text>
           </Form>
 
           <style jsx>{`

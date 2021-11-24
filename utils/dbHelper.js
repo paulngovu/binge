@@ -29,3 +29,20 @@ export const getUser = async (username) => {
 
   return user;
 };
+
+/**
+ * Creates a user in the database.
+ */
+export const createUser = async (username, password) => {
+  const createdUser = await prisma.user.create({
+    data: {
+      username: username,
+      password: password,
+      filterQuery: '',
+      mealType: [],
+      cusineType: [],
+      dishType: [],
+    },
+  });
+  return createdUser;
+};
