@@ -14,7 +14,7 @@ const chatMessages = [
           timeSent: Date('December 17, 2021 03:24:00')
         },
         {
-          id: 2000,
+          id: 1001,
           sentByUser: true,
           userId: "1",
           foodId: "100",
@@ -22,7 +22,7 @@ const chatMessages = [
           timeSent: Date('December 17, 2021 03:29:00')
         },
         {
-          id: 1000,
+          id: 1002,
           sentByUser: false,
           userId: "1",
           foodId: "100",
@@ -30,7 +30,7 @@ const chatMessages = [
           timeSent: Date('December 17, 2021 03:35:00')
         },
         {
-          id: 1000,
+          id: 1003,
           sentByUser: false,
           userId: "1",
           foodId: "100",
@@ -38,7 +38,7 @@ const chatMessages = [
           timeSent: Date('December 17, 2021 03:38:00')
         },
         {
-          id: 1000,
+          id: 1004,
           sentByUser: true,
           userId: "1",
           foodId: "100",
@@ -46,7 +46,7 @@ const chatMessages = [
           timeSent: Date('December 17, 2021 03:40:00')
         },
         {
-          id: 1000,
+          id: 1005,
           sentByUser: true,
           userId: "1",
           foodId: "100",
@@ -54,7 +54,7 @@ const chatMessages = [
           timeSent: Date('December 17, 2021 03:41:00')
         },
         {
-          id: 1000,
+          id: 1006,
           sentByUser: false,
           userId: "1",
           foodId: "100",
