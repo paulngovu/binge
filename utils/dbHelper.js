@@ -22,9 +22,14 @@ export const getLikedFoods = async (username) => {
   return likedFoods;
 };
 
-export const getUser = async (username) => {
+export const getUser = async (username, password) => {
   const user = await prisma.user.findUnique({
-    where: { username: { equals: username } },
+    where: {
+      AND: [
+        { username: { equals: username } },
+        { password: { equals: password } },
+      ],
+    },
   });
 
   return user;
