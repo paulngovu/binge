@@ -17,8 +17,8 @@ class User {
         return this.#name;
     }
 
-    setName(){
-        return this.#name;
+    setName(name){
+        this.#name = name;
     }
 
     updateFilter(query, mealType, cuisineType, dishType){

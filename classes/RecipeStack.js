@@ -1,6 +1,4 @@
 import Recipe from '../edamamAPI/Recipe'
-import Filter from '../edamamAPI/Filter'
-import User from './User'
 
 class RecipeStack {
     #maxSize = 20;
