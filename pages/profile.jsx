@@ -1,4 +1,10 @@
-import { Box, Button } from 'grommet';
+import { 
+  Box, 
+  Button,
+  Grid,
+  Text,
+  TextInput } from 'grommet';
+import { Checkmark } from 'grommet-icons'
 import Router from 'next/router';
 import { useState } from 'react';
 import Layout from '../components/Layout';
@@ -26,25 +32,48 @@ const Profile = () => {
       <Box pad='large'>
         <div className='container'>
           <img className='profile-img' src='/joe-bruin.jpg' />
-          <h1>{name}</h1>
+          <Text
+            weight="bold"
+            size="large"
+            margin={{top: "1vh", bottom: "2vh"}}
+          >
+            {name}
+          </Text>
           {showModal ? (
-            <Box margin='medium'>
-              <label htmlFor='name'>New name (15 characters max):</label>
-              <input
-                type='text'
-                id='name'
-                name='name'
-                maxLength='15'
-                data-testid='input-name'
-                onChange={(e) => setName(e.target.value)}
-              ></input>
-              <button onClick={onSubmit}>Submit</button>
+            <Box margin={{top: "xsmall", bottom: "medium"}}>
+              <label htmlFor='name'>New name (20 characters max):</label>
+              <Grid 
+                rows={['auto']}
+                columns={['auto', 'xxsmall']}
+                areas={[
+                  {name: 'input', start: [0,0], end: [0,0]},
+                  {name: 'submit', start: [1,0], end: [1,0]}
+                ]}
+              >
+                <TextInput
+                  gridArea='input'
+                  type='text'
+                  id='name'
+                  name='name'
+                  size='xsmall'
+                  maxLength='20'
+                  data-testid='input-name'
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <Button 
+                  a11yTitle='submit-name'
+                  gridArea='submit'
+                  secondary 
+                  plain={false} 
+                  icon={<Checkmark size="small"/>} onClick={onSubmit}>
+                </Button>
+              </Grid>
             </Box>
           ) : null}
           <Button secondary label='Edit' onClick={openModal}></Button>
           <Box pad='small'>
             <Button
-              secondary
+              primary
               label='Log Out'
               onClick={(event) => {
                 event.preventDefault();
