@@ -41,7 +41,6 @@ const Profile = () => {
               <button onClick={onSubmit}>Submit</button>
             </Box>
           ) : null}
-          {/* <button onClick={openModal}>Edit</button> */}
           <Button secondary label='Edit' onClick={openModal}></Button>
           <Box pad='small'>
             <Button
