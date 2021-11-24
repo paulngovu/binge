@@ -3,7 +3,7 @@ import Recipe from '../edamamAPI/Recipe';
 
 it('Create empty Filter', () => {
     const filter = new Filter("", [], [], []);
-    expect(filter.getQuery().length).toBe(1);
+    expect(filter.getQuery().length).toBe(0);
     expect(filter.getMealType().length).toBe(0);
     expect(filter.getCuisineType().length).toBe(0);
     expect(filter.getDishType().length).toBe(0);
