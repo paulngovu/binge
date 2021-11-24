@@ -1,5 +1,4 @@
 import Filter from '../edamamAPI/Filter'
-import Recipe from '../edamamAPI/Recipe'
 
 class User {
     #name;
