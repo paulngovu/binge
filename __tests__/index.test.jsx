@@ -14,18 +14,18 @@ it('renders homepage unchanged', () => {
 })
 
 it('renders food item card', () => {
-  const { getByTestId } = render(
+  const wrapper = shallow(
     <Home />,
   );
-  expect(getByTestId("food-item-card")).toBeTruthy();
+  expect(wrapper.find("#food-item-card").exists()).toBeTruthy();
 })
 
 it('renders left and right arrows', () => {
-  const { getByTestId } = render(
+  const wrapper = shallow(
     <Home />,
   );
-  expect(getByTestId("left-arrow")).toBeTruthy();
-  expect(getByTestId("right-arrow")).toBeTruthy();
+  expect(wrapper.find("#left-arrow").exists()).toBeTruthy();
+  expect(wrapper.find("#right-arrow").exists()).toBeTruthy();
 })
 
 it('changes food item on arrow click', async () => {

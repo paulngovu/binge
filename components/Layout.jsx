@@ -52,6 +52,7 @@ const Layout = ({ buttons = [], ...props }) => {
           {showFilter ? (
             <>
               <Button
+                id="filters-btn"
                 ref={ref}
                 icon={<Filter color='white' />}
                 hoverIndicator
@@ -73,6 +74,7 @@ const Layout = ({ buttons = [], ...props }) => {
           ) : null}
           {showChats ? (
             <Button
+              id="chats-btn"
               icon={<Chat color='white' />}
               hoverIndicator
               href={PATH_CHATS}
@@ -83,6 +85,7 @@ const Layout = ({ buttons = [], ...props }) => {
           ) : null}
           {showProfile ? (
             <Button
+              id="profile-btn"
               icon={<User color='white' />}
               hoverIndicator
               href={PATH_PROFILE}
@@ -93,6 +96,7 @@ const Layout = ({ buttons = [], ...props }) => {
           ) : null}
           {showHome ? (
             <Button
+              id="home-btn"
               icon={<Home color='white' />}
               hoverIndicator
               href={PATH_HOME}

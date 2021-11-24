@@ -65,21 +65,23 @@ const Home = () => {
     }
   });
 
+  const onUpdateFilters = async () => {
+    setLoading(true);
+    await recipeStack.refreshStack();
+    setLoading(false);
+    if (recipeStack.stackEmpty()) {
+      setNoResults(true);
+    } else {
+      setNoResults(false);
+      setCurrentFoodItem(recipeStack.getTopRecipe());
+    }
+  } 
+
   return (
     <Layout
       buttons={["filter", "chats", "profile"]}
       user={user}
-      onUpdateFilters={async () => {
-        setLoading(true);
-        await recipeStack.refreshStack();
-        setLoading(false);
-        if (recipeStack.stackEmpty()) {
-          setNoResults(true);
-        } else {
-          setNoResults(false);
-          setCurrentFoodItem(recipeStack.getTopRecipe());
-        }
-      }}
+      onUpdateFilters={onUpdateFilters}
     >
       <div className="container">
         <Grid
@@ -115,7 +117,7 @@ const Home = () => {
           <Box gridArea="main">
             {loading ? <Spinner /> :
               <Card
-                data-testid="food-item-card"
+                id="food-item-card"
                 fill="vertical"
                 width="large"
                 background="light-1"
@@ -152,7 +154,7 @@ const Home = () => {
           </Box>
           <Box gridArea="right">
             <Button
-              data-testid="right-arrow"
+              id="right-arrow"
               icon={
                 <Favorite
                   color='dark-2'

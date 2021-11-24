@@ -21,6 +21,7 @@ exports[`renders homepage unchanged 1`] = `
     >
       <button
         className="StyledButton-sc-323bzc-0 haWZSW"
+        id="filters-btn"
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -44,6 +45,7 @@ exports[`renders homepage unchanged 1`] = `
       <a
         className="StyledButton-sc-323bzc-0 haWZSW"
         href="/chats"
+        id="chats-btn"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseEnter={[Function]}
@@ -67,6 +69,7 @@ exports[`renders homepage unchanged 1`] = `
       <a
         className="StyledButton-sc-323bzc-0 haWZSW"
         href="/profile"
+        id="profile-btn"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseEnter={[Function]}
@@ -93,7 +96,7 @@ exports[`renders homepage unchanged 1`] = `
     className="jsx-3811088590 container"
   >
     <div
-      className="StyledGrid-sc-1wofa1l-0 lopCrt"
+      className="StyledGrid-sc-1wofa1l-0 csQrWL"
     >
       <div
         className="StyledBox-sc-13pk1d4-0 fJYNto"
@@ -118,12 +121,12 @@ exports[`renders homepage unchanged 1`] = `
           type="button"
         >
           <svg
-            aria-label="FormPrevious"
-            className="StyledIcon-sc-ofa7kd-0 iFhpCj"
+            aria-label="Close"
+            className="StyledIcon-sc-ofa7kd-0 eLuNhT"
             viewBox="0 0 24 24"
           >
             <path
-              d="m15 6-6 6 6 6"
+              d="m3 3 18 18M3 21 21 3"
               fill="none"
               stroke="#000"
               strokeWidth="2"
@@ -136,7 +139,7 @@ exports[`renders homepage unchanged 1`] = `
       >
         <div
           className="StyledBox-sc-13pk1d4-0 ikCZNm"
-          data-testid="food-item-card"
+          id="food-item-card"
           style={
             Object {
               "alignItems": "center",
@@ -181,7 +184,7 @@ exports[`renders homepage unchanged 1`] = `
       >
         <button
           className="StyledButton-sc-323bzc-0 haWZSW"
-          data-testid="right-arrow"
+          id="right-arrow"
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -198,18 +201,27 @@ exports[`renders homepage unchanged 1`] = `
           type="button"
         >
           <svg
-            aria-label="FormNext"
-            className="StyledIcon-sc-ofa7kd-0 iFhpCj"
+            aria-label="Favorite"
+            className="StyledIcon-sc-ofa7kd-0 eLuNhT"
             viewBox="0 0 24 24"
           >
             <path
-              d="m9 6 6 6-6 6"
+              d="M1 8.4C1 4 4.5 3 6.5 3 9 3 11 5 12 6.5 13 5 15 3 17.5 3c2 0 5.5 1 5.5 5.4C23 15 12 21 12 21S1 15 1 8.4z"
               fill="none"
               stroke="#000"
               strokeWidth="2"
             />
           </svg>
         </button>
+      </div>
+      <div
+        className="StyledBox-sc-13pk1d4-0 nDFNJ"
+      >
+        <span
+          className="StyledText-sc-1sadyjn-0 daWHdq"
+        >
+          Note: You can also use the left and right arrow keys to "swipe" through items! (LEFT to REJECT, RIGHT to LIKE)
+        </span>
       </div>
     </div>
   </div>

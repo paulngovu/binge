@@ -22,6 +22,7 @@ exports[`renders profile 1`] = `
       <a
         className="StyledButton-sc-323bzc-0 haWZSW"
         href="/"
+        id="home-btn"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseEnter={[Function]}
