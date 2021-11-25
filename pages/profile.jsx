@@ -60,7 +60,8 @@ const Profile = () => {
                   data-testid='input-name'
                   onChange={(e) => setName(e.target.value)}
                 />
-                <Button 
+                <Button
+                  data-testid='submit-btn'
                   a11yTitle='submit-name'
                   gridArea='submit'
                   secondary 

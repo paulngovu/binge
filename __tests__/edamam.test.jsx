@@ -1,16 +1,16 @@
 import Filter from '../edamamAPI/Filter';
 import Recipe from '../edamamAPI/Recipe';
 
-it('Create empty Filter', () => {
+describe('Edamam classes', () => {
+  it('Create empty Filter', () => {
     const filter = new Filter("", [], [], []);
     expect(filter.getQuery().length).toBe(0);
     expect(filter.getMealType().length).toBe(0);
     expect(filter.getCuisineType().length).toBe(0);
     expect(filter.getDishType().length).toBe(0);
-    
   })
 
-it('Create Filter with nonempty fields', () => {
+  it('Create Filter with nonempty fields', () => {
     const filter = new Filter("steak", ["Breakfast", "Lunch"], ["American", "Asian"], ["Main course"]);
     expect(filter.getQuery()).toBe("steak");
     expect(filter.getMealType()).toStrictEqual(["Breakfast", "Lunch"]);
@@ -19,7 +19,7 @@ it('Create Filter with nonempty fields', () => {
   })
 
 
-it('Check the generated url of a Filter with empty fields', () => {
+  it('Check the generated url of a Filter with empty fields', () => {
     const filter = new Filter("", [], [], []);
     const url = filter.generateUrl("key", "id");
 
@@ -28,7 +28,7 @@ it('Check the generated url of a Filter with empty fields', () => {
     expect(url.substring(53)).toBe("&app_id=id&app_key=key&random=true");
   })
 
-it('Check the generated url of a Filter with nonempty fields', () => {
+  it('Check the generated url of a Filter with nonempty fields', () => {
     const filter = new Filter("steak", ["Dinner", "Lunch"], ["American", "Asian"], ["Sandwiches", "Salad"]);
 
     var targetURL = "https://api.edamam.com/api/recipes/v2?type=public&q=steak&app_id=id&app_key=key&random=true";
@@ -50,9 +50,7 @@ it('Check the generated url of a Filter with nonempty fields', () => {
     expect(filter.generateUrl("key", "id")).toBe(targetURL);
   })
 
-
-
-it('Check the return of testParsing function on a test file', () => {
+  it('Check the return of testParsing function on a test file', () => {
     const json = require("../edamamAPI/recipeApiExample.json");
     const arr = Recipe.parseJson(json);
 
@@ -81,3 +79,4 @@ it('Check queryUrl function with empty Filter', () => {
       });
   })
 */
+});

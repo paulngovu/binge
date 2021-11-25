@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders profile 1`] = `
+exports[`Profile page renders profile elements 1`] = `
 <div
   className="StyledGrommet-sc-19lkkz7-0 hMmsfQ"
 >
@@ -21,8 +21,8 @@ exports[`renders profile 1`] = `
     >
       <a
         className="StyledButton-sc-323bzc-0 haWZSW"
+        data-testid="home-btn"
         href="/"
-        id="home-btn"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseEnter={[Function]}
@@ -55,11 +55,11 @@ exports[`renders profile 1`] = `
         className="jsx-2134774113 profile-img"
         src="/joe-bruin.jpg"
       />
-      <h1
-        className="jsx-2134774113"
+      <span
+        className="StyledText-sc-1sadyjn-0 dlJAKl"
       >
         Joe Bruin
-      </h1>
+      </span>
       <button
         className="StyledButton-sc-323bzc-0 hmUEoa"
         onBlur={[Function]}
@@ -75,7 +75,7 @@ exports[`renders profile 1`] = `
         className="StyledBox-sc-13pk1d4-0 btgOOZ"
       >
         <button
-          className="StyledButton-sc-323bzc-0 hmUEoa"
+          className="StyledButton-sc-323bzc-0 emnQnE"
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}

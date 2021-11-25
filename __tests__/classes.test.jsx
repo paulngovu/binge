@@ -5,186 +5,188 @@ import Message from '../classes/Message'
 import Chatroom from '../classes/Chatroom'
 import Recipe from '../edamamAPI/Recipe'
 
-it('fast class test', () => {
-    const filter = new Filter("", [], [], []);
+describe('Classes', () => {
+    it('fast class test', () => {
+        const filter = new Filter("", [], [], []);
 
-    const tempUser = new User("John", filter, []);
-    const tempStack = new RecipeStack(tempUser);
-
-    expect(tempStack.stackEmpty()).toBe(true);
-});
-
-
-it('RecipeStack test', async () => {
-    const filter = new Filter("", [], [], []);
-
-    const tempUser = new User("John", filter, []);
-    const tempStack = new RecipeStack(tempUser);
-
-    const mockJson = require("../edamamAPI/recipeApiExample.json");
-    let spy = jest.spyOn(filter, 'queryAPI').mockImplementation(() => mockJson);
+        const tempUser = new User("John", filter, []);
+        const tempStack = new RecipeStack(tempUser);
 
     expect(tempStack.stackEmpty()).toBe(true);
-    await tempStack.refreshStack();
-    expect(tempStack.stackEmpty()).toBe(false);
-
-    for (var i = 0; i < 10; i++){
-        tempStack.acceptTopRecipe();
-        tempStack.rejectTopRecipe();
-    }
-
-    expect(tempStack.stackEmpty()).toBe(true);
-    expect(tempUser.getMatches().length).toBe(10);
-  });
+    });
 
 
-it('Message test', () => {
-    const m = new Message("hi");
+    it('RecipeStack test', async () => {
+        const filter = new Filter("", [], [], []);
 
-    expect(m.getText()).toBe("hi");
-});
+        const tempUser = new User("John", filter, []);
+        const tempStack = new RecipeStack(tempUser);
 
-it('Chatroom detail message test', () => {
-    const filter = new Filter("", [], [], []);
-    const tempUser = new User("John", filter, []);
+        const mockJson = require("../edamamAPI/recipeApiExample.json");
+        let spy = jest.spyOn(filter, 'queryAPI').mockImplementation(() => mockJson);
 
-    const json = require("../edamamAPI/recipeApiExample.json");
-    const recipearr = Recipe.parseJson(json);
+        expect(tempStack.stackEmpty()).toBe(true);
+        await tempStack.refreshStack();
+        expect(tempStack.stackEmpty()).toBe(false);
 
-    const c = new Chatroom(tempUser, recipearr[0]);
+        for (var i = 0; i < 10; i++){
+            tempStack.acceptTopRecipe();
+            tempStack.rejectTopRecipe();
+        }
 
-    expect(c.getUserMessages().length).toBe(0);
-    expect(c.getRecipeMessages().length).toBe(0);
+        expect(tempStack.stackEmpty()).toBe(true);
+        expect(tempUser.getMatches().length).toBe(10);
+    });
 
-    c.userSendMessage("what are the details?");
 
-    expect(c.getUserMessages().length).toBe(1);
-    expect(c.getUserMessages()[0].getText()).toBe("what are the details?");
+    it('Message test', () => {
+        const m = new Message("hi");
 
-    expect(c.getRecipeMessages().length).toBe(1);
-    expect(c.getRecipeMessages()[0].getText()).toBe("You can find the full recipe here: http://www.seriouseats.com/recipes/2011/10/applejack-rabbit-classic-apple-brandy-cocktail-pdt-recipe.html");
-});
+        expect(m.getText()).toBe("hi");
+    });
 
-it('Chatroom greeting test', () => {
-    const filter = new Filter("", [], [], []);
-    const tempUser = new User("John", filter, []);
+    it('Chatroom detail message test', () => {
+        const filter = new Filter("", [], [], []);
+        const tempUser = new User("John", filter, []);
 
-    const json = require("../edamamAPI/recipeApiExample.json");
-    const recipearr = Recipe.parseJson(json);
+        const json = require("../edamamAPI/recipeApiExample.json");
+        const recipearr = Recipe.parseJson(json);
 
-    const c = new Chatroom(tempUser, recipearr[0]);
+        const c = new Chatroom(tempUser, recipearr[0]);
 
-    expect(c.getUserMessages().length).toBe(0);
-    expect(c.getRecipeMessages().length).toBe(0);
+        expect(c.getUserMessages().length).toBe(0);
+        expect(c.getRecipeMessages().length).toBe(0);
 
-    c.userSendMessage("Hi HELLO");
+        c.userSendMessage("what are the details?");
 
-    expect(c.getUserMessages().length).toBe(1);
-    expect(c.getUserMessages()[0].getText()).toBe("Hi HELLO");
+        expect(c.getUserMessages().length).toBe(1);
+        expect(c.getUserMessages()[0].getText()).toBe("what are the details?");
 
-    expect(c.getRecipeMessages().length).toBe(1);
-    expect(c.getRecipeMessages()[0].getText()).toBe("Hello! My name is Applejack Rabbit Recipe.");
-});
+        expect(c.getRecipeMessages().length).toBe(1);
+        expect(c.getRecipeMessages()[0].getText()).toBe("You can find the full recipe here: http://www.seriouseats.com/recipes/2011/10/applejack-rabbit-classic-apple-brandy-cocktail-pdt-recipe.html");
+    });
 
-it('Chatroom ingredients test', () => {
-    const filter = new Filter("", [], [], []);
-    const tempUser = new User("John", filter, []);
+    it('Chatroom greeting test', () => {
+        const filter = new Filter("", [], [], []);
+        const tempUser = new User("John", filter, []);
 
-    const json = require("../edamamAPI/recipeApiExample.json");
-    const recipearr = Recipe.parseJson(json);
+        const json = require("../edamamAPI/recipeApiExample.json");
+        const recipearr = Recipe.parseJson(json);
 
-    const c = new Chatroom(tempUser, recipearr[0]);
+        const c = new Chatroom(tempUser, recipearr[0]);
 
-    expect(c.getUserMessages().length).toBe(0);
-    expect(c.getRecipeMessages().length).toBe(0);
+        expect(c.getUserMessages().length).toBe(0);
+        expect(c.getRecipeMessages().length).toBe(0);
 
-    c.userSendMessage("what ingredients do I need?");
+        c.userSendMessage("Hi HELLO");
 
-    expect(c.getUserMessages().length).toBe(1);
-    expect(c.getUserMessages()[0].getText()).toBe("what ingredients do I need?");
+        expect(c.getUserMessages().length).toBe(1);
+        expect(c.getUserMessages()[0].getText()).toBe("Hi HELLO");
 
-    expect(c.getRecipeMessages().length).toBe(1);
+        expect(c.getRecipeMessages().length).toBe(1);
+        expect(c.getRecipeMessages()[0].getText()).toBe("Hello! My name is Applejack Rabbit Recipe.");
+    });
 
-    var response = "Here are a list of ingrients that you will need for this dish: \n";
-    response += "2 ounces Laird's Bonded Apple Brandy\n";
-    response += "3/4 ounce fresh lemon juice\n";
-    response += "3/4 ounce fresh orange juice\n";
-    response += "1/2 ounce Deep Mountain Grade B Maple Syrup";
+    it('Chatroom ingredients test', () => {
+        const filter = new Filter("", [], [], []);
+        const tempUser = new User("John", filter, []);
 
-    expect(c.getRecipeMessages()[0].getText()).toBe(response);
-});
+        const json = require("../edamamAPI/recipeApiExample.json");
+        const recipearr = Recipe.parseJson(json);
 
-it('Chatroom calorie test', () => {
-    const filter = new Filter("", [], [], []);
-    const tempUser = new User("John", filter, []);
+        const c = new Chatroom(tempUser, recipearr[0]);
 
-    const json = require("../edamamAPI/recipeApiExample.json");
-    const recipearr = Recipe.parseJson(json);
+        expect(c.getUserMessages().length).toBe(0);
+        expect(c.getRecipeMessages().length).toBe(0);
 
-    const c = new Chatroom(tempUser, recipearr[0]);
+        c.userSendMessage("what ingredients do I need?");
 
-    expect(c.getUserMessages().length).toBe(0);
-    expect(c.getRecipeMessages().length).toBe(0);
+        expect(c.getUserMessages().length).toBe(1);
+        expect(c.getUserMessages()[0].getText()).toBe("what ingredients do I need?");
 
-    c.userSendMessage("what's the calorie count");
+        expect(c.getRecipeMessages().length).toBe(1);
 
-    expect(c.getUserMessages().length).toBe(1);
-    expect(c.getUserMessages()[0].getText()).toBe("what's the calorie count");
+        var response = "Here are a list of ingrients that you will need for this dish: \n";
+        response += "2 ounces Laird's Bonded Apple Brandy\n";
+        response += "3/4 ounce fresh lemon juice\n";
+        response += "3/4 ounce fresh orange juice\n";
+        response += "1/2 ounce Deep Mountain Grade B Maple Syrup";
 
-    expect(c.getRecipeMessages().length).toBe(1);
+        expect(c.getRecipeMessages()[0].getText()).toBe(response);
+    });
 
-    var response = "This recipe is about " + 182.07481227031252 + " calories per serving.";
+    it('Chatroom calorie test', () => {
+        const filter = new Filter("", [], [], []);
+        const tempUser = new User("John", filter, []);
 
-    expect(c.getRecipeMessages()[0].getText()).toBe(response);
-});
+        const json = require("../edamamAPI/recipeApiExample.json");
+        const recipearr = Recipe.parseJson(json);
 
-it('Chatroom caution test', () => {
-    const filter = new Filter("", [], [], []);
-    const tempUser = new User("John", filter, []);
+        const c = new Chatroom(tempUser, recipearr[0]);
 
-    const json = require("../edamamAPI/recipeApiExample.json");
-    const recipearr = Recipe.parseJson(json);
+        expect(c.getUserMessages().length).toBe(0);
+        expect(c.getRecipeMessages().length).toBe(0);
 
-    const c = new Chatroom(tempUser, recipearr[0]);
+        c.userSendMessage("what's the calorie count");
 
-    expect(c.getUserMessages().length).toBe(0);
-    expect(c.getRecipeMessages().length).toBe(0);
+        expect(c.getUserMessages().length).toBe(1);
+        expect(c.getUserMessages()[0].getText()).toBe("what's the calorie count");
 
-    c.userSendMessage("what's the allergy tags");
+        expect(c.getRecipeMessages().length).toBe(1);
 
-    expect(c.getUserMessages().length).toBe(1);
-    expect(c.getUserMessages()[0].getText()).toBe("what's the allergy tags");
+        var response = "This recipe is about " + 182.07481227031252 + " calories per serving.";
 
-    expect(c.getRecipeMessages().length).toBe(1);
+        expect(c.getRecipeMessages()[0].getText()).toBe(response);
+    });
 
-    var response = "Here are some caution tags for this recipe: \n";
-    response += "Sulfites"
+    it('Chatroom caution test', () => {
+        const filter = new Filter("", [], [], []);
+        const tempUser = new User("John", filter, []);
 
-    expect(c.getRecipeMessages()[0].getText()).toBe(response);
-});
+        const json = require("../edamamAPI/recipeApiExample.json");
+        const recipearr = Recipe.parseJson(json);
 
-it('Chatroom multiple phrases', () => {
-    const filter = new Filter("", [], [], []);
-    const tempUser = new User("John", filter, []);
+        const c = new Chatroom(tempUser, recipearr[0]);
 
-    const json = require("../edamamAPI/recipeApiExample.json");
-    const recipearr = Recipe.parseJson(json);
+        expect(c.getUserMessages().length).toBe(0);
+        expect(c.getRecipeMessages().length).toBe(0);
 
-    const c = new Chatroom(tempUser, recipearr[0]);
+        c.userSendMessage("what's the allergy tags");
 
-    expect(c.getUserMessages().length).toBe(0);
-    expect(c.getRecipeMessages().length).toBe(0);
+        expect(c.getUserMessages().length).toBe(1);
+        expect(c.getUserMessages()[0].getText()).toBe("what's the allergy tags");
 
-    c.userSendMessage("hi, what's the allergy tags");
+        expect(c.getRecipeMessages().length).toBe(1);
 
-    expect(c.getUserMessages().length).toBe(1);
-    expect(c.getUserMessages()[0].getText()).toBe("hi, what's the allergy tags");
+        var response = "Here are some caution tags for this recipe: \n";
+        response += "Sulfites"
 
-    expect(c.getRecipeMessages().length).toBe(1);
+        expect(c.getRecipeMessages()[0].getText()).toBe(response);
+    });
 
-    var response = "Hello! My name is Applejack Rabbit Recipe.\n";
-    response += "Here are some caution tags for this recipe: \n";
-    response += "Sulfites"
+    it('Chatroom multiple phrases', () => {
+        const filter = new Filter("", [], [], []);
+        const tempUser = new User("John", filter, []);
 
-    expect(c.getRecipeMessages()[0].getText()).toBe(response);
+        const json = require("../edamamAPI/recipeApiExample.json");
+        const recipearr = Recipe.parseJson(json);
+
+        const c = new Chatroom(tempUser, recipearr[0]);
+
+        expect(c.getUserMessages().length).toBe(0);
+        expect(c.getRecipeMessages().length).toBe(0);
+
+        c.userSendMessage("hi, what's the allergy tags");
+
+        expect(c.getUserMessages().length).toBe(1);
+        expect(c.getUserMessages()[0].getText()).toBe("hi, what's the allergy tags");
+
+        expect(c.getRecipeMessages().length).toBe(1);
+
+        var response = "Hello! My name is Applejack Rabbit Recipe.\n";
+        response += "Here are some caution tags for this recipe: \n";
+        response += "Sulfites"
+
+        expect(c.getRecipeMessages()[0].getText()).toBe(response);
+    });
 });

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders homepage unchanged 1`] = `
+exports[`Swipes page matches expected homepage snapshot 1`] = `
 <div
   className="StyledGrommet-sc-19lkkz7-0 hMmsfQ"
 >
@@ -21,6 +21,7 @@ exports[`renders homepage unchanged 1`] = `
     >
       <button
         className="StyledButton-sc-323bzc-0 haWZSW"
+        data-testid="filters-btn"
         id="filters-btn"
         onBlur={[Function]}
         onClick={[Function]}
@@ -44,8 +45,8 @@ exports[`renders homepage unchanged 1`] = `
       </button>
       <a
         className="StyledButton-sc-323bzc-0 haWZSW"
+        data-testid="chats-btn"
         href="/chats"
-        id="chats-btn"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseEnter={[Function]}
@@ -68,8 +69,8 @@ exports[`renders homepage unchanged 1`] = `
       </a>
       <a
         className="StyledButton-sc-323bzc-0 haWZSW"
+        data-testid="profile-btn"
         href="/profile"
-        id="profile-btn"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseEnter={[Function]}

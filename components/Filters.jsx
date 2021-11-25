@@ -76,6 +76,7 @@ const Filters = ({onSubmit, ...props}) => {
         Meal Type
       </Text>
       <Select
+        data-testid="meal-type-select"
         multiple
         closeOnChange={false}
         placeholder="All"
