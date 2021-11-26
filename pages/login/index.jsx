@@ -10,7 +10,7 @@ import {
   TESTID_LOGIN_TITLE,
   TESTID_LOGIN_USERNAME,
 } from '../../testIds';
-import { isValidCredentials } from '../../utils/isValidCredentials';
+import { isValidCredentials } from '../../utils/validateCredentials';
 
 const Login = () => {
   const [error, setError] = useState('');

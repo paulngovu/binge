@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import { PATH_AUTHENTICATE, PATH_LOGIN } from '../paths';
-import { isValidCredentials } from '../utils/isValidCredentials';
+import { isDuplicateCredentials } from '../utils/validateCredentials';
 
 const Register = () => {
   const [error, setError] = useState('');
@@ -20,7 +20,7 @@ const Register = () => {
               const password = value.password;
 
               // TODO: Check existing users
-              if (isValidCredentials(username, password)) {
+              if (isDuplicateCredentials(username)) {
                 setError('Username is already taken.');
               } else {
                 setError('Creating user and logging in...');
