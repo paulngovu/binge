@@ -4,8 +4,6 @@ import Router from 'next/router';
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import { PATH_LOGOUT } from '../paths';
-import jwt from 'jsonwebtoken';
-import jwt_key from '../utils/jwtKey';
 import { getUsername } from '../utils/getUsername';
 
 const Profile = ({ username }) => {
@@ -111,6 +109,6 @@ const Profile = ({ username }) => {
 
 export default Profile;
 
-export const getServerSideProps = async (context) => ({
+export const getServerSideProps = (context) => ({
   props: { username: getUsername(context) },
 });
