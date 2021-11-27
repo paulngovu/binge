@@ -1,18 +1,15 @@
-import { 
-  Box, 
-  Button,
-  Grid,
-  Text,
-  TextInput } from 'grommet';
-import { Checkmark } from 'grommet-icons'
+import { Box, Button, Grid, Text, TextInput } from 'grommet';
+import { Checkmark } from 'grommet-icons';
 import Router from 'next/router';
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import { PATH_LOGOUT } from '../paths';
+import jwt from 'jsonwebtoken';
+import jwt_key from '../utils/jwtKey';
+import { getUsername } from '../utils/getUsername';
 
-const Profile = () => {
-  // TODO: hard coded default values
-  const [name, setName] = useState('Joe Bruin');
+const Profile = ({ username }) => {
+  const [name, setName] = useState(username);
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -33,21 +30,21 @@ const Profile = () => {
         <div className='container'>
           <img className='profile-img' src='/joe-bruin.jpg' />
           <Text
-            weight="bold"
-            size="large"
-            margin={{top: "1vh", bottom: "2vh"}}
+            weight='bold'
+            size='large'
+            margin={{ top: '1vh', bottom: '2vh' }}
           >
             {name}
           </Text>
           {showModal ? (
-            <Box margin={{top: "xsmall", bottom: "medium"}}>
+            <Box margin={{ top: 'xsmall', bottom: 'medium' }}>
               <label htmlFor='name'>New name (20 characters max):</label>
-              <Grid 
+              <Grid
                 rows={['auto']}
                 columns={['auto', 'xxsmall']}
                 areas={[
-                  {name: 'input', start: [0,0], end: [0,0]},
-                  {name: 'submit', start: [1,0], end: [1,0]}
+                  { name: 'input', start: [0, 0], end: [0, 0] },
+                  { name: 'submit', start: [1, 0], end: [1, 0] },
                 ]}
               >
                 <TextInput
@@ -64,10 +61,11 @@ const Profile = () => {
                   data-testid='submit-btn'
                   a11yTitle='submit-name'
                   gridArea='submit'
-                  secondary 
-                  plain={false} 
-                  icon={<Checkmark size="small"/>} onClick={onSubmit}>
-                </Button>
+                  secondary
+                  plain={false}
+                  icon={<Checkmark size='small' />}
+                  onClick={onSubmit}
+                ></Button>
               </Grid>
             </Box>
           ) : null}
@@ -112,3 +110,7 @@ const Profile = () => {
 };
 
 export default Profile;
+
+export const getServerSideProps = async (context) => ({
+  props: { username: getUsername(context) },
+});

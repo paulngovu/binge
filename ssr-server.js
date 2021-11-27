@@ -1,7 +1,8 @@
 const express = require('express');
 const next = require('next');
-const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+const jwt_key = require('./utils/jwtKey');
 const {
   PATH_AUTHENTICATE,
   PATH_LOGOUT,
@@ -10,14 +11,10 @@ const {
   PATH_LOGIN_ERROR,
   PATH_REGISTER,
 } = require('./paths');
-const jwt_key = require('./utils/jwtKey');
-const parseCookie = require('./utils/parseCookie');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
-
-// Probably not the best place to put this
 
 app
   .prepare()
@@ -42,7 +39,6 @@ app
       res.redirect(PATH_HOME);
     });
 
-    // TODO: Logout
     server.get(PATH_LOGOUT, (req, res) => {
       res.clearCookie('jwt');
       res.sendStatus(200);
