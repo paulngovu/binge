@@ -13,7 +13,10 @@ export async function getServerSideProps() {
       }
     }
   });
-
+  messages.map(mes => {
+    mes.timeSent = JSON.parse(JSON.stringify(mes.timeSent));
+    return mes;
+  })
   return {
     props: {
       allMessages: messages

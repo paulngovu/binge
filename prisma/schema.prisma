@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model user {
   username      String    @id
   password      String
   filterQuery   String
@@ -19,13 +19,13 @@ model User {
   dishType      String[]
 }
 
-model Like {
+model like {
   id            Int       @default(autoincrement()) @id
   foodId        Int
   username      String
 }
 
-model Message {
+model message {
   id            Int       @default(autoincrement()) @id
   sentByUser    Boolean
   username      String
@@ -34,7 +34,7 @@ model Message {
   timeSent      DateTime
 }
 
-model Recipe {
+model recipe {
   id            Int       @default(autoincrement()) @id
   name          String
   url           String
