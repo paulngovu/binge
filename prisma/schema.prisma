@@ -19,16 +19,16 @@ model User {
   dishType      String[]
 }
 
-model Likes {
+model Like {
   id            Int       @default(autoincrement()) @id
   foodId        Int
   username      String
 }
 
-model Messages {
+model Message {
   id            Int       @default(autoincrement()) @id
   sentByUser    Boolean
-  userId        String
+  username      String
   foodId        String
   message       String
   timeSent      DateTime
@@ -37,6 +37,7 @@ model Messages {
 model Recipe {
   id            Int       @default(autoincrement()) @id
   name          String
+  url           String
   ingredients   String[]
   calories      Int
   allergies     String[]
