@@ -2,11 +2,20 @@ import { Box, Button, Form, FormField, Text, TextInput } from 'grommet';
 import Router from 'next/router';
 import { useState } from 'react';
 import Layout from '../components/Layout';
-import { PATH_AUTHENTICATE, PATH_LOGIN } from '../paths';
-import { isDuplicateCredentials } from '../utils/validateCredentials';
+import { PATH_API_REGISTER, PATH_LOGIN } from '../paths';
+import { getAllUsers } from '../utils/dbUsers';
 
-const Register = () => {
+const Register = ({ users }) => {
   const [error, setError] = useState('');
+
+  const usernameAlreadyExists = (username) => {
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].username === username) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   return (
     <Layout>
@@ -19,15 +28,18 @@ const Register = () => {
               const username = value.username;
               const password = value.password;
 
-              // TODO: Check existing users
-              if (isDuplicateCredentials(username)) {
+              if (usernameAlreadyExists(username)) {
                 setError('Username is already taken.');
               } else {
                 setError('Creating user and logging in...');
+
                 // Create user token
                 Router.push({
-                  pathname: PATH_AUTHENTICATE,
-                  query: { username: username },
+                  pathname: PATH_API_REGISTER,
+                  query: {
+                    username: username,
+                    password: password,
+                  },
                 });
               }
             }}
@@ -70,3 +82,8 @@ const Register = () => {
 };
 
 export default Register;
+
+export const getServerSideProps = async () => {
+  const users = await getAllUsers();
+  return { props: { users: users } };
+};

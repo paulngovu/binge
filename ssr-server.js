@@ -10,6 +10,7 @@ const {
   PATH_HOME,
   PATH_LOGIN_ERROR,
   PATH_REGISTER,
+  PATH_API_REGISTER,
 } = require('./paths');
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -26,7 +27,8 @@ app
     // Sign jwt
     server.get(PATH_AUTHENTICATE, (req, res) => {
       const username = req.query.username;
-      if (username === undefined) {
+      const password = req.query.password;
+      if (username === undefined || password === undefined) {
         res.redirect(PATH_LOGIN);
       }
 
@@ -52,6 +54,9 @@ app
 
     // Display login error message
     server.get(PATH_LOGIN_ERROR, (req, res) => handle(req, res));
+
+    // Create user
+    server.get(PATH_API_REGISTER, (req, res) => handle(req, res));
 
     // Next files just bypass
     server.all('/_next*', (req, res) => handle(req, res));

@@ -21,33 +21,3 @@ export const getLikedFoods = async (username) => {
 
   return likedFoods;
 };
-
-export const getUser = async (username, password) => {
-  const user = await prisma.user.findUnique({
-    where: {
-      AND: [
-        { username: { equals: username } },
-        { password: { equals: password } },
-      ],
-    },
-  });
-
-  return user;
-};
-
-/**
- * Creates a user in the database.
- */
-export const createUser = async (username, password) => {
-  const createdUser = await prisma.user.create({
-    data: {
-      username: username,
-      password: password,
-      filterQuery: '',
-      mealType: [],
-      cusineType: [],
-      dishType: [],
-    },
-  });
-  return createdUser;
-};

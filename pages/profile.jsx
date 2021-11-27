@@ -4,7 +4,7 @@ import Router from 'next/router';
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import { PATH_LOGOUT } from '../paths';
-import { getUsername } from '../utils/getUsername';
+import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
 
 const Profile = ({ username }) => {
   const [name, setName] = useState(username);
@@ -110,5 +110,5 @@ const Profile = ({ username }) => {
 export default Profile;
 
 export const getServerSideProps = (context) => ({
-  props: { username: getUsername(context) },
+  props: { username: getUsernameFromCookie(context) },
 });

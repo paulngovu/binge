@@ -4,7 +4,7 @@ import jwt_key from './jwtKey';
 /**
  * Retrieves username from context
  */
-export const getUsername = (context) => {
+export const getUsernameFromCookie = (context) => {
   const { req } = context;
   const { cookies } = req;
   const token = cookies.jwt;

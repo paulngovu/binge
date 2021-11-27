@@ -6,6 +6,7 @@ const PATH_REGISTER = '/register';
 const PATH_HOME = '/';
 const PATH_CHATS = '/chats';
 const PATH_PROFILE = '/profile';
+const PATH_API_REGISTER = '/api/register';
 
 module.exports = {
   PATH_AUTHENTICATE,
@@ -16,4 +17,5 @@ module.exports = {
   PATH_HOME,
   PATH_CHATS,
   PATH_PROFILE,
+  PATH_API_REGISTER,
 };

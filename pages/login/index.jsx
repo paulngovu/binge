@@ -10,10 +10,19 @@ import {
   TESTID_LOGIN_TITLE,
   TESTID_LOGIN_USERNAME,
 } from '../../testIds';
-import { isValidCredentials } from '../../utils/validateCredentials';
+import { getAllUsers } from '../../utils/dbUsers';
 
-const Login = () => {
+const Login = ({ users }) => {
   const [error, setError] = useState('');
+
+  const isValidCredentials = (username, password) => {
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].username === username && users[i].password === password) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   return (
     <Layout>
@@ -34,7 +43,10 @@ const Login = () => {
                 // Create user token
                 Router.push({
                   pathname: PATH_AUTHENTICATE,
-                  query: { username: username, password: password },
+                  query: {
+                    username: username,
+                    password: password,
+                  },
                 });
               }
             }}
@@ -96,3 +108,8 @@ const Login = () => {
 };
 
 export default Login;
+
+export const getServerSideProps = async () => {
+  const users = await getAllUsers();
+  return { props: { users: users } };
+};
