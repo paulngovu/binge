@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Text, TextInput } from 'grommet';
+import { Box, Button, Grid, Text, TextArea } from 'grommet';
 import { Checkmark } from 'grommet-icons';
 import Router from 'next/router';
 import { useState } from 'react';
@@ -54,7 +54,7 @@ const Profile = ({ user }) => {
                   { name: 'submit', start: [1, 0], end: [1, 0] },
                 ]}
               >
-                <TextInput
+                <TextArea
                   gridArea='input'
                   type='text'
                   id='bio'
