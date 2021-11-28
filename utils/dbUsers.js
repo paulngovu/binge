@@ -9,7 +9,7 @@ export const getAllUsers = async () => {
 
 export const getUser = async (username) => {
   const user = await prisma.user.findUnique({
-    where: { username: { equals: username } },
+    where: { username: username },
   });
 
   return user;
@@ -27,4 +27,12 @@ export const createUser = async (username, password) => {
     },
   });
   return createdUser;
+};
+
+export const updateUserBio = async (username, bio) => {
+  const updatedUser = await prisma.user.update({
+    where: { username: username },
+    data: { bio: bio },
+  });
+  return updatedUser;
 };

@@ -3,11 +3,17 @@ import { Checkmark } from 'grommet-icons';
 import Router from 'next/router';
 import { useState } from 'react';
 import Layout from '../components/Layout';
-import { PATH_LOGOUT } from '../paths';
+import { PATH_API_BIO, PATH_LOGOUT } from '../paths';
+import {
+  TESTID_PROFILE_BIO_BUTTON,
+  TESTID_PROFILE_BIO_FIELD,
+} from '../testIds';
+import { getUser } from '../utils/dbUsers';
 import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
 
-const Profile = ({ username }) => {
-  const [name, setName] = useState(username);
+const Profile = ({ user }) => {
+  const name = user.username;
+  const [bio, setBio] = useState(user.bio);
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -20,6 +26,10 @@ const Profile = ({ username }) => {
 
   const onSubmit = () => {
     closeModal();
+    Router.push({
+      pathname: PATH_API_BIO,
+      query: { username: name, bio: bio },
+    });
   };
 
   return (
@@ -27,16 +37,15 @@ const Profile = ({ username }) => {
       <Box pad='large'>
         <div className='container'>
           <img className='profile-img' src='/joe-bruin.jpg' />
-          <Text
-            weight='bold'
-            size='large'
-            margin={{ top: '1vh', bottom: '2vh' }}
-          >
-            {name}
-          </Text>
+          <Box pad='medium' align='center'>
+            <Text weight='bold' size='large'>
+              {name}
+            </Text>
+            <Text size='medium'>{bio}</Text>
+          </Box>
           {showModal ? (
             <Box margin={{ top: 'xsmall', bottom: 'medium' }}>
-              <label htmlFor='name'>New name (20 characters max):</label>
+              <label htmlFor='name'>New bio (200 characters max):</label>
               <Grid
                 rows={['auto']}
                 columns={['auto', 'xxsmall']}
@@ -48,16 +57,17 @@ const Profile = ({ username }) => {
                 <TextInput
                   gridArea='input'
                   type='text'
-                  id='name'
-                  name='name'
+                  id='bio'
+                  name='bio'
                   size='xsmall'
-                  maxLength='20'
-                  data-testid='input-name'
-                  onChange={(e) => setName(e.target.value)}
+                  maxLength='200'
+                  data-testid={TESTID_PROFILE_BIO_FIELD}
+                  value={bio}
+                  onChange={(e) => setBio(e.target.value)}
                 />
                 <Button
-                  data-testid='submit-btn'
-                  a11yTitle='submit-name'
+                  data-testid={TESTID_PROFILE_BIO_BUTTON}
+                  a11yTitle='submit-bio'
                   gridArea='submit'
                   secondary
                   plain={false}
@@ -109,6 +119,10 @@ const Profile = ({ username }) => {
 
 export default Profile;
 
-export const getServerSideProps = (context) => ({
-  props: { username: getUsernameFromCookie(context) },
-});
+export const getServerSideProps = async (context) => {
+  const username = getUsernameFromCookie(context);
+  const user = await getUser(username);
+  return {
+    props: { user: user },
+  };
+};

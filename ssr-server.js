@@ -4,13 +4,14 @@ const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const jwt_key = require('./utils/jwtKey');
 const {
-  PATH_AUTHENTICATE,
-  PATH_LOGOUT,
-  PATH_LOGIN,
-  PATH_HOME,
-  PATH_LOGIN_ERROR,
-  PATH_REGISTER,
+  PATH_API_BIO,
   PATH_API_REGISTER,
+  PATH_AUTHENTICATE,
+  PATH_HOME,
+  PATH_LOGIN,
+  PATH_LOGIN_ERROR,
+  PATH_LOGOUT,
+  PATH_REGISTER,
 } = require('./paths');
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -57,6 +58,9 @@ app
 
     // Create user
     server.get(PATH_API_REGISTER, (req, res) => handle(req, res));
+
+    // Update bio
+    server.get(PATH_API_BIO, (req, res) => handle(req, res));
 
     // Next files just bypass
     server.all('/_next*', (req, res) => handle(req, res));
