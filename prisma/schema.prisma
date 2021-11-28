@@ -13,6 +13,7 @@ datasource db {
 model User {
   username      String    @id
   password      String
+  bio           String
   filterQuery   String
   mealType      String[]
   cusineType    String[]
