@@ -102,7 +102,7 @@ const Layout = ({ buttons = [], ...props }) => {
               hoverIndicator
               href={PATH_HOME}
               tip={{
-                content: "Home  "
+                content: "Home"
               }}
             />
           ) : null}

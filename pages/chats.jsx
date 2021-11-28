@@ -1,14 +1,12 @@
 // import ChatFeed from '../components/ChatFeed';
 
 import Layout from '../components/Layout';
-import chatMessages from '../components/chatMessages';
 
 import {
   Box,
   Button,
   Grid,
-  Text,
-  TextInput
+  Text
 } from 'grommet';
 import { Send } from 'grommet-icons';
 
@@ -189,14 +187,16 @@ export default function Chats({ allMessages, foodChats }) {
           ]}
           height="100%"
         >
-          <Box gridArea="message">
-          <TextInput
-            plain={true}
-            focusIndicator={false}
-            value={chatMessage}
-            placeholder={"send your message here..."}
-            onChange={(e) => setChatMessage(e.target.value)}
-          />
+          <Box
+            gridArea="message"
+          >
+            <div css="display: flex;">
+              <Button label="Hello!" margin="xsmall" />
+              <Button label="What are your ingredients?" margin="xsmall" />
+              <Button label="What is your meal type?" margin="xsmall" />
+              <Button label="What is your cuisine type?" margin="xsmall" />
+              <Button label="What is your cuisine type?" margin="xsmall" />
+            </div>
           </Box>
           <Box gridArea="send" align="center" justify="center">
             <Button 

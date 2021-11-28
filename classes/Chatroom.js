@@ -8,18 +8,6 @@ class Chatroom{
     #triggers = [];
     #responses = [];
 
-    #alternatives = [
-        "Try again with a different message",
-        "Try asking me for more details about my recipe",
-        "Try asking me about my ingredients",
-        "Try asking me about my meal type",
-        "Try asking me about my cuisine type",
-        "Try asking me about my dish type",
-        "Try asking me about my calories",
-        "Try asking me about any allergy concerns",
-        "Try saying hi!"
-    ];
-
     constructor(user, recipe){
         this.#user = user;
         this.#recipe = recipe
@@ -31,21 +19,21 @@ class Chatroom{
 
         this.#triggers = [
             // 0
-                ["hi", "hello"],
+                ["Hello!"],
             // 1
-                ["recipe", "link", "url", "detail"],
+                ["What is your recipe URL?"],
             // 2
-                ["ingredients"],
+                ["What are your ingredients?"],
             // 3
-                ["calorie"],
+                ["How many calories do you contain?"],
             // 4
-                ["allergy", "allergies", "caution"],
+                ["Are there any cautions I should be aware of?"],
             // 5
-                ["meal type"],
+                ["What is your meal type?"],
             // 6
-                ["cuisine type"],
+                ["What is your cuisine type?"],
             // 7
-                ["dish type"]
+                ["What is your dish type?"]
         ]
 
         this.#responses = [
@@ -54,7 +42,7 @@ class Chatroom{
             // 1
                 "You can find the full recipe here: " + this.#recipe.url,
             // 2
-                "Here are a list of ingrients that you will need for this dish: \n" + this.#arrToString(this.#recipe.ingredients),
+                "Here are a list of ingredients that you will need for this dish: \n" + this.#arrToString(this.#recipe.ingredients),
             // 3
                 "This recipe is about " + this.#recipe.calories + " calories per serving.", 
             // 4
@@ -82,6 +70,10 @@ class Chatroom{
 
     getRecipeMessages(){
         return this.#recipeMessages;
+    }
+
+    getTriggers(){
+        return this.#triggers;
     }
 
     userSendMessage(text){
@@ -115,11 +107,6 @@ class Chatroom{
         let text = input.toLowerCase().replace(/[^\w\s\d]/gi, "");
 
         var response = this.#recipeResponseHelper(text);
-
-        if(response == ""){
-            // pick a random string from the alternatives field
-            response = this.#alternatives[Math.floor(Math.random() * this.#alternatives.length)]
-        }
 
         var m = new Message(response.trim());
         this.#recipeMessages.push(m);
