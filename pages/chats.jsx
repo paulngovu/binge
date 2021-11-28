@@ -1,5 +1,3 @@
-// import ChatFeed from '../components/ChatFeed';
-
 import Layout from '../components/Layout';
 
 import {
@@ -11,7 +9,6 @@ import {
 import { Send } from 'grommet-icons';
 
 import { useRef, useEffect, useState } from 'react';
-import useKeypress from 'react-use-keypress';
 
 import { PrismaClient, Message, Prisma } from '@prisma/client';
 // import { useState } from 'react';
@@ -76,8 +73,17 @@ export default function Chats({ allMessages, foodChats }) {
   // https://stackoverflow.com/questions/37620694/how-to-scroll-to-bottom-in-react
   const messagesEndRef = useRef(null);
   const [currentChat, setCurrentChat] = useState(foodChats[0]);
+  const [activeOption, setActiveOption] = useState(null);
   const [chatMessage, setChatMessage] = useState("");
   const [messages, setMessages] = useState(allMessages);
+
+  const chatMessages = [
+    'Hello!', 
+    'What are your ingredients?',
+    'What is the recipe?',
+    'What is your cuisine type?',
+    'Any allergies or cautions?'
+  ]
 
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
@@ -86,23 +92,21 @@ export default function Chats({ allMessages, foodChats }) {
   useEffect(() => {
     scrollToBottom()
   }, [currentChat]);
-  
+
   const onSubmit = async () => {
     // post message to database and clear input line
     try {
       await saveMessage(chatMessage, currentChat, true);
       console.log(chatMessage);
       setChatMessage("");
+      setActiveOption(null);
 
+      // include following line if sending a message doesn't scroll chat to bottom
+      // scrollToBottom();
     } catch (err) {
       console.log(err);
     }
   };
-
-  useKeypress(['Enter'], () => {
-    onSubmit();
-    scrollToBottom();
-  });
 
   return (
     <Layout buttons={["home"]}>
@@ -189,13 +193,39 @@ export default function Chats({ allMessages, foodChats }) {
         >
           <Box
             gridArea="message"
+            overflow="auto" 
           >
             <div css="display: flex;">
-              <Button label="Hello!" margin="xsmall" />
-              <Button label="What are your ingredients?" margin="xsmall" />
-              <Button label="What is your meal type?" margin="xsmall" />
-              <Button label="What is your cuisine type?" margin="xsmall" />
-              <Button label="What is your cuisine type?" margin="xsmall" />
+              <Button 
+                label={chatMessages[0]} 
+                margin="xsmall" 
+                active={activeOption == 0} 
+                onClick={() => {setActiveOption(0); setChatMessage(chatMessages[0]);}}
+              />
+              <Button 
+                label={chatMessages[1]}
+                margin="xsmall" 
+                active={activeOption == 1}
+                onClick={() => {setActiveOption(1); setChatMessage(chatMessages[1]);}}
+              />
+              <Button 
+                label={chatMessages[2]}
+                margin="xsmall" 
+                active={activeOption == 2}
+                onClick={() => {setActiveOption(2); setChatMessage(chatMessages[2]);}}
+              />
+              <Button 
+                label={chatMessages[3]}
+                margin="xsmall" 
+                active={activeOption == 3}
+                onClick={() => {setActiveOption(3); setChatMessage(chatMessages[3]);}}
+              />
+              <Button 
+                label={chatMessages[4]}
+                margin="xsmall" 
+                active={activeOption == 4}
+                onClick={() => {setActiveOption(4); setChatMessage(chatMessages[4]);}}
+              />
             </div>
           </Box>
           <Box gridArea="send" align="center" justify="center">
@@ -204,7 +234,7 @@ export default function Chats({ allMessages, foodChats }) {
               onClick={() => onSubmit()}
               hoverIndicator
               tip={{
-                content: "press enter/click here to send"
+                content: "send"
               }}
             />
           </Box>
