@@ -19,52 +19,15 @@ import {
   Text
 } from 'grommet';
 
-
-import { PrismaClient} from '@prisma/client';
+import { getUser } from '../utils/dbUsers';
 import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
-
-const prisma = new PrismaClient();
-
-export async function getServerSideProps(context) {
-  let uname = getUsernameFromCookie(context);
-  let user = await prisma.user.findUnique({
-    where: {
-      username: uname
-    },
-  });
-
-  let matches = await prisma.like.findMany({
-    where: {
-      username: {
-        equals: uname
-      }
-    },
-  });
-  matches = matches.map(m => m.foodname);
-
-  return {
-    props: {
-      name: uname,
-      query: user.filterQuery,
-      mealType: user.mealType,
-      cuisineType: user.cusineType,    // note typo "cusineType"
-      dishType: user.dishType,
-      matches: matches
-    }
-  };
-}
 
 // SWIPE PAGE
 
-// Dummy user for now
-//const user = new User("Gordon", new Filter("", "", "", ""), []);
-//const recipeStack = new RecipeStack(user);
+let userObj;
+let recipeStack;
 
-const Home = ({name, query, mealType, cuisineType, dishType, matches}) => {
-  // loaded user from db
-  const user = new User(name, new Filter(query, mealType, cuisineType, dishType), matches);
-  const recipeStack = new RecipeStack(user);
-
+const Home = ({ user }) => {
   const [currentFoodItem, setCurrentFoodItem] = useState(null);
   const [noResults, setNoResults] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -79,6 +42,14 @@ const Home = ({name, query, mealType, cuisineType, dishType, matches}) => {
   }
 
   useEffect(async () => {
+    userObj = new User(user.username, new Filter(
+      user.filterQuery,
+      user.mealType,
+      user.cusineType,
+      user.dishType
+    ), []);
+    recipeStack = new RecipeStack(userObj);
+
     setNewCurrentFoodItem();
   }, []);
 
@@ -123,7 +94,7 @@ const Home = ({name, query, mealType, cuisineType, dishType, matches}) => {
   return (
     <Layout
       buttons={["filter", "chats", "profile"]}
-      user={user}
+      user={userObj}
       onUpdateFilters={onUpdateFilters}
     >
       <div className="container">
@@ -235,3 +206,12 @@ const Home = ({name, query, mealType, cuisineType, dishType, matches}) => {
 }
 
 export default Home;
+
+export const getServerSideProps = async (context) => {
+  const username = getUsernameFromCookie(context);
+  const user = await getUser(username);
+  
+  return {
+    props: { user },
+  };
+};
