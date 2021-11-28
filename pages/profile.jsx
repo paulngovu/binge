@@ -28,7 +28,7 @@ const Profile = ({ user }) => {
     closeModal();
     Router.push({
       pathname: PATH_API_BIO,
-      query: { username: name, bio: bio },
+      query: { username: name, bio: bio.trim() },
     });
   };
 

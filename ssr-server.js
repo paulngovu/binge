@@ -42,7 +42,7 @@ app
       res.redirect(PATH_HOME);
     });
 
-    server.get(PATH_LOGOUT, (req, res) => {
+    server.get(PATH_LOGOUT, (_, res) => {
       res.clearCookie('jwt');
       res.sendStatus(200);
     });
