@@ -13,7 +13,7 @@ datasource db {
 model User {
   username      String    @id
   password      String
-  bio           String
+  bio           String    @default("Turnip for what?")
   filterQuery   String
   mealType      String[]
   cusineType    String[]
