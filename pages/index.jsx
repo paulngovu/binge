@@ -19,13 +19,52 @@ import {
   Text
 } from 'grommet';
 
+
+import { PrismaClient} from '@prisma/client';
+import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
+
+const prisma = new PrismaClient();
+
+export async function getServerSideProps(context) {
+  let uname = getUsernameFromCookie(context);
+  let user = await prisma.user.findUnique({
+    where: {
+      username: uname
+    },
+  });
+
+  let matches = await prisma.like.findMany({
+    where: {
+      username: {
+        equals: uname
+      }
+    },
+  });
+  matches = matches.map(m => m.foodname);
+
+  return {
+    props: {
+      name: uname,
+      query: user.filterQuery,
+      mealType: user.mealType,
+      cuisineType: user.cusineType,    // note typo "cusineType"
+      dishType: user.dishType,
+      matches: matches
+    }
+  };
+}
+
 // SWIPE PAGE
 
 // Dummy user for now
-const user = new User("Gordon", new Filter("", "", "", ""), []);
-const recipeStack = new RecipeStack(user);
+//const user = new User("Gordon", new Filter("", "", "", ""), []);
+//const recipeStack = new RecipeStack(user);
 
-const Home = () => {
+const Home = ({name, query, mealType, cuisineType, dishType, matches}) => {
+  // loaded user from db
+  const user = new User(name, new Filter(query, mealType, cuisineType, dishType), matches);
+  const recipeStack = new RecipeStack(user);
+
   const [currentFoodItem, setCurrentFoodItem] = useState(null);
   const [noResults, setNoResults] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -47,6 +86,10 @@ const Home = () => {
     if (!noResults) {
       recipeStack.acceptTopRecipe();
       setNewCurrentFoodItem();
+
+      // todo:
+      // add recipe to database (if not already there)
+      // add match to database
     }
   }
 
