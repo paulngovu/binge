@@ -4,7 +4,6 @@ import Head from 'next/head';
 import { useRef, useState } from 'react';
 import { PATH_CHATS, PATH_HOME, PATH_PROFILE } from '../paths';
 import Filters from './Filters';
-import { Hamburger } from './Hamburger';
 
 const Layout = ({ buttons = [], ...props }) => {
   const [showFiltersDrop, setShowFiltersDrop] = useState(false);

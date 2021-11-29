@@ -210,25 +210,27 @@ export default function Chats({ allMessages, foodChats, foodData, username }) {
         ]}
         height='88vh'
       >
-        <Box background='dark-4' gridArea='sidebar' border={true}>
+        <Box background='dark-4' overflow='auto' gridArea='sidebar' border={true}>
           {
             // messages is a map of foodid => array of all message objects
             // between current user and food of foodid
             foodChats.map((foodName) => (
-              <Box
+              <div
                 key={foodName}
-                border={'bottom'}
-                background={currentChat == foodName ? 'light-4' : ''}
+                style={{
+                  padding: "1vh",
+                  backgroundColor: currentChat == foodName ? '#d3dfe3' : '',
+                  borderBottom: '1px solid black',
+                  cursor: "pointer"
+                }}
                 onClick={() => setCurrentChat(foodName)}
-                focusIndicator={false}
               >
                 <Text
-                  margin='medium'
                   color={currentChat == foodName ? 'black' : 'white'}
                 >
                   {foodName}
                 </Text>
-              </Box>
+              </div>
             ))
           }
         </Box>
