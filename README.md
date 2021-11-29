@@ -2,20 +2,7 @@
 
 Binge App
 
-First, run `npm i` to install the dependencies necessary to run the application.<br />
-Next, run `npx prisma generate` to prepare the Prisma database.<br />
-Now, to start the application, you can run any of the following commands:
-
-- `npm run dev`
-  Starts the development server.
-
-- `npm run build`
-  Builds the app for production.
-
-- `npm start`
-  Runs the built app in production mode.
-
-Since we did not have a chance to deploy our project, we only support running our web application locally on localhost. In most scenarios, the url for our database would be kept secret but to support running the project locally, we pushed it in our .env file.
+Note: Since we did not have a chance to deploy our project, we only support running our web application locally on localhost. In most scenarios, the url for our database would be kept secret but to support running the project locally, we pushed it in our .env file.
 
 Setup steps:
 - First, clone this repository into your local machine and cd into it.
