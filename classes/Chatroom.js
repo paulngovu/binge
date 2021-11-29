@@ -47,8 +47,12 @@ class Chatroom{
 
     #arrToString(arr){
         var s = "";
-        for (var i = 0; i < arr.length; i++){
-            s += arr[i] + "\n"; 
+            
+        if (arr.length == 0) return s;
+
+        s = arr[0];
+        for (var i = 1; i < arr.length; i++){
+            s += ", " + arr[i]; 
         }
         return s.trim();
     }
