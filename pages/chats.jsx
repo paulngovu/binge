@@ -122,7 +122,7 @@ export default function Chats({ allMessages, foodChats }) {
   return (
     <Layout buttons={["home"]}>
       <Grid
-          rows={['auto', 'xsmall']}
+          rows={['auto', 'small']}
           columns={['small', 'auto']}
           areas={[
             { name: 'sidebar', start: [0, 0], end: [0, 1] },
@@ -207,36 +207,17 @@ export default function Chats({ allMessages, foodChats }) {
             overflow="auto" 
           >
             <div css="display: flex;">
-              <Button 
-                label={chatMessages[0]} 
-                margin="xsmall" 
-                active={activeOption == 0} 
-                onClick={() => {setActiveOption(0); setChatMessage(chatMessages[0]);}}
-              />
-              <Button 
-                label={chatMessages[1]}
-                margin="xsmall" 
-                active={activeOption == 1}
-                onClick={() => {setActiveOption(1); setChatMessage(chatMessages[1]);}}
-              />
-              <Button 
-                label={chatMessages[2]}
-                margin="xsmall" 
-                active={activeOption == 2}
-                onClick={() => {setActiveOption(2); setChatMessage(chatMessages[2]);}}
-              />
-              <Button 
-                label={chatMessages[3]}
-                margin="xsmall" 
-                active={activeOption == 3}
-                onClick={() => {setActiveOption(3); setChatMessage(chatMessages[3]);}}
-              />
-              <Button 
-                label={chatMessages[4]}
-                margin="xsmall" 
-                active={activeOption == 4}
-                onClick={() => {setActiveOption(4); setChatMessage(chatMessages[4]);}}
-              />
+              {
+                chatMessages.map((msg, index) => 
+                  <Button 
+                    key={msg}
+                    label={msg} 
+                    margin="xsmall" 
+                    active={activeOption == index} 
+                    onClick={() => {setActiveOption(index); setChatMessage(msg);}}
+                  />
+                )
+              }
             </div>
           </Box>
           <Box gridArea="send" align="center" justify="center">
