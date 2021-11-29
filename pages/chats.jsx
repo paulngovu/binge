@@ -142,6 +142,13 @@ export default function Chats({ allMessages, foodChats, foodData, username }) {
     createRecipes()
   }, []);
 
+  const formatTime = (time) => {
+    const indexOfT = 10;
+    const indexOfEnd = 19;
+    let s = time.substring(0, indexOfT) + ' ' + time.substring(indexOfT + 1, indexOfEnd);
+    return s;
+  }
+
   const sendResponse = (savedMessage) => {
     return chatroomObjects.get(currentChat).recipeResponse(savedMessage.message);
   }
@@ -234,7 +241,7 @@ export default function Chats({ allMessages, foodChats, foodData, username }) {
                 }}
                 >
                   <Text color={msg.sentByUser ? "white" : "black"}>
-                    {msg.timeSent}
+                    {formatTime(msg.timeSent)}
                   </Text>
                   <br />
                   <Text color={msg.sentByUser ? "white" : "black"}>
