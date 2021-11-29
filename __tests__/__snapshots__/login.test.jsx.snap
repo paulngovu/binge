@@ -5,7 +5,7 @@ exports[`Login page Renders entire page 1`] = `
   className="StyledGrommet-sc-19lkkz7-0 hMmsfQ"
 >
   <header
-    className="StyledBox-sc-13pk1d4-0 gLncCO"
+    className="StyledBox-sc-13pk1d4-0 gpGtYH"
     display="flex"
   >
     <h1
@@ -21,7 +21,7 @@ exports[`Login page Renders entire page 1`] = `
     />
   </header>
   <div
-    className="StyledBox-sc-13pk1d4-0 foyece"
+    className="StyledBox-sc-13pk1d4-0 hHCfST"
   >
     <div
       className="jsx-1619348227 container"
@@ -37,7 +37,7 @@ exports[`Login page Renders entire page 1`] = `
         onSubmit={[Function]}
       >
         <div
-          className="StyledBox-sc-13pk1d4-0 bdFdHV FormField__FormFieldBox-sc-m9hood-0 bNDIlh"
+          className="StyledBox-sc-13pk1d4-0 cImcDU FormField__FormFieldBox-sc-m9hood-0 bNDIlh"
           data-testid="login-username"
           onBlur={[Function]}
           onFocus={[Function]}
@@ -48,7 +48,7 @@ exports[`Login page Renders entire page 1`] = `
             username
           </label>
           <div
-            className="StyledBox-sc-13pk1d4-0 flwsbj FormField__FormFieldContentBox-sc-m9hood-1"
+            className="StyledBox-sc-13pk1d4-0 ctACHi FormField__FormFieldContentBox-sc-m9hood-1"
           >
             <div
               className="StyledTextInput__StyledTextInputContainer-sc-1x30a0s-1 jqwtzG"
@@ -67,7 +67,7 @@ exports[`Login page Renders entire page 1`] = `
           </div>
         </div>
         <div
-          className="StyledBox-sc-13pk1d4-0 bdFdHV FormField__FormFieldBox-sc-m9hood-0 bNDIlh"
+          className="StyledBox-sc-13pk1d4-0 cImcDU FormField__FormFieldBox-sc-m9hood-0 bNDIlh"
           data-testid="login-password"
           onBlur={[Function]}
           onFocus={[Function]}
@@ -78,7 +78,7 @@ exports[`Login page Renders entire page 1`] = `
             password
           </label>
           <div
-            className="StyledBox-sc-13pk1d4-0 flwsbj FormField__FormFieldContentBox-sc-m9hood-1"
+            className="StyledBox-sc-13pk1d4-0 ctACHi FormField__FormFieldContentBox-sc-m9hood-1"
           >
             <div
               className="StyledTextInput__StyledTextInputContainer-sc-1x30a0s-1 jqwtzG"
@@ -110,7 +110,7 @@ exports[`Login page Renders entire page 1`] = `
           .
         </span>
         <div
-          className="StyledBox-sc-13pk1d4-0 btgOOZ"
+          className="StyledBox-sc-13pk1d4-0 gXhMXE"
         >
           <button
             className="StyledButton-sc-323bzc-0 emnQnE"

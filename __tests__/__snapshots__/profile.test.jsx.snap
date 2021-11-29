@@ -5,7 +5,7 @@ exports[`Profile page renders profile elements 1`] = `
   className="StyledGrommet-sc-19lkkz7-0 hMmsfQ"
 >
   <header
-    className="StyledBox-sc-13pk1d4-0 gLncCO"
+    className="StyledBox-sc-13pk1d4-0 gpGtYH"
     display="flex"
   >
     <h1
@@ -46,20 +46,33 @@ exports[`Profile page renders profile elements 1`] = `
     </div>
   </header>
   <div
-    className="StyledBox-sc-13pk1d4-0 foyece"
+    className="StyledBox-sc-13pk1d4-0 hHCfST"
   >
     <div
-      className="jsx-2134774113 container"
+      className="jsx-840335723 container"
     >
       <img
-        className="jsx-2134774113 profile-img"
+        className="jsx-840335723 profile-img"
         src="/joe-bruin.jpg"
       />
-      <span
-        className="StyledText-sc-1sadyjn-0 dlJAKl"
+      <div
+        className="StyledBox-sc-13pk1d4-0 WOYhc"
       >
-        Joe Bruin
-      </span>
+        <span
+          className="StyledText-sc-1sadyjn-0 jmAKBa"
+        >
+          Joe Bruin
+        </span>
+      </div>
+      <div
+        className="jsx-840335723 bio-container"
+      >
+        <span
+          className="StyledText-sc-1sadyjn-0 iumzz"
+        >
+          Default bio.
+        </span>
+      </div>
       <button
         className="StyledButton-sc-323bzc-0 hmUEoa"
         onBlur={[Function]}
@@ -72,7 +85,7 @@ exports[`Profile page renders profile elements 1`] = `
         Edit
       </button>
       <div
-        className="StyledBox-sc-13pk1d4-0 btgOOZ"
+        className="StyledBox-sc-13pk1d4-0 gXhMXE"
       >
         <button
           className="StyledButton-sc-323bzc-0 emnQnE"

@@ -5,7 +5,7 @@ exports[`Login error page Renders entire page 1`] = `
   className="StyledGrommet-sc-19lkkz7-0 hMmsfQ"
 >
   <header
-    className="StyledBox-sc-13pk1d4-0 gLncCO"
+    className="StyledBox-sc-13pk1d4-0 gpGtYH"
     display="flex"
   >
     <h1
@@ -21,7 +21,7 @@ exports[`Login error page Renders entire page 1`] = `
     />
   </header>
   <div
-    className="StyledBox-sc-13pk1d4-0 foyece"
+    className="StyledBox-sc-13pk1d4-0 hHCfST"
   >
     <div
       className="jsx-3811088590 container"
@@ -32,7 +32,7 @@ exports[`Login error page Renders entire page 1`] = `
         You must log in.
       </span>
       <div
-        className="StyledBox-sc-13pk1d4-0 btgOOZ"
+        className="StyledBox-sc-13pk1d4-0 gXhMXE"
       >
         <a
           className="StyledButton-sc-323bzc-0 emnQnE"

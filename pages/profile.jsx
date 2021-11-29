@@ -130,6 +130,7 @@ const Profile = ({ user }) => {
               padding: 1vw;
               margin-bottom: 2vh;
               white-space: pre-line;
+              overflow: auto;
             }
           `}</style>
         </div>

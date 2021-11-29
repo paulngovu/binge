@@ -5,7 +5,7 @@ exports[`Swipes page matches expected homepage snapshot 1`] = `
   className="StyledGrommet-sc-19lkkz7-0 hMmsfQ"
 >
   <header
-    className="StyledBox-sc-13pk1d4-0 gLncCO"
+    className="StyledBox-sc-13pk1d4-0 gpGtYH"
     display="flex"
   >
     <h1
@@ -100,7 +100,7 @@ exports[`Swipes page matches expected homepage snapshot 1`] = `
       className="StyledGrid-sc-1wofa1l-0 csQrWL"
     >
       <div
-        className="StyledBox-sc-13pk1d4-0 fJYNto"
+        className="StyledBox-sc-13pk1d4-0 fukXDN"
       >
         <button
           className="StyledButton-sc-323bzc-0 haWZSW"
@@ -136,10 +136,10 @@ exports[`Swipes page matches expected homepage snapshot 1`] = `
         </button>
       </div>
       <div
-        className="StyledBox-sc-13pk1d4-0 hsdebw"
+        className="StyledBox-sc-13pk1d4-0 kfXkTh"
       >
         <div
-          className="StyledBox-sc-13pk1d4-0 ikCZNm"
+          className="StyledBox-sc-13pk1d4-0 flJZjL"
           id="food-item-card"
           style={
             Object {
@@ -148,7 +148,7 @@ exports[`Swipes page matches expected homepage snapshot 1`] = `
           }
         >
           <header
-            className="StyledBox-sc-13pk1d4-0 eafqYl"
+            className="StyledBox-sc-13pk1d4-0 xeGNM"
             style={
               Object {
                 "justifyContent": "center",
@@ -160,11 +160,13 @@ exports[`Swipes page matches expected homepage snapshot 1`] = `
             />
           </header>
           <div
-            className="StyledBox-sc-13pk1d4-0 fFfKrb"
+            className="StyledBox-sc-13pk1d4-0 hYUDjW"
           >
             <img
               className="StyledImage-sc-ey4zx9-0 fOsWNE"
               data-testid="food-item-img"
+              onLoad={[Function]}
+              src=""
             />
             <span
               className="StyledText-sc-1sadyjn-0 bpoUBq"
@@ -181,7 +183,7 @@ exports[`Swipes page matches expected homepage snapshot 1`] = `
         </div>
       </div>
       <div
-        className="StyledBox-sc-13pk1d4-0 kZaIHn"
+        className="StyledBox-sc-13pk1d4-0 dJRyaa"
       >
         <button
           className="StyledButton-sc-323bzc-0 haWZSW"
@@ -216,7 +218,7 @@ exports[`Swipes page matches expected homepage snapshot 1`] = `
         </button>
       </div>
       <div
-        className="StyledBox-sc-13pk1d4-0 nDFNJ"
+        className="StyledBox-sc-13pk1d4-0 ibwsgg"
       >
         <span
           className="StyledText-sc-1sadyjn-0 daWHdq"

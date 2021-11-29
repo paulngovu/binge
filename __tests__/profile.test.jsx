@@ -7,28 +7,45 @@ import {
   TESTID_PROFILE_BIO_FIELD,
 } from '../testIds';
 
+jest.mock('next/router', () => require('next-router-mock'));
+
 describe('Profile page', () => {
+  const testUser = {
+    username: "Joe Bruin",
+    bio: "Default bio."
+  }
+
   it('renders profile elements', () => {
-    const tree = renderer.create(<Profile />).toJSON();
+    const tree = renderer.create(<Profile user={testUser}/>).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
-  it('should allow name to be changed', () => {
-    // render profile with Joe Bruin (default name)
-    const profile = render(<Profile />);
+  it('renders username correctly', () => {
+    const profile = render(<Profile user={testUser}/>);
     expect(profile.getByText('Joe Bruin')).toBeTruthy();
+  });
 
-    // edit name
+  it('renders user bio correctly', () => {
+    const profile = render(<Profile user={testUser}/>);
+    expect(profile.getByText('Default bio.')).toBeTruthy();
+  })
+
+  it('should allow bio to be changed', () => {
+    // shows original bio
+    const profile = render(<Profile user={testUser}/>);
+    expect(profile.getByText('Default bio.')).toBeTruthy();
+
+    // edit bio
     fireEvent.click(profile.getByText(/Edit/i));
     const input = profile.getByTestId(TESTID_PROFILE_BIO_FIELD);
-    fireEvent.change(input, { target: { value: 'Sally Bruin' } });
-    expect(input.value).toBe('Sally Bruin');
+    fireEvent.change(input, { target: { value: 'New bio!' } });
+    expect(input.value).toBe('New bio!');
 
     // submit change
     fireEvent.click(profile.getByTestId(TESTID_PROFILE_BIO_BUTTON));
 
-    // expect profile to render new name instead of old name
-    expect(profile.getByText('Sally Bruin')).toBeTruthy();
-    expect(profile.queryByText('Joe Bruin')).toBeNull();
+    // expect new bio
+    expect(profile.getByText('New bio!')).toBeTruthy();
+    expect(profile.queryByText('Default bio.')).toBeNull();
   });
 });
