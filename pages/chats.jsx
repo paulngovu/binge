@@ -11,6 +11,8 @@ import { Send } from 'grommet-icons';
 import { useRef, useEffect, useState } from 'react';
 
 import { PrismaClient, Message, Prisma } from '@prisma/client';
+import Recipe from '../edamamAPI/Recipe';
+import Chatroom from '../classes/Chatroom';
 // import { useState } from 'react';
 
 const prisma = new PrismaClient();
@@ -40,13 +42,27 @@ export async function getServerSideProps() {
         equals: "user"
       }
     }
-  })
-  let likedFoods = likes.map(like => like.foodname)
+  });
+  let likedFoods = likes.map(like => like.foodname);
+
+  let allFoodData = [];
+  for(var i = 0; i < likedFoods.length; i++){
+    let foodname = likedFoods[i];
+    let foodData = await prisma.recipe.findFirst({
+        where: {
+          name: foodname
+        }
+      });
+    
+    allFoodData.push(foodData);
+  }
+
 
   return {
     props: {
       allMessages: groupedMessages,
-      foodChats: likedFoods
+      foodChats: likedFoods,
+      foodData: allFoodData
     }
   };
 }
@@ -74,7 +90,10 @@ async function saveMessage(message, foodname, sentByUser) {
   return await response.json();
 }
 
-export default function Chats({ allMessages, foodChats }) {
+let recipeObjects = [];
+let chatroomObjects = [];
+
+export default function Chats({ allMessages, foodChats, foodData }) {
   // scroll to bottom of overflow
   // https://stackoverflow.com/questions/37620694/how-to-scroll-to-bottom-in-react
   const messagesEndRef = useRef(null);
@@ -84,20 +103,38 @@ export default function Chats({ allMessages, foodChats }) {
   const [messages, setMessages] = useState(allMessages);
 
   const chatMessages = [
-    'Hello!', 
-    'What are your ingredients?',
-    'What is the recipe?',
-    'What is your cuisine type?',
-    'Any allergies or cautions?'
+    "Hello!",
+    "What is your recipe URL?",
+    "What are your ingredients?",
+    "How many calories do you contain?",
+    "Are there any cautions I should be aware of?",
+    "What is your meal type?",
+    "What is your cuisine type?",
+    "What is your dish type?"
   ]
 
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }
 
+  const createRecipes = () => {
+    for (var i = 0; i < foodData.length; i++){
+      var f = foodData[i];
+      console.log(foodData);
+
+      var r = new Recipe(f.name, f.imageUrl, f.ingredients, f.cuisineType, f.mealType, f.dishType, "", f.calories, f.allergies, f.url);
+      recipeObjects.push(r);
+      chatroomObjects.push(new Chatroom(r));
+    }
+  }
+
   useEffect(() => {
     scrollToBottom()
   }, [currentChat]);
+
+  useEffect(() => {
+    createRecipes()
+  }, []);
 
   const onSubmit = async () => {
     // post message to database and clear input line
