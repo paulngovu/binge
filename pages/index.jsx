@@ -86,6 +86,9 @@ const Home = ({ user }) => {
   };
 
   useEffect(async () => {
+    if (!user) {
+      return Router.push(PATH_LOGIN_ERROR);
+    }
     userObj = new User(
       user.username,
       new Filter(
@@ -283,9 +286,7 @@ export default Home;
 
 export const getServerSideProps = async (context) => {
   const username = getUsernameFromCookie(context);
-  if (!username) {
-    return Router.push(PATH_LOGIN_ERROR);
-  }
+  
   const user = await getUser(username);
   return {
     props: { user },

@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Text, TextArea } from 'grommet';
 import { Checkmark } from 'grommet-icons';
 import Router from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { PATH_API_BIO, PATH_LOGIN_ERROR, PATH_LOGOUT } from '../paths';
 import {
@@ -27,9 +27,14 @@ const saveBio = async (username, bio) => {
 };
 
 const Profile = ({ user }) => {
-  const name = user.username;
   const [bio, setBio] = useState(user.bio);
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (!user) {
+      Router.push(PATH_LOGIN_ERROR);
+    }
+  })
 
   const openModal = () => {
     setShowModal(true);
@@ -43,7 +48,7 @@ const Profile = ({ user }) => {
     closeModal();
 
     try {
-      await saveBio(name, bio.trim());
+      await saveBio(user.username, bio.trim());
     } catch (err) {
       console.log(err);
     } finally {
@@ -58,7 +63,7 @@ const Profile = ({ user }) => {
           <img className='profile-img' src='/joe-bruin.jpg' />
           <Box pad='medium' align='center'>
             <Text weight='bold' size='large'>
-              {name}
+              {user.username}
             </Text>
           </Box>
           {showModal ? null : (
@@ -159,9 +164,7 @@ export default Profile;
 
 export const getServerSideProps = async (context) => {
   const username = getUsernameFromCookie(context);
-  if (!username) {
-    Router.push(PATH_LOGIN_ERROR);
-  }
+  
   const user = await getUser(username);
   return {
     props: { user: user },
