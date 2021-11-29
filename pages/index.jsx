@@ -50,7 +50,7 @@ async function saveRecipe(
     name: name,
     url: url,
     ingredients: ingredients,
-    calories: calories,
+    calories: Math.floor(calories),
     allergies: allergies,
     imageUrl: imageUrl,
     cuisineType: cusineType,
@@ -114,7 +114,7 @@ const Home = ({ user }) => {
         currentFoodItem.calories,
         currentFoodItem.cautions,
         currentFoodItem.image,
-        currentFoodItem.cusineType,
+        currentFoodItem.cuisineType,
         currentFoodItem.mealType,
         currentFoodItem.dishType
       );
