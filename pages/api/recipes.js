@@ -8,10 +8,10 @@ export default async (req, res) => {
   }
  
   try {
-    const message = JSON.parse(req.headers["content"]);
-    const savedMessage = await prisma.recipe.create({ data: message });
-    console.log(savedMessage);
-    res.status(200).json(savedMessage);
+    const recipe = JSON.parse(req.headers["content"]);
+    const savedRecipe = await prisma.recipe.create({ data: recipe });
+    console.log(savedRecipe);
+    res.status(200).json(savedRecipe);
   } catch (err) {
     res.status(400).json({ message: 'Something went wrong' });
   }

@@ -150,12 +150,11 @@ export default function Chats({ allMessages, foodChats, foodData, username }) {
       setActiveOption(null);
       const savedMessage = await saveMessage(chatMessage, username, currentChat, true);    
       
-      if(messages.hasOwnProperty(currentChat)) {
-        messages[currentChat].push(savedMessage);
-      }
-      else {
+      if(!messages.hasOwnProperty(currentChat)) {
         messages[currentChat] = [];
       }
+
+      messages[currentChat].push(savedMessage);
 
       console.log(messages);
       setMessages(messages);

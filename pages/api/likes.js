@@ -17,6 +17,6 @@ export default async (req, res) => {
     console.log(savedLike);
     res.status(200).json(savedLike);
   } catch (err) {
-    res.status(401).json({ message: 'Something went wrong' });
+    res.status(400).json({ message: 'Something went wrong' });
   }
 };

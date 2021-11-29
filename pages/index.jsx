@@ -51,7 +51,7 @@ async function saveRecipe(name, url, ingredients, calories, allergies, imageUrl,
     dishType: dishType
   }
 
-  const response = await fetch('/api/likes', {
+  const response = await fetch('/api/recipes', {
     method: 'GET',
     headers: {
       'content': JSON.stringify(recipeInstance)
@@ -98,8 +98,8 @@ const Home = ({ user }) => {
         currentFoodItem.url,
         currentFoodItem.ingredients,
         currentFoodItem.calories,
-        currentFoodItem.allergies,
-        currentFoodItem.imageUrl,
+        currentFoodItem.cautions,
+        currentFoodItem.image,
         currentFoodItem.cusineType,
         currentFoodItem.mealType,
         currentFoodItem.dishType
