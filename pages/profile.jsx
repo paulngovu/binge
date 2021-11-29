@@ -11,6 +11,21 @@ import {
 import { getUser } from '../utils/dbUsers';
 import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
 
+const saveBio = async (username, bio) => {
+  const content = { username: username, bio: bio };
+  const response = await fetch(PATH_API_BIO, {
+    method: 'GET',
+    headers: {
+      content: JSON.stringify(content),
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  return await response.json();
+};
+
 const Profile = ({ user }) => {
   const name = user.username;
   const [bio, setBio] = useState(user.bio);
@@ -24,12 +39,16 @@ const Profile = ({ user }) => {
     setShowModal(false);
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     closeModal();
-    Router.push({
-      pathname: PATH_API_BIO,
-      query: { username: name, bio: bio.trim() },
-    });
+
+    try {
+      await saveBio(name, bio.trim());
+    } catch (err) {
+      console.log(err);
+    } finally {
+      Router.reload();
+    }
   };
 
   return (
@@ -42,16 +61,13 @@ const Profile = ({ user }) => {
               {name}
             </Text>
           </Box>
-          {showModal ? null :
+          {showModal ? null : (
             <div className='bio-container'>
-              <Text 
-                size='medium'
-                wordBreak='break-all'
-              >
+              <Text size='medium' wordBreak='break-all'>
                 {bio}
               </Text>
-            </div>       
-          }
+            </div>
+          )}
           {showModal ? (
             <Box margin={{ top: 'xsmall', bottom: 'medium' }}>
               <label htmlFor='name'>New bio (200 characters max):</label>
