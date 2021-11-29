@@ -15,6 +15,15 @@ Now, to start the application, you can run any of the following commands:
 - `npm start`
   Runs the built app in production mode.
 
+Since we did not have a chance to deploy our project, we only support running our web application locally on localhost. In most scenarios, the url for our database would be kept secret but to support running the project locally, we pushed it in our .env file.
+
+Setup steps:
+- First, clone this repository into your local machine and cd into it.
+- Next, run `npm i` to install the dependencies necessary to run the application.<br />
+- Then, run `npx prisma generate` to prepare the Prisma database.<br />
+- Start the server with `npm run dev` and connect to the application on http://localhost:3000/
+
+
 Folder Structure:
 
 - `__tests__`: contains test cases, which can be run using `npm run test`.
@@ -37,3 +46,4 @@ You can run tests using `npm run test`.
 - `login.error.test.jsx`: tests the Login error page render. This includes a snapshot test, and tests for checking for components.
 - `profile.test.jsx`: tests the Profile page render. This includes a snapshot test, and a test to check the form input behavior for editing username.
 - `edamam.test.jsx`: tests the Recipe and Filter classes. This includes tests for the Filter constructor, tests for the generateUrl() and queryAPI() functions in the Filter class, and tests for the parseJson() function in the Recipe class.
+- `classes.test.jsx`: tests the RecipeStack, User and Chatroom classes. This includes tests for the RecipeStack refreshStack(), getTopRecipe(), acceptTopRecipe() and rejectTopRecipe() functions, the User addMatches() function and the Chatroom recipeResponse() function.
