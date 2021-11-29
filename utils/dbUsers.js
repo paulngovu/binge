@@ -36,3 +36,11 @@ export const updateUserBio = async (username, bio) => {
   });
   return updatedUser;
 };
+
+export const updateUserFilter = async (username, filterQuery, mealType, cuisineType, dishType) => {
+  const updatedUser = await prisma.user.update({
+    where: { username: username },
+    data: { filterQuery, mealType, cusineType: cuisineType, dishType },
+  });
+  return updatedUser;
+};
