@@ -29,6 +29,7 @@ const saveBio = async (username, bio) => {
 const Profile = ({ user }) => {
   const [bio, setBio] = useState(user.bio);
   const [showModal, setShowModal] = useState(false);
+  const [editBtnCopy, setEditBtnCopy] = useState("Edit");
 
   useEffect(() => {
     if (!user) {
@@ -36,8 +37,9 @@ const Profile = ({ user }) => {
     }
   })
 
-  const openModal = () => {
-    setShowModal(true);
+  const toggleModal = () => {
+    setShowModal(!showModal);
+    setEditBtnCopy(editBtnCopy === "Edit" ? "Cancel" : "Edit");
   };
 
   const closeModal = () => {
@@ -66,18 +68,17 @@ const Profile = ({ user }) => {
               {user.username}
             </Text>
           </Box>
-          {showModal ? null : (
+          {!showModal ? (
             <div className='bio-container'>
               <Text size='medium' wordBreak='break-all'>
                 {bio}
               </Text>
             </div>
-          )}
-          {showModal ? (
-            <Box margin={{ top: 'xsmall', bottom: 'medium' }}>
+          ) : (
+            <Box margin={{ top: 'xsmall', bottom: 'small' }}>
               <label htmlFor='name'>New bio (200 characters max):</label>
               <Grid
-                rows={['small', 'xxsmall']}
+                rows={['xsmall', 'xxsmall']}
                 columns={['medium']}
                 gap='xsmall'
                 areas={[
@@ -85,18 +86,19 @@ const Profile = ({ user }) => {
                   { name: 'submit', start: [0, 1], end: [0, 1] },
                 ]}
               >
-                <TextArea
-                  gridArea='input'
-                  type='text'
-                  id='bio'
-                  name='bio'
-                  size='small'
-                  maxLength='200'
-                  resize={false}
-                  data-testid={TESTID_PROFILE_BIO_FIELD}
-                  value={bio}
-                  onChange={(e) => setBio(e.target.value)}
-                />
+                <Box gridArea='input' height="xsmall">
+                  <TextArea
+                    type='text'
+                    id='bio'
+                    name='bio'
+                    size='small'
+                    maxLength='200'
+                    resize={false}
+                    data-testid={TESTID_PROFILE_BIO_FIELD}
+                    value={bio}
+                    onChange={(e) => setBio(e.target.value)}
+                  />
+                </Box>
                 <Button
                   data-testid={TESTID_PROFILE_BIO_BUTTON}
                   a11yTitle='submit-bio'
@@ -106,11 +108,11 @@ const Profile = ({ user }) => {
                   label='Submit'
                   icon={<Checkmark size='small' />}
                   onClick={onSubmit}
-                ></Button>
+                />
               </Grid>
             </Box>
-          ) : null}
-          <Button secondary label='Edit' onClick={openModal}></Button>
+          )}
+          <Button secondary label={editBtnCopy} onClick={toggleModal}/>
           <Box pad='small'>
             <Button
               primary
@@ -147,7 +149,7 @@ const Profile = ({ user }) => {
               border: 1px dotted #ff5050;
               border-radius: 5px;
               width: 30vw;
-              height: 30vh;
+              height: 12vh;
               padding: 1vw;
               margin-bottom: 2vh;
               white-space: pre-line;
