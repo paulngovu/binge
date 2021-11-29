@@ -18,7 +18,11 @@ exports[`Login error page Renders entire page 1`] = `
     />
     <div
       alignself="end"
-    />
+    >
+      <div
+        className="StyledBox-sc-13pk1d4-0 wrGSV"
+      />
+    </div>
   </header>
   <div
     className="StyledBox-sc-13pk1d4-0 hHCfST"

@@ -19,30 +19,40 @@ exports[`Profile page renders profile elements 1`] = `
     <div
       alignself="end"
     >
-      <a
-        className="StyledButton-sc-323bzc-0 haWZSW"
-        data-testid="home-btn"
-        href="/"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
+      <div
+        className="StyledBox-sc-13pk1d4-0 wrGSV"
       >
-        <svg
-          aria-label="Home"
-          className="StyledIcon-sc-ofa7kd-0 bwvewX"
-          viewBox="0 0 24 24"
+        <span
+          className="StyledText-sc-1sadyjn-0 deIuKd"
         >
-          <path
-            d="m1 11 11-9 11 9m-8 12v-8H9v8m-5 0V9m16 14V9"
-            fill="none"
-            stroke="#000"
-            strokeWidth="2"
-          />
-        </svg>
-      </a>
+          Hi, 
+          Joe Bruin
+        </span>
+        <a
+          className="StyledButton-sc-323bzc-0 haWZSW"
+          data-testid="home-btn"
+          href="/"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          <svg
+            aria-label="Home"
+            className="StyledIcon-sc-ofa7kd-0 bwvewX"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="m1 11 11-9 11 9m-8 12v-8H9v8m-5 0V9m16 14V9"
+              fill="none"
+              stroke="#000"
+              strokeWidth="2"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
   </header>
   <div

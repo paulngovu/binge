@@ -19,78 +19,88 @@ exports[`Swipes page matches expected homepage snapshot 1`] = `
     <div
       alignself="end"
     >
-      <button
-        className="StyledButton-sc-323bzc-0 haWZSW"
-        data-testid="filters-btn"
-        id="filters-btn"
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-        type="button"
+      <div
+        className="StyledBox-sc-13pk1d4-0 wrGSV"
       >
-        <svg
-          aria-label="Filter"
-          className="StyledIcon-sc-ofa7kd-0 bwvewX"
-          viewBox="0 0 24 24"
+        <span
+          className="StyledText-sc-1sadyjn-0 deIuKd"
         >
-          <path
-            d="m3 6 7 7v8h4v-8l7-7V3H3z"
-            fill="none"
-            stroke="#000"
-            strokeWidth="2"
-          />
-        </svg>
-      </button>
-      <a
-        className="StyledButton-sc-323bzc-0 haWZSW"
-        data-testid="chats-btn"
-        href="/chats"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <svg
-          aria-label="Chat"
-          className="StyledIcon-sc-ofa7kd-0 bwvewX"
-          viewBox="0 0 24 24"
+          Hi, 
+          A
+        </span>
+        <button
+          className="StyledButton-sc-323bzc-0 haWZSW"
+          data-testid="filters-btn"
+          id="filters-btn"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          type="button"
         >
-          <path
-            d="M19 1H5a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h12l6 5V5a4 4 0 0 0-4-4zm0 6H6m13 4h-9"
-            fill="none"
-            stroke="#000"
-            strokeWidth="2"
-          />
-        </svg>
-      </a>
-      <a
-        className="StyledButton-sc-323bzc-0 haWZSW"
-        data-testid="profile-btn"
-        href="/profile"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <svg
-          aria-label="User"
-          className="StyledIcon-sc-ofa7kd-0 bwvewX"
-          viewBox="0 0 24 24"
+          <svg
+            aria-label="Filter"
+            className="StyledIcon-sc-ofa7kd-0 bwvewX"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="m3 6 7 7v8h4v-8l7-7V3H3z"
+              fill="none"
+              stroke="#000"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+        <a
+          className="StyledButton-sc-323bzc-0 haWZSW"
+          data-testid="chats-btn"
+          href="/chats"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
         >
-          <path
-            d="M8 24v-5m8 5v-5M3 24v-5c0-4.97 4.03-8 9-8s9 3.03 9 8v5m-9-13a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"
-            fill="none"
-            stroke="#000"
-            strokeWidth="2"
-          />
-        </svg>
-      </a>
+          <svg
+            aria-label="Chat"
+            className="StyledIcon-sc-ofa7kd-0 bwvewX"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 1H5a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h12l6 5V5a4 4 0 0 0-4-4zm0 6H6m13 4h-9"
+              fill="none"
+              stroke="#000"
+              strokeWidth="2"
+            />
+          </svg>
+        </a>
+        <a
+          className="StyledButton-sc-323bzc-0 haWZSW"
+          data-testid="profile-btn"
+          href="/profile"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          <svg
+            aria-label="User"
+            className="StyledIcon-sc-ofa7kd-0 bwvewX"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 24v-5m8 5v-5M3 24v-5c0-4.97 4.03-8 9-8s9 3.03 9 8v5m-9-13a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"
+              fill="none"
+              stroke="#000"
+              strokeWidth="2"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
   </header>
   <div

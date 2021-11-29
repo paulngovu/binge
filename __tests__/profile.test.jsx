@@ -7,32 +7,30 @@ import {
   TESTID_PROFILE_BIO_FIELD,
 } from '../testIds';
 
-jest.mock('next/router', () => require('next-router-mock'));
-
 describe('Profile page', () => {
   const testUser = {
-    username: "Joe Bruin",
-    bio: "Default bio."
-  }
+    username: 'Joe Bruin',
+    bio: 'Default bio.',
+  };
 
   it('renders profile elements', () => {
-    const tree = renderer.create(<Profile user={testUser}/>).toJSON();
+    const tree = renderer.create(<Profile user={testUser} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('renders username correctly', () => {
-    const profile = render(<Profile user={testUser}/>);
+    const profile = render(<Profile user={testUser} />);
     expect(profile.getByText('Joe Bruin')).toBeTruthy();
   });
 
   it('renders user bio correctly', () => {
-    const profile = render(<Profile user={testUser}/>);
+    const profile = render(<Profile user={testUser} />);
     expect(profile.getByText('Default bio.')).toBeTruthy();
-  })
+  });
 
   it('should allow bio to be changed', () => {
     // shows original bio
-    const profile = render(<Profile user={testUser}/>);
+    const profile = render(<Profile user={testUser} />);
     expect(profile.getByText('Default bio.')).toBeTruthy();
 
     // edit bio
