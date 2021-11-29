@@ -66,16 +66,17 @@ export async function getServerSideProps(context) {
     props: {
       allMessages: groupedMessages,
       foodChats: likedFoods,
-      foodData: allFoodData
+      foodData: allFoodData,
+      username: username
     }
   };
 }
 
-async function saveMessage(message, foodname, sentByUser) {
+async function saveMessage(message, username, foodname, sentByUser) {
   var isoDate = new Date().toISOString();
   const messageInstance = {
     sentByUser: sentByUser,
-    username: "user",
+    username: username,
     foodname: foodname,
     message: message,
     timeSent: isoDate
@@ -97,7 +98,7 @@ async function saveMessage(message, foodname, sentByUser) {
 let recipeObjects = [];
 let chatroomObjects = [];
 
-export default function Chats({ allMessages, foodChats, foodData }) {
+export default function Chats({ allMessages, foodChats, foodData, username }) {
   // scroll to bottom of overflow
   // https://stackoverflow.com/questions/37620694/how-to-scroll-to-bottom-in-react
   const messagesEndRef = useRef(null);
@@ -147,7 +148,7 @@ export default function Chats({ allMessages, foodChats, foodData }) {
       console.log(chatMessage);
       
       setActiveOption(null);
-      const savedMessage = await saveMessage(chatMessage, currentChat, true);    
+      const savedMessage = await saveMessage(chatMessage, username, currentChat, true);    
       
       if(messages.hasOwnProperty(currentChat)) {
         messages[currentChat].push(savedMessage);
