@@ -9,21 +9,31 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
 describe('Swipes page', () => {
+  const testUser = {
+    bio: "",
+    cusineType: [],
+    dishType: [],
+    mealType: [],
+    password: "A",
+    username: "A",
+    filterQuery: ""
+  };
+
   it('matches expected homepage snapshot', () => {
-    const tree = renderer.create(<Home />).toJSON();
+    const tree = renderer.create(<Home user={testUser}/>).toJSON();
     expect(tree).toMatchSnapshot();
   })
 
   it('renders food item card', () => {
     const wrapper = shallow(
-      <Home />,
+      <Home user={testUser}/>,
     );
     expect(wrapper.find("#food-item-card").exists()).toBeTruthy();
   })
 
   it('renders left and right arrows', () => {
     const wrapper = shallow(
-      <Home />,
+      <Home user={testUser}/>,
     );
     expect(wrapper.find("#left-arrow").exists()).toBeTruthy();
     expect(wrapper.find("#right-arrow").exists()).toBeTruthy();
@@ -31,7 +41,7 @@ describe('Swipes page', () => {
 
   it('changes food item on arrow click', async () => {
     const changeIndex = jest.fn();
-    const wrapper = shallow(<Home onClick={changeIndex} />);
+    const wrapper = shallow(<Home onClick={changeIndex} user={testUser} />);
     const handleClick = jest.spyOn(React, "useState");
     handleClick.mockImplementation(index => [index, changeIndex]);
 

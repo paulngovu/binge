@@ -69,7 +69,7 @@ async function saveRecipe(
 // SWIPE PAGE
 
 let userObj;
-let recipeStack;
+let recipeStack = new RecipeStack(null);
 
 const Home = ({ user }) => {
   const [currentFoodItem, setCurrentFoodItem] = useState(null);
@@ -81,6 +81,10 @@ const Home = ({ user }) => {
       setLoading(true);
       await recipeStack.refreshStack();
       setLoading(false);
+    }
+
+    if (recipeStack.stackEmpty()) {
+      setNoResults(true);
     }
     setCurrentFoodItem(recipeStack.getTopRecipe());
   };
@@ -121,10 +125,6 @@ const Home = ({ user }) => {
 
       recipeStack.acceptTopRecipe();
       setNewCurrentFoodItem();
-
-      // todo:
-      // add recipe to database (if not already there)
-      // add match to database
     }
   };
 

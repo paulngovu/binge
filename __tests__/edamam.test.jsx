@@ -58,25 +58,4 @@ describe('Edamam classes', () => {
     expect(arr[0].name).toBe("Applejack Rabbit Recipe");
     expect(arr[0].id).toBe("5f9c90e934335cecb079e7155f465cda");
   })
-
-// removed for now
-/*
-it('Check queryUrl function with empty Filter', () => {
-    const filter = new Filter("", [], [], []);
-
-    filter.queryAPI().then((json) => {
-        const arr = Recipe.parseJson(json);
-        expect(arr.length).toBe(20);
-      });
-  })
-
-  it('Check queryUrl function with nonempty Filter', () => {
-    const filter = new Filter("steak", ["Dinner"], ["American"], ["Sandwiches"]);
-
-    filter.queryAPI().then((json) => {
-        const arr = Recipe.parseJson(json);
-        expect(arr.length).toBe(20);
-      });
-  })
-*/
 });
