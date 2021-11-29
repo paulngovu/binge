@@ -61,11 +61,17 @@ async function saveMessage(message, foodname, sentByUser) {
     timeSent: isoDate
   };
 
-
   const response = await fetch('/api/messages', {
-    method: 'POST',
-    body: JSON.stringify(messageInstance)
+    method: 'GET',
+    headers: {
+      'content': JSON.stringify(messageInstance)
+    }
   })
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  return await response.json();
 }
 
 export default function Chats({ allMessages, foodChats }) {
@@ -96,13 +102,18 @@ export default function Chats({ allMessages, foodChats }) {
   const onSubmit = async () => {
     // post message to database and clear input line
     try {
-      await saveMessage(chatMessage, currentChat, true);
+      //await saveMessage(chatMessage, currentChat, true);
       console.log(chatMessage);
-      setChatMessage("");
+      
       setActiveOption(null);
+      const savedMessage = await saveMessage(chatMessage, currentChat, true);
+      messages[currentChat].push(savedMessage)
+      console.log(messages);
+      setMessages(messages);
 
       // include following line if sending a message doesn't scroll chat to bottom
-      // scrollToBottom();
+      setChatMessage("");
+      scrollToBottom();
     } catch (err) {
       console.log(err);
     }

@@ -22,6 +22,26 @@ import {
 import { getUser } from '../utils/dbUsers';
 import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
 
+async function saveLike(username, foodname) {
+  const likeInstance = {
+    foodName: foodname,
+    userName: username
+  }
+
+  const response = await fetch('/api/likes', {
+    method: 'GET',
+    headers: {
+      'content': JSON.stringify(likeInstance)
+    }
+  })
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  return await response.json();
+}
+
+
 // SWIPE PAGE
 
 let userObj;
@@ -55,12 +75,15 @@ const Home = ({ user }) => {
 
   const like = () => {
     if (!noResults) {
+      saveLike(user.username, currentFoodItem.name);
+
       recipeStack.acceptTopRecipe();
       setNewCurrentFoodItem();
 
       // todo:
       // add recipe to database (if not already there)
       // add match to database
+      
     }
   }
 
