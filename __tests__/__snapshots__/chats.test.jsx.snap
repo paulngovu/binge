@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Profile page renders profile elements 1`] = `
+exports[`Chats page renders chats page with empty sidebar 1`] = `
 <div
   className="StyledGrommet-sc-19lkkz7-0 hjInHh"
 >
@@ -26,7 +26,7 @@ exports[`Profile page renders profile elements 1`] = `
           className="StyledText-sc-1sadyjn-0 deIuKd"
         >
           Hi, 
-          Joe Bruin
+          testuser
         </span>
         <a
           className="StyledButton-sc-323bzc-0 haWZSW"
@@ -56,59 +56,25 @@ exports[`Profile page renders profile elements 1`] = `
     </div>
   </header>
   <div
-    className="StyledBox-sc-13pk1d4-0 hHCfST"
+    className="StyledGrid-sc-1wofa1l-0 heOMlz"
   >
     <div
-      className="jsx-2052212640 container"
+      className="StyledBox-sc-13pk1d4-0 bwlxpi"
+    />
+    <div
+      className="StyledBox-sc-13pk1d4-0 jCDZxg"
     >
-      <img
-        className="jsx-2052212640 profile-img"
-        src="/joe-bruin.jpg"
-      />
-      <div
-        className="StyledBox-sc-13pk1d4-0 WOYhc"
+      <div />
+    </div>
+    <div
+      className="StyledBox-sc-13pk1d4-0 gYejVn"
+    >
+      <span
+        aria-label="default-text"
+        className="StyledText-sc-1sadyjn-0 hQnoUE"
       >
-        <span
-          className="StyledText-sc-1sadyjn-0 jmAKBa"
-        >
-          Joe Bruin
-        </span>
-      </div>
-      <div
-        className="jsx-2052212640 bio-container"
-      >
-        <span
-          className="StyledText-sc-1sadyjn-0 iumzz"
-        >
-          Default bio.
-        </span>
-      </div>
-      <button
-        className="StyledButton-sc-323bzc-0 hmUEoa"
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-        type="button"
-      >
-        Edit
-      </button>
-      <div
-        className="StyledBox-sc-13pk1d4-0 gXhMXE"
-      >
-        <button
-          className="StyledButton-sc-323bzc-0 emnQnE"
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-          type="button"
-        >
-          Log Out
-        </button>
-      </div>
+        Chats will show up after you like a food item!
+      </span>
     </div>
   </div>
 </div>

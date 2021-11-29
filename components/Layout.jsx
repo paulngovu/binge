@@ -11,7 +11,7 @@ const Layout = ({ buttons = [], ...props }) => {
   const theme = {
     global: {
       font: {
-        family: 'Calibri',
+        family: 'Calibri, sans-serif',
         size: '14px',
         height: '20px',
       },

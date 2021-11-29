@@ -270,42 +270,52 @@ export default function Chats({ allMessages, foodChats, foodData, username }) {
           <div ref={messagesEndRef}></div>
         </Box>
         <Box gridArea='input' border={true}>
-          <Grid
-            rows={['auto']}
-            columns={['auto', 'xxsmall']}
-            areas={[
-              { name: 'message', start: [0, 0], end: [0, 0] },
-              { name: 'send', start: [1, 0], end: [1, 0] },
-            ]}
-            height='100%'
-          >
-            <Box gridArea='message' overflow='auto'>
-              <div css='display: flex;'>
-                {chatMessages.map((msg, index) => (
-                  <Button
-                    key={msg}
-                    label={msg}
-                    margin='xsmall'
-                    active={activeOption == index}
-                    onClick={() => {
-                      setActiveOption(index);
-                      setChatMessage(msg);
-                    }}
-                  />
-                ))}
-              </div>
-            </Box>
-            <Box gridArea='send' align='center' justify='center'>
-              <Button
-                icon={<Send color='black' />}
-                onClick={() => onSubmit()}
-                hoverIndicator
-                tip={{
-                  content: 'send',
-                }}
-              />
-            </Box>
-          </Grid>
+          {foodChats.length > 0 ? 
+            <Grid
+              rows={['auto']}
+              columns={['auto', 'xxsmall']}
+              areas={[
+                { name: 'message', start: [0, 0], end: [0, 0] },
+                { name: 'send', start: [1, 0], end: [1, 0] },
+              ]}
+              height='100%'
+            >
+              <Box gridArea='message' overflow='auto'>
+                <div css='display: flex;'>
+                  {chatMessages.map((msg, index) => (
+                    <Button
+                      key={msg}
+                      label={msg}
+                      margin='xsmall'
+                      active={activeOption == index}
+                      onClick={() => {
+                        setActiveOption(index);
+                        setChatMessage(msg);
+                      }}
+                    />
+                  ))}
+                </div>
+              </Box>
+              <Box gridArea='send' align='center' justify='center'>
+                <Button
+                  icon={<Send color='black' />}
+                  onClick={() => onSubmit()}
+                  hoverIndicator
+                  tip={{
+                    content: 'send',
+                  }}
+                />
+              </Box>
+            </Grid>
+            : 
+            <Text 
+              margin="small"
+              color="#646b6e"
+              a11yTitle="default-text"
+            >
+              Chats will show up after you like a food item!
+            </Text>
+          }
         </Box>
       </Grid>
     </Layout>
