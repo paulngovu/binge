@@ -4,8 +4,6 @@ class User {
     #name;
     #filter;
     #matches = [];
-    
-    // #chats;
 
     constructor(name, filter, matches){
         this.#name = name;
@@ -38,11 +36,6 @@ class User {
         return this.#matches;
     }    
 
-    removeMatch(i){
-        if ((i < this.#matches.length) && (i >= 0)){
-            this.#matches.splice(i, 1);
-        }
-    }
 }
 
 export default User;

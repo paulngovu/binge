@@ -57,12 +57,9 @@ class Chatroom{
         return s.trim();
     }
 
-    getTriggers(){
-        return this.#triggers;
-    }
-
-
-    // gets the response for text
+    // This function is a helper that looks for trigger phrases in the user’s message and returns the appropriate recipe response string.
+	// @param 	text: string - message string sent by user
+    // @return	string: message to be sent by recipe in response
     recipeResponse(text){
         for (var i = 0; i < this.#triggers.length; i++){
             if(text == this.#triggers[i]){

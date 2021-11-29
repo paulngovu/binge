@@ -15,8 +15,7 @@ class RecipeStack {
         return this.#recipeArr[count-1];            // return last index
     }
 
-    // takes a user parameter and adds the recipe to the users match list
-    // todo after making User class
+    // the matches stored locally are now unused
     acceptTopRecipe(){
         if (this.#recipeArr.length > 0) {
             const rec = this.#recipeArr.pop();
@@ -32,15 +31,9 @@ class RecipeStack {
         return (this.#recipeArr.length === 0);
     }
 
-    // takes array of Recipe objects and adds them to the array
-    #addRecipes(arr){
-        arr.forEach(element => {
-            if(this.#recipeArr.length < this.#maxSize){
-                this.#recipeArr.push(element);
-            }
-        });
-    }
-
+    // key function - Call when the RecipeStack is empty to query for more data.
+    // This function loads 20 new food items from the Edamam API by using the user’s 
+    // filter preferences and calling queryAPI() from the Recipe class.
     async refreshStack(){
         try {
             const json = await this.#user.getFilter().queryAPI();
