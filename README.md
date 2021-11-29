@@ -10,7 +10,6 @@ Setup steps:
 - Then, run `npx prisma generate` to prepare the Prisma database.<br />
 - Start the server with `npm run dev` and connect to the application on http://localhost:3000/
 
-
 Folder Structure:
 
 - `__tests__`: contains test cases, which can be run using `npm run test`.
@@ -34,3 +33,7 @@ You can run tests using `npm run test`.
 - `profile.test.jsx`: tests the Profile page render. This includes a snapshot test, and a test to check the form input behavior for editing username.
 - `edamam.test.jsx`: tests the Recipe and Filter classes. This includes tests for the Filter constructor, tests for the generateUrl() and queryAPI() functions in the Filter class, and tests for the parseJson() function in the Recipe class.
 - `classes.test.jsx`: tests the RecipeStack, User and Chatroom classes. This includes tests for the RecipeStack refreshStack(), getTopRecipe(), acceptTopRecipe() and rejectTopRecipe() functions, the User addMatches() function and the Chatroom recipeResponse() function.
+
+Known issues and quick fixes:
+- If you get an error related to `TokenExpiredError: jwt expired`, then go to your browser settings and clear your cookies.
+- If you get an error related to `cannot get property of undefined`, then go to your browser settings, clear your cookies, and re-register with a new account.
