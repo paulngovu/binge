@@ -1,5 +1,6 @@
 import Layout from '../components/Layout';
 import { prisma } from '../utils/lib/db';
+import { PATH_API_MESSAGES } from '../paths';
 
 import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
 
@@ -74,7 +75,7 @@ async function saveMessage(message, username, foodname, sentByUser) {
     timeSent: isoDate,
   };
 
-  const response = await fetch('/api/messages', {
+  const response = await fetch(PATH_API_MESSAGES, {
     method: 'GET',
     headers: {
       content: JSON.stringify(messageInstance),
@@ -133,8 +134,6 @@ export default function Chats({ allMessages, foodChats, foodData, username }) {
       recipeObjects.push(r);
       chatroomObjects.set(f.name, new Chatroom(r));
     }
-    console.log(foodData);
-    console.log(chatroomObjects);
   };
 
   useEffect(() => {

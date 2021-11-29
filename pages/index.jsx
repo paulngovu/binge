@@ -17,7 +17,7 @@ import RecipeStack from '../classes/RecipeStack';
 import User from '../classes/User';
 import Layout from '../components/Layout';
 import Filter from '../edamamAPI/Filter';
-import { PATH_LOGIN_ERROR } from '../paths';
+import { PATH_LOGIN_ERROR, PATH_API_FILTER, PATH_API_LIKES, PATH_API_RECIPES } from '../paths';
 import { getUser } from '../utils/dbUsers';
 import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
 
@@ -27,7 +27,7 @@ async function saveLike(username, foodname) {
     username: username,
   };
 
-  const response = await fetch('/api/likes', {
+  const response = await fetch(PATH_API_LIKES, {
     method: 'GET',
     headers: {
       content: JSON.stringify(likeInstance),
@@ -58,14 +58,26 @@ async function saveRecipe(
     dishType: dishType,
   };
 
-  console.log(recipeInstance);
-
-  const response = await fetch('/api/recipes', {
+  const response = await fetch(PATH_API_RECIPES, {
     method: 'GET',
     headers: {
       content: JSON.stringify(recipeInstance),
     },
   });
+}
+
+async function saveFilter(content) {
+  const response = await fetch(PATH_API_FILTER, {
+    method: 'GET',
+    headers: {
+      content: JSON.stringify(content),
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  return await response.json();
 }
 
 // SWIPE PAGE
@@ -149,15 +161,12 @@ const Home = ({ user }) => {
     setLoading(true);
     const userFilter = userObj.getFilter();
 
-    await fetch('/api/filter', {
-      method: 'GET',
-      headers: {
-        username: userObj.getName(),
-        filterQuery: userFilter.getQuery(),
-        mealType: userFilter.getMealType(),
-        cuisineType: userFilter.getCuisineType(),
-        dishType: userFilter.getDishType(),
-      },
+    await saveFilter({
+      username: userObj.getName(),
+      filterQuery: userFilter.getQuery(),
+      mealType: userFilter.getMealType(),
+      cuisineType: userFilter.getCuisineType(),
+      dishType: userFilter.getDishType(),
     });
 
     await recipeStack.refreshStack();
