@@ -2,7 +2,9 @@
 
 Binge App
 
-Inside the binge directory, you can run several commands:
+First, run `npm i` to install the dependencies necessary to run the application.
+Next, run `npx generate prisma` to prepare the Prisma database.
+Now, to start the application, you can run any of the following commands:
 
 - `npm run dev`
   Starts the development server.
@@ -16,13 +18,13 @@ Inside the binge directory, you can run several commands:
 Folder Structure:
 
 - `__tests__`: contains test cases, which can be run using `npm run test`.
+- `classes`: contains the helper classes that keep our functions organized.
 - `components`: contains the frontend components that make up our UI.
 - `edamamAPI`: contains the API for interfacing with the Edamam API, which we use for retrieving food data. The code here contains everything from making the HTTP request to Edamam to parsing the JSON data into an object that the frontend can easily use.
-- `lib`: contains a file for prisma configuration
-- `pages`: contains a file for each page of our application, which each contain a functional React component.
+- `pages`: contains a file for each page of our application, which each contain a functional React component. Also contains the `api` folder which contains our databae API routes.
 - `prisma`: contains the database schema file
 - `public`: some public assets such as images.
-- `utils`: houses utility functions for functionalities across the application.
+- `utils`: houses utility functions for database functionalities across the application.
 - `README.md`: the text you are reading right now.
 
 Description of Test Cases:
