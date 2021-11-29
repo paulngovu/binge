@@ -17,7 +17,7 @@ import RecipeStack from '../classes/RecipeStack';
 import User from '../classes/User';
 import Layout from '../components/Layout';
 import Filter from '../edamamAPI/Filter';
-import { PATH_API_FILTER, PATH_LOGIN_ERROR } from '../paths';
+import { PATH_LOGIN_ERROR } from '../paths';
 import { getUser } from '../utils/dbUsers';
 import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
 
