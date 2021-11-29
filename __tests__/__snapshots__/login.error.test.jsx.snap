@@ -26,6 +26,15 @@ exports[`Login error page Renders entire page 1`] = `
     <div
       className="jsx-3811088590 container"
     >
+      <div
+        className="StyledBox-sc-13pk1d4-0 bYujHw"
+      >
+        <img
+          className="StyledImage-sc-ey4zx9-0 fOsWNE"
+          onLoad={[Function]}
+          src="https://media.istockphoto.com/vectors/cartoon-cute-burger-icon-isolated-on-white-background-vector-id1142855781?k=20&m=1142855781&s=170667a&w=0&h=rBuRzFRXoS9jcc1FRL-rSexSP97wNsxhzJ-feGTeuJ4="
+        />
+      </div>
       <span
         className="StyledText-sc-1sadyjn-0 flpFwE"
       >

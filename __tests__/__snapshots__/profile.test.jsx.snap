@@ -49,10 +49,10 @@ exports[`Profile page renders profile elements 1`] = `
     className="StyledBox-sc-13pk1d4-0 hHCfST"
   >
     <div
-      className="jsx-840335723 container"
+      className="jsx-2052212640 container"
     >
       <img
-        className="jsx-840335723 profile-img"
+        className="jsx-2052212640 profile-img"
         src="/joe-bruin.jpg"
       />
       <div
@@ -65,7 +65,7 @@ exports[`Profile page renders profile elements 1`] = `
         </span>
       </div>
       <div
-        className="jsx-840335723 bio-container"
+        className="jsx-2052212640 bio-container"
       >
         <span
           className="StyledText-sc-1sadyjn-0 iumzz"

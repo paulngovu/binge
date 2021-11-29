@@ -146,9 +146,10 @@ const Home = ({ user }) => {
   const onUpdateFilters = async () => {
     setLoading(true);
     const userFilter = userObj.getFilter();
-    Router.push({
-      pathname: PATH_API_FILTER,
-      query: {
+
+    await fetch('/api/filter', {
+      method: 'GET',
+      headers: {
         username: userObj.getName(),
         filterQuery: userFilter.getQuery(),
         mealType: userFilter.getMealType(),
@@ -156,6 +157,7 @@ const Home = ({ user }) => {
         dishType: userFilter.getDishType(),
       },
     });
+
     await recipeStack.refreshStack();
     setLoading(false);
     if (recipeStack.stackEmpty()) {

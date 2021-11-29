@@ -176,7 +176,8 @@ exports[`Swipes page matches expected homepage snapshot 1`] = `
               <br
                 className="jsx-3811088590"
               />
-              Cautions: 
+              Cautions:
+               
               None
             </span>
           </div>

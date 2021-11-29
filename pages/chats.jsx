@@ -236,7 +236,7 @@ export default function Chats({ allMessages, foodChats, foodData, username }) {
                     borderRadius: "2vw",
                     margin: msg.sentByUser? "0vh 1vw 2vh 5vw" : 
                                             "0vh 5vw 2vh 1vw",
-                    background: msg.sentByUser ? "#3471eb" : "light-4",
+                    background: msg.sentByUser ? "brand" : "light-4",
                     padding: "1vw"
                 }}
                 >

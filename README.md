@@ -2,8 +2,8 @@
 
 Binge App
 
-First, run `npm i` to install the dependencies necessary to run the application.
-Next, run `npx generate prisma` to prepare the Prisma database.
+First, run `npm i` to install the dependencies necessary to run the application.<br />
+Next, run `npx prisma generate` to prepare the Prisma database.<br />
 Now, to start the application, you can run any of the following commands:
 
 - `npm run dev`
@@ -29,7 +29,8 @@ Folder Structure:
 
 Description of Test Cases:
 
-We use Jest and Enzyme for testing our application.
+We use Jest and Enzyme for testing our application.<br />
+You can run tests using `npm run test`.
 
 - `index.test.jsx`: tests the Home page render. This includes a snapshot test, tests for checking for components, and a test for the arrow button click.
 - `login.test.jsx`: tests the Login page render. This includes a snapshot test, and tests for checking for components.
