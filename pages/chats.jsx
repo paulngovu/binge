@@ -1,5 +1,7 @@
 import Layout from '../components/Layout';
 
+import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
+
 import {
   Box,
   Button,
@@ -17,11 +19,13 @@ import Chatroom from '../classes/Chatroom';
 
 const prisma = new PrismaClient();
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const username = getUsernameFromCookie(context);
+
   let messages = await prisma.message.findMany({
     where: {
       username: {
-        equals: "user"
+        equals: username
       }
     }
   });
@@ -39,7 +43,7 @@ export async function getServerSideProps() {
   const likes = await prisma.like.findMany({
     where: {
       username: {
-        equals: "user"
+        equals: username
       }
     }
   });
@@ -143,8 +147,15 @@ export default function Chats({ allMessages, foodChats, foodData }) {
       console.log(chatMessage);
       
       setActiveOption(null);
-      const savedMessage = await saveMessage(chatMessage, currentChat, true);
-      messages[currentChat].push(savedMessage)
+      const savedMessage = await saveMessage(chatMessage, currentChat, true);    
+      
+      if(messages.hasOwnProperty(currentChat)) {
+        messages[currentChat].push(savedMessage);
+      }
+      else {
+        messages[currentChat] = [];
+      }
+
       console.log(messages);
       setMessages(messages);
 

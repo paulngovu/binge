@@ -26,23 +26,38 @@ import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
 
 async function saveLike(username, foodname) {
   const likeInstance = {
-    foodName: foodname,
-    userName: username
-  }
+    foodname: foodname,
+    username: username
+  };
 
   const response = await fetch('/api/likes', {
     method: 'GET',
     headers: {
       'content': JSON.stringify(likeInstance)
     }
-  })
-
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-  return await response.json();
+  });
 }
 
+async function saveRecipe(name, url, ingredients, calories, allergies, imageUrl, cusineType, mealType, dishType) {
+  const recipeInstance = {
+    name: name,
+    url: url,
+    ingredients: ingredients,
+    calories: calories,
+    allergies: allergies,
+    imageUrl: imageUrl,
+    cuisineType: cusineType,
+    mealType: mealType,
+    dishType: dishType
+  }
+
+  const response = await fetch('/api/likes', {
+    method: 'GET',
+    headers: {
+      'content': JSON.stringify(recipeInstance)
+    }
+  });
+}
 
 // SWIPE PAGE
 
@@ -78,6 +93,17 @@ const Home = ({ user }) => {
   const like = () => {
     if (!noResults) {
       saveLike(user.username, currentFoodItem.name);
+      saveRecipe(
+        currentFoodItem.name,
+        currentFoodItem.url,
+        currentFoodItem.ingredients,
+        currentFoodItem.calories,
+        currentFoodItem.allergies,
+        currentFoodItem.imageUrl,
+        currentFoodItem.cusineType,
+        currentFoodItem.mealType,
+        currentFoodItem.dishType
+      );
 
       recipeStack.acceptTopRecipe();
       setNewCurrentFoodItem();

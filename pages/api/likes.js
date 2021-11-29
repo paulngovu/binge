@@ -9,10 +9,14 @@ export default async (req, res) => {
   console.log("get request body entered");
   try {
     const newLike = JSON.parse(req.headers["content"]);
-    console.log(newLike);
+    console.log("new like:")
+    console.log(newLike)
+    
     const savedLike = await prisma.like.create({ data: newLike });
+    
+    console.log(savedLike);
     res.status(200).json(savedLike);
   } catch (err) {
-    res.status(400).json({ message: 'Something went wrong' });
+    res.status(401).json({ message: 'Something went wrong' });
   }
 };
