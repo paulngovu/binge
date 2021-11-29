@@ -96,7 +96,7 @@ async function saveMessage(message, username, foodname, sentByUser) {
 }
 
 let recipeObjects = [];
-let chatroomObjects = [];
+let chatroomObjects = new Map();
 
 export default function Chats({ allMessages, foodChats, foodData, username }) {
   // scroll to bottom of overflow
@@ -125,41 +125,48 @@ export default function Chats({ allMessages, foodChats, foodData, username }) {
   const createRecipes = () => {
     for (var i = 0; i < foodData.length; i++){
       var f = foodData[i];
-      console.log(foodData);
-
+      
       var r = new Recipe(f.name, f.imageUrl, f.ingredients, f.cuisineType, f.mealType, f.dishType, "", f.calories, f.allergies, f.url);
       recipeObjects.push(r);
-      chatroomObjects.push(new Chatroom(r));
+      chatroomObjects.set(f.name, new Chatroom(r));
     }
+    console.log(foodData);
+    console.log(chatroomObjects);
   }
 
   useEffect(() => {
     scrollToBottom()
-  }, [currentChat]);
+  }, [currentChat, messages]);
 
   useEffect(() => {
     createRecipes()
   }, []);
 
+  const sendResponse = (savedMessage) => {
+    return chatroomObjects.get(currentChat).recipeResponse(savedMessage.message);
+  }
+
   const onSubmit = async () => {
     // post message to database and clear input line
     try {
-      //await saveMessage(chatMessage, currentChat, true);
-      console.log(chatMessage);
-      
-      setActiveOption(null);
+      // save user message      
       const savedMessage = await saveMessage(chatMessage, username, currentChat, true);    
       
       if(!messages.hasOwnProperty(currentChat)) {
-        messages[currentChat] = [];
+        messages[currentChat] = [];      
       }
 
       messages[currentChat].push(savedMessage);
-
-      console.log(messages);
       setMessages(messages);
 
-      // include following line if sending a message doesn't scroll chat to bottom
+      // generate & save food message
+      const foodResponse = sendResponse(savedMessage);
+      const savedFoodresponse = await saveMessage(foodResponse, username, currentChat, false);
+      messages[currentChat].push(savedFoodresponse);
+      setMessages(messages);
+
+      // clean up
+      setActiveOption(null);
       setChatMessage("");
       scrollToBottom();
     } catch (err) {
