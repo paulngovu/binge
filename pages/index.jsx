@@ -2,6 +2,8 @@ import Layout from '../components/Layout';
 import Filter from '../edamamAPI/Filter';
 import User from '../classes/User';
 import RecipeStack from '../classes/RecipeStack';
+import Router from 'next/router';
+import { PATH_API_FILTER } from '../paths';
 
 import { Favorite, Close } from 'grommet-icons';
 
@@ -81,6 +83,17 @@ const Home = ({ user }) => {
 
   const onUpdateFilters = async () => {
     setLoading(true);
+    const userFilter = userObj.getFilter();
+    Router.push({
+      pathname: PATH_API_FILTER,
+      query: {
+        username: userObj.getName(),
+        filterQuery: userFilter.getQuery(),
+        mealType: userFilter.getMealType(),
+        cuisineType: userFilter.getCuisineType(),
+        dishType: userFilter.getDishType()
+      },
+    });
     await recipeStack.refreshStack();
     setLoading(false);
     if (recipeStack.stackEmpty()) {
