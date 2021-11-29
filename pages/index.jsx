@@ -1,44 +1,51 @@
-import Layout from '../components/Layout';
-import Filter from '../edamamAPI/Filter';
-import User from '../classes/User';
-import RecipeStack from '../classes/RecipeStack';
-import Router from 'next/router';
-import { PATH_API_FILTER } from '../paths';
-
-import { Favorite, Close } from 'grommet-icons';
-
-import { useEffect, useState } from 'react';
-import useKeypress from 'react-use-keypress';
 import {
   Box,
   Button,
   Card,
-  CardHeader,
   CardBody,
+  CardHeader,
   Grid,
   Image,
   Spinner,
-  Text
+  Text,
 } from 'grommet';
-
+import { Close, Favorite } from 'grommet-icons';
+import Router from 'next/router';
+import { useEffect, useState } from 'react';
+import useKeypress from 'react-use-keypress';
+import RecipeStack from '../classes/RecipeStack';
+import User from '../classes/User';
+import Layout from '../components/Layout';
+import Filter from '../edamamAPI/Filter';
+import { PATH_API_FILTER, PATH_LOGIN_ERROR } from '../paths';
 import { getUser } from '../utils/dbUsers';
 import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
 
 async function saveLike(username, foodname) {
   const likeInstance = {
     foodname: foodname,
-    username: username
+    username: username,
   };
 
   const response = await fetch('/api/likes', {
     method: 'GET',
     headers: {
-      'content': JSON.stringify(likeInstance)
-    }
+      content: JSON.stringify(likeInstance),
+    },
   });
 }
 
-async function saveRecipe(name, url, ingredients, calories, allergies, imageUrl, cusineType, mealType, dishType) {
+async function saveRecipe(
+  name,
+  url,
+  ingredients,
+  calories,
+  allergies,
+  imageUrl,
+  cusineType,
+  mealType,
+  dishType
+) {
   const recipeInstance = {
     name: name,
     url: url,
@@ -48,14 +55,14 @@ async function saveRecipe(name, url, ingredients, calories, allergies, imageUrl,
     imageUrl: imageUrl,
     cuisineType: cusineType,
     mealType: mealType,
-    dishType: dishType
-  }
+    dishType: dishType,
+  };
 
   const response = await fetch('/api/recipes', {
     method: 'GET',
     headers: {
-      'content': JSON.stringify(recipeInstance)
-    }
+      content: JSON.stringify(recipeInstance),
+    },
   });
 }
 
@@ -68,7 +75,7 @@ const Home = ({ user }) => {
   const [currentFoodItem, setCurrentFoodItem] = useState(null);
   const [noResults, setNoResults] = useState(false);
   const [loading, setLoading] = useState(false);
-  
+
   const setNewCurrentFoodItem = async () => {
     if (recipeStack.stackEmpty()) {
       setLoading(true);
@@ -76,15 +83,19 @@ const Home = ({ user }) => {
       setLoading(false);
     }
     setCurrentFoodItem(recipeStack.getTopRecipe());
-  }
+  };
 
   useEffect(async () => {
-    userObj = new User(user.username, new Filter(
-      user.filterQuery,
-      user.mealType,
-      user.cusineType,
-      user.dishType
-    ), []);
+    userObj = new User(
+      user.username,
+      new Filter(
+        user.filterQuery,
+        user.mealType,
+        user.cusineType,
+        user.dishType
+      ),
+      []
+    );
     recipeStack = new RecipeStack(userObj);
 
     setNewCurrentFoodItem();
@@ -111,16 +122,15 @@ const Home = ({ user }) => {
       // todo:
       // add recipe to database (if not already there)
       // add match to database
-      
     }
-  }
+  };
 
   const reject = () => {
     if (!noResults) {
       recipeStack.rejectTopRecipe();
       setNewCurrentFoodItem();
     }
-  }
+  };
 
   useKeypress(['ArrowLeft', 'ArrowRight'], (event) => {
     if (event.key === 'ArrowLeft') {
@@ -140,7 +150,7 @@ const Home = ({ user }) => {
         filterQuery: userFilter.getQuery(),
         mealType: userFilter.getMealType(),
         cuisineType: userFilter.getCuisineType(),
-        dishType: userFilter.getDishType()
+        dishType: userFilter.getDishType(),
       },
     });
     await recipeStack.refreshStack();
@@ -151,103 +161,105 @@ const Home = ({ user }) => {
       setNoResults(false);
       setCurrentFoodItem(recipeStack.getTopRecipe());
     }
-  } 
+  };
 
   return (
     <Layout
-      buttons={["filter", "chats", "profile"]}
+      buttons={['filter', 'chats', 'profile']}
       user={userObj}
       onUpdateFilters={onUpdateFilters}
     >
-      <div className="container">
+      <div className='container'>
         <Grid
           rows={['auto', 'auto']}
           columns={['xsmall', 'auto', 'xsmall']}
-          gap="small"
+          gap='small'
           areas={[
             { name: 'left', start: [0, 0], end: [0, 0] },
             { name: 'main', start: [1, 0], end: [1, 0] },
             { name: 'right', start: [2, 0], end: [2, 0] },
             { name: 'foot', start: [0, 1], end: [2, 1] },
           ]}
-          margin="medium"
+          margin='medium'
         >
-          <Box gridArea="left">
+          <Box gridArea='left'>
             <Button
-              id="left-arrow"
-              data-testid="left-arrow"
-              icon={
-                <Close
-                  color='dark-2'
-                  size='x-large'
-                />
-              }
+              id='left-arrow'
+              data-testid='left-arrow'
+              icon={<Close color='dark-2' size='x-large' />}
               hoverIndicator
               style={{ paddingTop: 250, paddingBottom: 250 }}
               onClick={reject}
               tip={{
-                content: "Click to pass on this recipe."
+                content: 'Click to pass on this recipe.',
               }}
             />
           </Box>
-          <Box gridArea="main">
-            {loading ? <Spinner /> :
+          <Box gridArea='main'>
+            {loading ? (
+              <Spinner />
+            ) : (
               <Card
-                id="food-item-card"
-                fill="vertical"
-                width="large"
-                background="light-1"
-                style={{ alignItems: "center" }}
+                id='food-item-card'
+                fill='vertical'
+                width='large'
+                background='light-1'
+                style={{ alignItems: 'center' }}
               >
                 <CardHeader
-                  pad="medium"
-                  width="100%"
-                  background="light-3"
-                  style={{ justifyContent: "center" }}
+                  pad='medium'
+                  width='100%'
+                  background='light-3'
+                  style={{ justifyContent: 'center' }}
                 >
-                  <Text size="large">
+                  <Text size='large'>
                     {!noResults && currentFoodItem?.name}
                   </Text>
                 </CardHeader>
-                <CardBody pad="medium">
-                  {!noResults && <Image data-testid="food-item-img" src={currentFoodItem?.image} fit="contain" />}
-                  {noResults ?
-                  <Text size="medium" margin="small">
-                    No Results! Try changing your filters.
-                  </Text> :
-                  <Text size="medium" margin="small">
-                    Calories: {Math.floor(currentFoodItem?.calories)}<br />
-                    Cautions: {
-                      currentFoodItem?.cautions?.length ? 
-                        currentFoodItem?.cautions.map(
-                          (caution, i) => i == 0 ? `${caution}` : `, ${caution}`
-                        ) : "None"
-                    }
-                  </Text>}
+                <CardBody pad='medium'>
+                  {!noResults && (
+                    <Image
+                      data-testid='food-item-img'
+                      src={currentFoodItem?.image}
+                      fit='contain'
+                    />
+                  )}
+                  {noResults ? (
+                    <Text size='medium' margin='small'>
+                      No Results! Try changing your filters.
+                    </Text>
+                  ) : (
+                    <Text size='medium' margin='small'>
+                      Calories: {Math.floor(currentFoodItem?.calories)}
+                      <br />
+                      Cautions:{' '}
+                      {currentFoodItem?.cautions?.length
+                        ? currentFoodItem?.cautions.map((caution, i) =>
+                            i == 0 ? `${caution}` : `, ${caution}`
+                          )
+                        : 'None'}
+                    </Text>
+                  )}
                 </CardBody>
               </Card>
-            }
+            )}
           </Box>
-          <Box gridArea="right">
+          <Box gridArea='right'>
             <Button
-              id="right-arrow"
-              icon={
-                <Favorite
-                  color='dark-2'
-                  size='x-large'
-                />
-              }
+              id='right-arrow'
+              icon={<Favorite color='dark-2' size='x-large' />}
               hoverIndicator
               style={{ paddingTop: 250, paddingBottom: 250 }}
               onClick={like}
               tip={{
-                content: "Click to like this recipe!"
+                content: 'Click to like this recipe!',
               }}
             />
           </Box>
-          <Box gridArea="foot" align="center">
-            <Text size="small" margin="small" color="status-ok" weight="bold">
-              Note: You can also use the left and right arrow keys to "swipe" through items! (LEFT to REJECT, RIGHT to LIKE)
+          <Box gridArea='foot' align='center'>
+            <Text size='small' margin='small' color='status-ok' weight='bold'>
+              Note: You can also use the left and right arrow keys to "swipe"
+              through items! (LEFT to REJECT, RIGHT to LIKE)
             </Text>
           </Box>
         </Grid>
@@ -264,15 +276,17 @@ const Home = ({ user }) => {
         `}</style>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
 export default Home;
 
 export const getServerSideProps = async (context) => {
   const username = getUsernameFromCookie(context);
+  if (!username) {
+    return Router.push(PATH_LOGIN_ERROR);
+  }
   const user = await getUser(username);
-  
   return {
     props: { user },
   };

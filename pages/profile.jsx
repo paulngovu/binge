@@ -3,7 +3,7 @@ import { Checkmark } from 'grommet-icons';
 import Router from 'next/router';
 import { useState } from 'react';
 import Layout from '../components/Layout';
-import { PATH_API_BIO, PATH_LOGOUT } from '../paths';
+import { PATH_API_BIO, PATH_LOGIN_ERROR, PATH_LOGOUT } from '../paths';
 import {
   TESTID_PROFILE_BIO_BUTTON,
   TESTID_PROFILE_BIO_FIELD,
@@ -159,6 +159,9 @@ export default Profile;
 
 export const getServerSideProps = async (context) => {
   const username = getUsernameFromCookie(context);
+  if (!username) {
+    Router.push(PATH_LOGIN_ERROR);
+  }
   const user = await getUser(username);
   return {
     props: { user: user },

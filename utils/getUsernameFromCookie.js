@@ -8,6 +8,11 @@ export const getUsernameFromCookie = (context) => {
   const { req } = context;
   const { cookies } = req;
   const token = cookies.jwt;
-  const decoded = jwt.verify(token, jwt_key);
-  return decoded.user;
+  try {
+    const decoded = jwt.verify(token, jwt_key);
+    return decoded.user;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 };
