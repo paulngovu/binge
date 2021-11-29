@@ -41,17 +41,27 @@ const Profile = ({ user }) => {
             <Text weight='bold' size='large'>
               {name}
             </Text>
-            <Text size='medium'>{bio}</Text>
           </Box>
+          {showModal ? null :
+            <div className='bio-container'>
+              <Text 
+                size='medium'
+                wordBreak='break-all'
+              >
+                {bio}
+              </Text>
+            </div>       
+          }
           {showModal ? (
             <Box margin={{ top: 'xsmall', bottom: 'medium' }}>
               <label htmlFor='name'>New bio (200 characters max):</label>
               <Grid
-                rows={['auto']}
-                columns={['auto', 'xxsmall']}
+                rows={['small', 'xxsmall']}
+                columns={['medium']}
+                gap='xsmall'
                 areas={[
                   { name: 'input', start: [0, 0], end: [0, 0] },
-                  { name: 'submit', start: [1, 0], end: [1, 0] },
+                  { name: 'submit', start: [0, 1], end: [0, 1] },
                 ]}
               >
                 <TextArea
@@ -59,8 +69,9 @@ const Profile = ({ user }) => {
                   type='text'
                   id='bio'
                   name='bio'
-                  size='xsmall'
+                  size='small'
                   maxLength='200'
+                  resize={false}
                   data-testid={TESTID_PROFILE_BIO_FIELD}
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
@@ -71,6 +82,7 @@ const Profile = ({ user }) => {
                   gridArea='submit'
                   secondary
                   plain={false}
+                  label='Submit'
                   icon={<Checkmark size='small' />}
                   onClick={onSubmit}
                 ></Button>
@@ -109,6 +121,15 @@ const Profile = ({ user }) => {
               border-radius: 50%;
               width: 20%;
               height: 20%;
+            }
+            .bio-container {
+              border: 1px dotted #ff5050;
+              border-radius: 5px;
+              width: 30vw;
+              height: 30vh;
+              padding: 1vw;
+              margin-bottom: 2vh;
+              white-space: pre-line;
             }
           `}</style>
         </div>
