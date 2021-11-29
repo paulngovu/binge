@@ -1,4 +1,5 @@
 import Layout from '../components/Layout';
+import { prisma } from '../utils/lib/db';
 
 import { getUsernameFromCookie } from '../utils/getUsernameFromCookie';
 
@@ -10,9 +11,6 @@ import { useRef, useEffect, useState } from 'react';
 import { PrismaClient, Message, Prisma } from '@prisma/client';
 import Recipe from '../edamamAPI/Recipe';
 import Chatroom from '../classes/Chatroom';
-// import { useState } from 'react';
-
-const prisma = new PrismaClient();
 
 export async function getServerSideProps(context) {
   const username = getUsernameFromCookie(context);

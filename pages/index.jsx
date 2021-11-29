@@ -42,7 +42,7 @@ async function saveRecipe(
   calories,
   allergies,
   imageUrl,
-  cusineType,
+  cuisineType,
   mealType,
   dishType
 ) {
@@ -53,10 +53,12 @@ async function saveRecipe(
     calories: Math.floor(calories),
     allergies: allergies,
     imageUrl: imageUrl,
-    cuisineType: cusineType,
+    cuisineType: cuisineType,
     mealType: mealType,
     dishType: dishType,
   };
+
+  console.log(recipeInstance);
 
   const response = await fetch('/api/recipes', {
     method: 'GET',
