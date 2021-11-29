@@ -31,6 +31,7 @@ You can run tests using `npm run test`.
 - `login.test.jsx`: tests the Login page render. This includes a snapshot test, and tests for checking for components.
 - `login.error.test.jsx`: tests the Login error page render. This includes a snapshot test, and tests for checking for components.
 - `profile.test.jsx`: tests the Profile page render. This includes a snapshot test, and a test to check the form input behavior for editing username.
+- `chats.test.jsx`: tests the Chats page render. This includes a snapshot test, and tests to check the correct behavior both when sidebar is empty and is not empty.
 - `edamam.test.jsx`: tests the Recipe and Filter classes. This includes tests for the Filter constructor, tests for the generateUrl() and queryAPI() functions in the Filter class, and tests for the parseJson() function in the Recipe class.
 - `classes.test.jsx`: tests the RecipeStack, User and Chatroom classes. This includes tests for the RecipeStack refreshStack(), getTopRecipe(), acceptTopRecipe() and rejectTopRecipe() functions, the User addMatches() function and the Chatroom recipeResponse() function.
 
