@@ -1,9 +1,10 @@
-import { Button, Grommet, Header, Heading, Drop } from 'grommet';
+import { Box, Button, Drop, Grommet, Header, Heading, Text } from 'grommet';
 import { Chat, Filter, Home, User } from 'grommet-icons';
-import { useState, useRef } from 'react';
 import Head from 'next/head';
+import { useRef, useState } from 'react';
 import { PATH_CHATS, PATH_HOME, PATH_PROFILE } from '../paths';
 import Filters from './Filters';
+import { Hamburger } from './Hamburger';
 
 const Layout = ({ buttons = [], ...props }) => {
   const [showFiltersDrop, setShowFiltersDrop] = useState(false);
@@ -28,6 +29,7 @@ const Layout = ({ buttons = [], ...props }) => {
     },
   };
 
+  const showUsername = buttons.indexOf('username') > -1;
   const showFilter = buttons.indexOf('filter') > -1;
   const showChats = buttons.indexOf('chats') > -1;
   const showProfile = buttons.indexOf('profile') > -1;
@@ -37,75 +39,98 @@ const Layout = ({ buttons = [], ...props }) => {
 
   const toggleFiltersDrop = () => {
     setShowFiltersDrop(!showFiltersDrop);
-  }
+  };
 
   return (
     <Grommet theme={theme}>
       <Head>
         <title>Binge</title>
-        <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <Header display='flex' background='brand' pad='medium' height='xsmall'>
         <Heading color='white'>Binge</Heading>
         <div alignself='end'>
-          {showFilter ? (
-            <>
+          <Box direction='row'>
+            {showUsername && (
+              <Text color='white' margin='small'>
+                Hi, {props.username}
+              </Text>
+            )}
+            {showFilter && (
+              <>
+                <Button
+                  data-testid='filters-btn'
+                  id='filters-btn'
+                  ref={ref}
+                  icon={<Filter color='white' />}
+                  hoverIndicator
+                  onClick={toggleFiltersDrop}
+                />
+                {showFiltersDrop && ref && (
+                  <Drop
+                    align={{ bottom: 'top', right: 'right' }}
+                    target={ref.current}
+                    responsive
+                    onClickOutside={() => {
+                      setShowFiltersDrop(false);
+                    }}
+                  >
+                    <Filters
+                      onSubmit={(
+                        queryString,
+                        mealType,
+                        cuisineType,
+                        dishType
+                      ) => {
+                        props.user.updateFilter(
+                          queryString,
+                          mealType,
+                          cuisineType,
+                          dishType
+                        );
+                        props.onUpdateFilters();
+                        setShowFiltersDrop(false);
+                      }}
+                      user={props.user}
+                    />
+                  </Drop>
+                )}
+              </>
+            )}
+            {showChats && (
               <Button
-                data-testid="filters-btn"
-                id="filters-btn"
-                ref={ref}
-                icon={<Filter color='white' />}
+                data-testid='chats-btn'
+                icon={<Chat color='white' />}
                 hoverIndicator
-                onClick={toggleFiltersDrop}
+                href={PATH_CHATS}
+                tip={{
+                  content: 'Chats',
+                }}
               />
-              {showFiltersDrop && ref && <Drop
-                align={{ bottom: 'top', right: 'right' }}
-                target={ref.current}
-                responsive
-                onClickOutside={() => {setShowFiltersDrop(false)}}
-              >
-                <Filters onSubmit={(queryString, mealType, cuisineType, dishType) => {
-                  props.user.updateFilter(queryString, mealType, cuisineType, dishType);
-                  props.onUpdateFilters();
-                  setShowFiltersDrop(false);
-                }} user={props.user}/>
-              </Drop>}
-            </>
-          ) : null}
-          {showChats ? (
-            <Button
-              data-testid="chats-btn"
-              icon={<Chat color='white' />}
-              hoverIndicator
-              href={PATH_CHATS}
-              tip={{
-                content: "Chats"
-              }}
-            />
-          ) : null}
-          {showProfile ? (
-            <Button
-              data-testid="profile-btn"
-              icon={<User color='white' />}
-              hoverIndicator
-              href={PATH_PROFILE}
-              tip={{
-                content: "Profile"
-              }}
-            />
-          ) : null}
-          {showHome ? (
-            <Button
-              data-testid="home-btn"
-              icon={<Home color='white' />}
-              hoverIndicator
-              href={PATH_HOME}
-              tip={{
-                content: "Home"
-              }}
-            />
-          ) : null}
+            )}
+            {showProfile && (
+              <Button
+                data-testid='profile-btn'
+                icon={<User color='white' />}
+                hoverIndicator
+                href={PATH_PROFILE}
+                tip={{
+                  content: 'Profile',
+                }}
+              />
+            )}
+            {showHome && (
+              <Button
+                data-testid='home-btn'
+                icon={<Home color='white' />}
+                hoverIndicator
+                href={PATH_HOME}
+                tip={{
+                  content: 'Home',
+                }}
+              />
+            )}
+          </Box>
         </div>
       </Header>
       {props.children}

@@ -170,9 +170,10 @@ const Home = ({ user }) => {
 
   return (
     <Layout
-      buttons={['filter', 'chats', 'profile']}
+      buttons={['username', 'filter', 'chats', 'profile']}
       user={userObj}
       onUpdateFilters={onUpdateFilters}
+      username={user.username}
     >
       <div className='container'>
         <Grid
@@ -288,7 +289,6 @@ export default Home;
 
 export const getServerSideProps = async (context) => {
   const username = getUsernameFromCookie(context);
-  
   const user = await getUser(username);
   return {
     props: { user },
