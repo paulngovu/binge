@@ -42,7 +42,7 @@ async function saveRecipe(
   calories,
   allergies,
   imageUrl,
-  cusineType,
+  cuisineType,
   mealType,
   dishType
 ) {
@@ -53,10 +53,12 @@ async function saveRecipe(
     calories: Math.floor(calories),
     allergies: allergies,
     imageUrl: imageUrl,
-    cuisineType: cusineType,
+    cuisineType: cuisineType,
     mealType: mealType,
     dishType: dishType,
   };
+
+  console.log(recipeInstance);
 
   const response = await fetch('/api/recipes', {
     method: 'GET',
@@ -170,9 +172,10 @@ const Home = ({ user }) => {
 
   return (
     <Layout
-      buttons={['filter', 'chats', 'profile']}
+      buttons={['username', 'filter', 'chats', 'profile']}
       user={userObj}
       onUpdateFilters={onUpdateFilters}
+      username={user.username}
     >
       <div className='container'>
         <Grid
@@ -288,7 +291,6 @@ export default Home;
 
 export const getServerSideProps = async (context) => {
   const username = getUsernameFromCookie(context);
-  
   const user = await getUser(username);
   return {
     props: { user },

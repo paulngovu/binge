@@ -1,7 +1,7 @@
-import { Box, Button, Grid, Text, TextArea } from 'grommet';
+import { Box, Button, Grid, Spinner, Text, TextArea } from 'grommet';
 import { Checkmark } from 'grommet-icons';
 import Router from 'next/router';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import { PATH_API_BIO, PATH_LOGIN_ERROR, PATH_LOGOUT } from '../paths';
 import {
@@ -29,37 +29,35 @@ const saveBio = async (username, bio) => {
 const Profile = ({ user }) => {
   const [bio, setBio] = useState(user.bio);
   const [showModal, setShowModal] = useState(false);
-  const [editBtnCopy, setEditBtnCopy] = useState("Edit");
+  const [editBtnCopy, setEditBtnCopy] = useState('Edit');
+  const [showSpinner, setShowSpinner] = useState(false);
 
   useEffect(() => {
     if (!user) {
       Router.push(PATH_LOGIN_ERROR);
     }
-  })
+  });
 
   const toggleModal = () => {
     setShowModal(!showModal);
-    setEditBtnCopy(editBtnCopy === "Edit" ? "Cancel" : "Edit");
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
+    setEditBtnCopy(editBtnCopy === 'Edit' ? 'Cancel' : 'Edit');
   };
 
   const onSubmit = async () => {
-    closeModal();
-
+    setShowSpinner(true);
     try {
       await saveBio(user.username, bio.trim());
     } catch (err) {
       console.log(err);
     } finally {
+      setShowModal(false);
+      toggleModal();
       Router.reload();
     }
   };
 
   return (
-    <Layout buttons={['home']}>
+    <Layout buttons={['username', 'home']} username={user.username}>
       <Box pad='large'>
         <div className='container'>
           <img className='profile-img' src='/joe-bruin.jpg' />
@@ -86,7 +84,7 @@ const Profile = ({ user }) => {
                   { name: 'submit', start: [0, 1], end: [0, 1] },
                 ]}
               >
-                <Box gridArea='input' height="xsmall">
+                <Box gridArea='input' height='xsmall'>
                   <TextArea
                     type='text'
                     id='bio'
@@ -99,20 +97,26 @@ const Profile = ({ user }) => {
                     onChange={(e) => setBio(e.target.value)}
                   />
                 </Box>
-                <Button
-                  data-testid={TESTID_PROFILE_BIO_BUTTON}
-                  a11yTitle='submit-bio'
-                  gridArea='submit'
-                  secondary
-                  plain={false}
-                  label='Submit'
-                  icon={<Checkmark size='small' />}
-                  onClick={onSubmit}
-                />
+                <Box>
+                  {showSpinner ? (
+                    <Spinner alignSelf='center' />
+                  ) : (
+                    <Button
+                      data-testid={TESTID_PROFILE_BIO_BUTTON}
+                      a11yTitle='submit-bio'
+                      gridArea='submit'
+                      secondary
+                      plain={false}
+                      label='Submit'
+                      icon={<Checkmark size='small' />}
+                      onClick={onSubmit}
+                    />
+                  )}
+                </Box>
               </Grid>
             </Box>
           )}
-          <Button secondary label={editBtnCopy} onClick={toggleModal}/>
+          <Button secondary label={editBtnCopy} onClick={toggleModal} />
           <Box pad='small'>
             <Button
               primary
@@ -166,7 +170,7 @@ export default Profile;
 
 export const getServerSideProps = async (context) => {
   const username = getUsernameFromCookie(context);
-  
+
   const user = await getUser(username);
   return {
     props: { user: user },
